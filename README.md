@@ -1,3 +1,3 @@
 # iWiki
 
-This is wiki based on [MkDocs](https://www.mkdocs.org/).
+A wiki based on [MkDocs](https://www.mkdocs.org/).
