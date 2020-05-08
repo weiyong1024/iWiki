@@ -2,5 +2,10 @@ site_name: iWiki
 site_author: weiyong1024
 nav:
   - Home: index.md
+  - 字符串:
+    - Z 函数（扩展KMP）: string/z-func.md
   - About: about.md
 theme: readthedocs
+
+markdown_extensions:
+  - pymdownx.arithmatex
