@@ -1,0 +1,6 @@
+site_name: iWiki
+site_author: weiyong1024
+nav:
+  - Home: index.md
+  - About: about.md
+theme: readthedocs
