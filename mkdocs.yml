@@ -1,11 +1,57 @@
+# Project information
 site_name: iWiki
+site_description: iWiki 提供代码模板的快速获取
 site_author: weiyong1024
+# site_url: https://oi-wiki.org
+strict: true
+
+# Repository
+repo_name: 'weiyong1024/iWiki'
+repo_url: 'https://github.com/weiyong1024/iWiki'
+edit_uri: ''
+
+# Page tree
 nav:
-  - Home: index.md
+  - 简介: index.md
+  - 算法基础:
+    - 排序:
+      - 快速排序: basic/quick_sort.md
+      - 归并排序: basic/merge_sort.md
   - 字符串:
     - Z 函数（扩展KMP）: string/z-func.md
-  - About: about.md
-theme: readthedocs
+  - 关于: about.md
 
+# Theme
+theme:
+  name: 'material'
+  language: 'zh'
+  palette:
+    primary: 'white'
+    accent: 'red'
+  include_search_page: false
+  search_index_only: true
+  favicon: 'favicon.ico'
+  feature:
+    tabs: true
+
+# Extensions
 markdown_extensions:
   - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed
+  - pymdownx.tilde
+  
