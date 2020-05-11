@@ -10,17 +10,6 @@ repo_name: 'weiyong1024/iWiki'
 repo_url: 'https://github.com/weiyong1024/iWiki'
 edit_uri: ''
 
-# Page tree
-nav:
-  - 简介: index.md
-  - 算法基础:
-    - 排序:
-      - 快速排序: basic/quick_sort.md
-      - 归并排序: basic/merge_sort.md
-  - 字符串:
-    - Z 函数（扩展KMP）: string/z-func.md
-  - 关于: about.md
-
 # Theme
 theme:
   name: 'material'
@@ -33,6 +22,20 @@ theme:
   favicon: 'favicon.ico'
   feature:
     tabs: true
+
+# Page tree
+nav:
+  - 简介: index.md
+  - 基础:
+    - 排序:
+      - 快速排序: basic/quick_sort.md
+      - 归并排序: basic/merge_sort.md
+  - 字符串:
+    - Z 函数（扩展KMP）: string/z-func.md
+  - 数据结构:
+    - 树状数组: data_structure/fenwick.md
+    - 线段树: data_structure/segment_tree.md
+  - 关于: about.md
 
 # Extensions
 markdown_extensions:
