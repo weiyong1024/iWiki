@@ -6,7 +6,7 @@ git clone git@github.com:weiyong1024/iWiki.git --depth=1
 
 # 用新的 pyhton 虚拟环境运行
 virtualenv pyenv -p python3
-source pyenv/bin/active
+source pyenv/bin/activate
 
 cd iWiki
 
