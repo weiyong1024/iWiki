@@ -35,6 +35,7 @@ nav:
   - 数据结构:
     - 树状数组: data_structure/fenwick.md
     - 线段树: data_structure/segment_tree.md
+    - 并查集: data_structure/union_find.md
   - 关于: about.md
 
 # Extensions
