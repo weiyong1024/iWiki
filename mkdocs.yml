@@ -30,6 +30,11 @@ nav:
     - 排序:
       - 快速排序: basic/quick_sort.md
       - 归并排序: basic/merge_sort.md
+  - 数学:
+    - 最大公约数: math/greatest_common_devisor.md
+    - 快速幂: math/quick_power.md
+    - 组合数: math/combination.md
+    - 乘法逆元: math/inverse.md
   - 字符串:
     - Z 函数（扩展KMP）: string/z-func.md
     - 字典树: string/trie.md
