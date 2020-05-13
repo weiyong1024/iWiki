@@ -2,15 +2,15 @@
 
 
 ## Euclid算法
-计算 $big$ 和 $small$ （其中 $small <= big$ ）的最大公约数
+计算 $big$ 和 $small$ （其中 $small \leq big$ ）的最大公约数
 
 * 只要 $samll$ 不为 $0$ 则：
 
-$big，samll = small，big % small$
+$big，samll = small，big \pmod {small}$
 
 * 否则： $big$ 为所求
 
-Euclid算法的时间复杂度为 $O(max(a, b))$ 。
+Euclid算法的时间复杂度为 $O(max(big))$ 。
 
 
 ## 代码
