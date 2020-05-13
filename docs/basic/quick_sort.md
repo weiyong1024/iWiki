@@ -26,7 +26,7 @@ void quick(int *a, int l, int r) {  // Sort a[l...r].
 
 将序列中的元素按首元大小分边，再对两边分别递归处理。
 
-时间复杂度 $O(nlogn)$ 。
+时间复杂度 $O(n\log{n})$ 。
 
 
 ## 实现

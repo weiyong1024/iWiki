@@ -35,4 +35,4 @@ void merge_sort(int *a, int l, int r) {  // Sort array a[l...r].
 
 将数组折半分成左、右两部分，分别排序，再对有序的左、右两部分执行合并操作。
 
-时间复杂度 $O(nlogn)$ 。
+时间复杂度 $O(n\log{n})$ 。
