@@ -46,6 +46,8 @@ nav:
     - 最短路径:
       - 单源最短路: graph_theory/dijkstra.md
       - 所有点对之间最短路: graph_theory/floyd.md
+    - 最小生成树: graph_theory/minimum_spanning_tree.md
+    - 二分图匹配: graph_theory/bipartite_matching.md
   - 关于: about.md
 
 extra_javascript: 
