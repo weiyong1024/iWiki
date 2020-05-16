@@ -19,7 +19,7 @@
     
     
       
-        <title>树状数组 - iWiki</title>
+        <title>LRU缓存 - iWiki</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fenwick" class="md-skip">
+        <a href="#lru" class="md-skip">
           跳转至
         </a>
       
@@ -88,7 +88,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              树状数组
+              LRU缓存
             
           </span>
         </div>
@@ -453,74 +453,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        树状数组
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="树状数组" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../fenwick/" title="树状数组" class="md-nav__link">
       树状数组
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    问题
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    代码
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    算法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    讨论
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -552,11 +489,67 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../lru_cache/" title="LRU缓存" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        LRU缓存
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="LRU缓存" class="md-nav__link md-nav__link--active">
       LRU缓存
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    问题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    代码
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -719,21 +712,14 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    代码
+    分析
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    算法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    讨论
+    代码
   </a>
   
 </li>
@@ -754,60 +740,68 @@
                   
                 
                 
-                <h1 id="fenwick">Fenwick/树状数组</h1>
-<p>Fenwick树，也叫binary index tree，或树状数组，支持在 <span><span class="MathJax_Preview">O(\log n)</span><script type="math/tex">O(\log n)</script></span> 时间内更新元素值和计算前缀和操作</p>
+                <h1 id="lru">LRU缓存</h1>
 <h2 id="_1">问题</h2>
-<p>给定长度为 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 的序列 <span><span class="MathJax_Preview">v</span><script type="math/tex">v</script></span> ，要求在 <span><span class="MathJax_Preview">O(\log n)</span><script type="math/tex">O(\log n)</script></span> 的时间内完成如下操作：</p>
+<p>设计一种键、值对的容器数据结构，支持 <span><span class="MathJax_Preview">get</span><script type="math/tex">get</script></span> 和 <span><span class="MathJax_Preview">set</span><script type="math/tex">set</script></span> 操作：</p>
 <ul>
 <li>
-<p>更新单个元素 <span><span class="MathJax_Preview">v[i]</span><script type="math/tex">v[i]</script></span> 的值</p>
+<p><span><span class="MathJax_Preview">get(key)</span><script type="math/tex">get(key)</script></span> - 如果缓存中存在 <span><span class="MathJax_Preview">key</span><script type="math/tex">key</script></span> ，则返回其对应值，否则返回 <span><span class="MathJax_Preview">-1</span><script type="math/tex">-1</script></span></p>
 </li>
 <li>
-<p>查询位于区间 <span><span class="MathJax_Preview">[l, r)</span><script type="math/tex">[l, r)</script></span> 的元素和</p>
+<p><span><span class="MathJax_Preview">set(key, value)</span><script type="math/tex">set(key, value)</script></span> - 如果 <span><span class="MathJax_Preview">key</span><script type="math/tex">key</script></span> 已存在则更新其对应的值，否则加入新的键值对 <span><span class="MathJax_Preview">(key, value)</span><script type="math/tex">(key, value)</script></span> ，如果容器已达到最大容量则踢出上次访问距离最远的键值对</p>
 </li>
 </ul>
-<h2 id="_2">代码</h2>
-<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">BIT</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">BIT</span><span class="p">()</span> <span class="p">{}</span>
-    <span class="n">BIT</span><span class="p">(</span><span class="kt">int</span> <span class="n">_sz</span><span class="p">)</span> <span class="o">:</span> <span class="n">sz</span><span class="p">(</span><span class="n">_sz</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">bit</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sz</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<h2 id="_2">分析</h2>
+<p>由于需要刻画访问顺序，并且需要快速将容器中某个元素移到头部，故可以使用键、值对的双向链表<code>std::list</code>来实现。</p>
+<p>进一步，可以使用一个<code>std::unordered_map</code>来维护 <span><span class="MathJax_Preview">key</span><script type="math/tex">key</script></span> 到链表节点（键值对）的迭代器的哈希。</p>
+<h2 id="_3">代码</h2>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">LRUcache</span> <span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+    <span class="n">LRUcache</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">capacity</span> <span class="o">=</span> <span class="n">capacity</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">Get</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">cache_map</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">==</span> <span class="n">cache_map</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">cache_list</span><span class="p">.</span><span class="n">splice</span><span class="p">(</span><span class="n">cache_list</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">cache_list</span><span class="p">,</span> <span class="n">cache_map</span><span class="p">[</span><span class="n">key</span><span class="p">]);</span>
+        <span class="n">cache_map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache_list</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">cache_map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">v</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="n">BIT</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">arr</span><span class="p">)</span> <span class="o">:</span> <span class="n">sz</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">bit</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sz</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sz</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-            <span class="k">this</span><span class="o">-&gt;</span><span class="n">Add</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="kt">void</span> <span class="n">Set</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">cache_map</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">==</span> <span class="n">cache_map</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">cache_list</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">capacity</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">cache_map</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">cache_list</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">k</span><span class="p">);</span>
+                <span class="n">cache_list</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="n">cache_list</span><span class="p">.</span><span class="n">push_front</span><span class="p">(</span><span class="n">CacheNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">));</span>
+            <span class="n">cache_map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache_list</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">cache_map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">v</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+            <span class="n">cache_list</span><span class="p">.</span><span class="n">splice</span><span class="p">(</span><span class="n">cache_list</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">cache_list</span><span class="p">,</span> <span class="n">cache_map</span><span class="p">[</span><span class="n">key</span><span class="p">]);</span>
+            <span class="n">cache_map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">cache_list</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+        <span class="p">}</span>
     <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">Add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="o">++</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">x</span> <span class="o">+=</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">x</span><span class="p">)</span>
-            <span class="n">bit</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="n">val</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">T</span> <span class="n">Query</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">// Sum [0, x]</span>
-        <span class="n">T</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="o">++</span><span class="p">;</span> <span class="n">x</span><span class="p">;</span> <span class="n">x</span> <span class="o">-=</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">x</span><span class="p">)</span>
-            <span class="n">ans</span> <span class="o">+=</span> <span class="n">bit</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
-        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">T</span> <span class="n">Query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Sum [l, r)</span>
-        <span class="k">return</span> <span class="n">Query</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">Query</span><span class="p">(</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">sz</span><span class="p">;</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">bit</span><span class="p">;</span>
+
+   <span class="k">private</span><span class="o">:</span>
+    <span class="k">struct</span> <span class="n">CacheNode</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">;</span>
+        <span class="n">CacheNode</span><span class="p">()</span> <span class="p">{}</span>
+        <span class="n">CacheNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">_k</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_v</span><span class="p">)</span> <span class="o">:</span> <span class="n">k</span><span class="p">(</span><span class="n">_k</span><span class="p">),</span> <span class="n">v</span><span class="p">(</span><span class="n">_v</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="p">};</span>
+    <span class="kt">int</span> <span class="n">capacity</span><span class="p">;</span>
+    <span class="n">list</span><span class="o">&lt;</span><span class="n">CacheNode</span><span class="o">&gt;</span> <span class="n">cache_list</span><span class="p">;</span>
+    <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">list</span><span class="o">&lt;</span><span class="n">CacheNode</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="o">&gt;</span> <span class="n">cache_map</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
 
-<h2 id="_3">算法</h2>
-<p><img alt="Fenwick" src="../images/fenwick.png" /></p>
-<p>树中节点编号 <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 代表前i个元素。每个节点存储的是相比父节点多出来的那一部分元素和。顾对于任意节点，其回溯到根节点的路径上的元素之和就是原数组的前缀和。</p>
-<p>注：若 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> 为正，则 <span><span class="MathJax_Preview">x \&amp; -x</span><script type="math/tex">x \& -x</script></span> 为 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> 低位 <span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span> 所代表的数。</p>
-<h2 id="_4">讨论</h2>
 <ul>
-<li>与线段树的区别</li>
+<li>
+<p><span><span class="MathJax_Preview">CacheNode</span><script type="math/tex">CacheNode</script></span> - 键值对（链表节点）</p>
+</li>
+<li>
+<p><span><span class="MathJax_Preview">cache\_list</span><script type="math/tex">cache\_list</script></span> - 内部链表</p>
+</li>
+<li>
+<p><span><span class="MathJax_Preview">cache\_map</span><script type="math/tex">cache\_map</script></span> - 从 <span><span class="MathJax_Preview">key</span><script type="math/tex">key</script></span> 到键值对地址的哈希</p>
+</li>
 </ul>
-<p>对于树状数组和线段树的区别，从树状数组索引更新的方式可见端倪：</p>
-<p>BIT的索引更新方式为减去或加上最低位 <span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span> ，线段树的索引更新方式为左移或右移 <span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span> 位。这导致树状数组的父子节点所表征的区间没有交集，一枝中的所有节点一起构成一个索引所决定前缀的内容；而线段树的父子节点之间是有重合的，甚至父节点 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 存储的值就是由两个儿子节点（<span><span class="MathJax_Preview">p &lt;&lt; 1</span><script type="math/tex">p << 1</script></span> 和 <span><span class="MathJax_Preview">p &lt;&lt; 1 | 1</span><script type="math/tex">p << 1 | 1</script></span> ）直接决定的。这也解释了为什么树状数组不支持维护区间最值，而线段树却支持，因为线段树为此额外付出了 <span><span class="MathJax_Preview">O(n)</span><script type="math/tex">O(n)</script></span> 的空间复杂度。
-注：树状数组的空间复杂度为 <span><span class="MathJax_Preview">O(n)</span><script type="math/tex">O(n)</script></span> ，线段树的空间复杂度 <span><span class="MathJax_Preview">O(2n)</span><script type="math/tex">O(2n)</script></span> 。</p>
                 
               
               
@@ -826,7 +820,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="">
         
-          <a href="../../string/suffix_automation/" title="后缀自动机" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../union_find/" title="并查集" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -835,19 +829,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                后缀自动机
+                并查集
               </div>
             </div>
           </a>
         
         
-          <a href="../segment_tree/" title="线段树" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../graph_theory/dijkstra/" title="单源最短路" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                线段树
+                单源最短路
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

@@ -19,7 +19,7 @@
     
     
       
-        <title>树状数组 - iWiki</title>
+        <title>后缀自动机 - iWiki</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fenwick" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -88,7 +88,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              树状数组
+              后缀自动机
             
           </span>
         </div>
@@ -360,10 +360,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
     <label class="md-nav__link" for="nav-4">
       字符串
@@ -387,7 +389,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../string/z-func/" title="Z 函数（扩展KMP）" class="md-nav__link">
+    <a href="../z-func/" title="Z 函数（扩展KMP）" class="md-nav__link">
       Z 函数（扩展KMP）
     </a>
   </li>
@@ -399,7 +401,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../string/trie/" title="字典树" class="md-nav__link">
+    <a href="../trie/" title="字典树" class="md-nav__link">
       字典树
     </a>
   </li>
@@ -409,11 +411,74 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../string/suffix_automation/" title="后缀自动机" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        后缀自动机
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="后缀自动机" class="md-nav__link md-nav__link--active">
       后缀自动机
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sam" class="md-nav__link">
+    SAM分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sam_1" class="md-nav__link">
+    SAM的线性构造算法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    应用
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -426,12 +491,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       数据结构
@@ -453,74 +516,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        树状数组
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="树状数组" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../data_structure/fenwick/" title="树状数组" class="md-nav__link">
       树状数组
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    问题
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    代码
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    算法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    讨论
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -530,7 +530,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../segment_tree/" title="线段树" class="md-nav__link">
+    <a href="../../data_structure/segment_tree/" title="线段树" class="md-nav__link">
       线段树
     </a>
   </li>
@@ -542,7 +542,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../union_find/" title="并查集" class="md-nav__link">
+    <a href="../../data_structure/union_find/" title="并查集" class="md-nav__link">
       并查集
     </a>
   </li>
@@ -554,7 +554,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../lru_cache/" title="LRU缓存" class="md-nav__link">
+    <a href="../../data_structure/lru_cache/" title="LRU缓存" class="md-nav__link">
       LRU缓存
     </a>
   </li>
@@ -711,8 +711,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    问题
+  <a href="#sam" class="md-nav__link">
+    SAM分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sam_1" class="md-nav__link">
+    SAM的线性构造算法
   </a>
   
 </li>
@@ -726,14 +733,7 @@
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    算法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    讨论
+    应用
   </a>
   
 </li>
@@ -754,60 +754,85 @@
                   
                 
                 
-                <h1 id="fenwick">Fenwick/树状数组</h1>
-<p>Fenwick树，也叫binary index tree，或树状数组，支持在 <span><span class="MathJax_Preview">O(\log n)</span><script type="math/tex">O(\log n)</script></span> 时间内更新元素值和计算前缀和操作</p>
-<h2 id="_1">问题</h2>
-<p>给定长度为 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 的序列 <span><span class="MathJax_Preview">v</span><script type="math/tex">v</script></span> ，要求在 <span><span class="MathJax_Preview">O(\log n)</span><script type="math/tex">O(\log n)</script></span> 的时间内完成如下操作：</p>
+                <h1 id="_1">后缀自动机</h1>
+<p>本节内容部分来自陈立杰2012NOI冬令营讲稿，在此对陈立杰对SAM所做的总结表示感谢。</p>
+<p>本节将从性质分析、线性时间构造算法两个层面来讨论后缀自动机。</p>
+<h2 id="sam">SAM分析</h2>
+<p>设要分析的字符串为，SAM的本质是一个增加了后缀链的DFA（有限状态自动机）。其状态是的所有子串的分组，分组的依据是子串的结束位置集合（right集合）。</p>
 <ul>
 <li>
-<p>更新单个元素 <span><span class="MathJax_Preview">v[i]</span><script type="math/tex">v[i]</script></span> 的值</p>
+<p>对于一个状态，其所包含的所有子串是其中最长字符串的一系列长度连续的后缀。</p>
 </li>
 <li>
-<p>查询位于区间 <span><span class="MathJax_Preview">[l, r)</span><script type="math/tex">[l, r)</script></span> 的元素和</p>
+<p>不同状态对应的right集合要么不相交，要么相互真包含，这条性质保证了状态数是线性的。</p>
+</li>
+<li>
+<p>不同状态对应的right集合之间的包含关系个构成了一棵树状结构，将其称为parent树。</p>
 </li>
 </ul>
+<h2 id="sam_1">SAM的线性构造算法</h2>
+<p>对于每个状态 <span><span class="MathJax_Preview">st</span><script type="math/tex">st</script></span> ，记录其中最长字符串的长度 <span><span class="MathJax_Preview">val</span><script type="math/tex">val</script></span> ，另外记录其在 <span><span class="MathJax_Preview">parent</span><script type="math/tex">parent</script></span> 树上的父亲地址，以及其在 <span><span class="MathJax_Preview">DFA</span><script type="math/tex">DFA</script></span> 中的转移边。则其中包含字符串的长度区间为 <span><span class="MathJax_Preview">[st \rightarrow par \rightarrow val, st \rightarrow val]</span><script type="math/tex">[st \rightarrow par \rightarrow val, st \rightarrow val]</script></span> 。采用如下增量法在线构造：</p>
+<p>令当前串为 <span><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span> ，加入字符 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> </p>
+<ol>
+<li>令 <span><span class="MathJax_Preview">p=ST(T), Right(p)=\{length(T)\}</span><script type="math/tex">p=ST(T), Right(p)=\{length(T)\}</script></span>的节点</li>
+<li>新建 <span><span class="MathJax_Preview">np=ST(Tx), Right(p)=\{llength(T) + 1\}</span><script type="math/tex">np=ST(Tx), Right(p)=\{llength(T) + 1\}</script></span>的节点 </li>
+<li>对于 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 和 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 没有标号 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> 的祖先 <span><span class="MathJax_Preview">v</span><script type="math/tex">v</script></span> , <span><span class="MathJax_Preview">trans(v, x)=np</span><script type="math/tex">trans(v, x)=np</script></span></li>
+<li>找到 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 的第一个存在标号 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> 的边的祖先 <span><span class="MathJax_Preview">v_p</span><script type="math/tex">v_p</script></span> 。如果这样的 <span><span class="MathJax_Preview">v_p</span><script type="math/tex">v_p</script></span> 不存在，那么 <span><span class="MathJax_Preview">Parent(np)=root</span><script type="math/tex">Parent(np)=root</script></span> ，算法终止</li>
+<li>令 <span><span class="MathJax_Preview">q=trans(v_p, x)</span><script type="math/tex">q=trans(v_p, x)</script></span> ，若 <span><span class="MathJax_Preview">MAX(q)=MAX(v_p) + 1</span><script type="math/tex">MAX(q)=MAX(v_p) + 1</script></span> ，令 <span><span class="MathJax_Preview">Parent(np)=q</span><script type="math/tex">Parent(np)=q</script></span> ，算法终止</li>
+<li>否则新建节点 <span><span class="MathJax_Preview">nq</span><script type="math/tex">nq</script></span> ，令 <span><span class="MathJax_Preview">trans(nq, *)=trans(q, *)</span><script type="math/tex">trans(nq, *)=trans(q, *)</script></span> </li>
+<li>用 <span><span class="MathJax_Preview">nq</span><script type="math/tex">nq</script></span> 替代 <span><span class="MathJax_Preview">q</span><script type="math/tex">q</script></span> 在 <span><span class="MathJax_Preview">parent</span><script type="math/tex">parent</script></span> 树中的位置，让 <span><span class="MathJax_Preview">q</span><script type="math/tex">q</script></span> 和 <span><span class="MathJax_Preview">np</span><script type="math/tex">np</script></span> 都成为 <span><span class="MathJax_Preview">nq</span><script type="math/tex">nq</script></span> 的孩子</li>
+<li>
+<p><span><span class="MathJax_Preview">Parent(nq)=Parent(q)</span><script type="math/tex">Parent(nq)=Parent(q)</script></span></p>
+</li>
+<li>
+<p><span><span class="MathJax_Preview">Parent(q) = nq</span><script type="math/tex">Parent(q) = nq</script></span></p>
+</li>
+<li>
+<p><span><span class="MathJax_Preview">Parent(np)=nq</span><script type="math/tex">Parent(np)=nq</script></span></p>
+</li>
+<li>对所有 <span><span class="MathJax_Preview">trans(v, x)=q</span><script type="math/tex">trans(v, x)=q</script></span> 的 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 的祖先 <span><span class="MathJax_Preview">v</span><script type="math/tex">v</script></span> ，<span><span class="MathJax_Preview">trans(v, x)</span><script type="math/tex">trans(v, x)</script></span> 改成 <span><span class="MathJax_Preview">nq</span><script type="math/tex">nq</script></span></li>
+</ol>
 <h2 id="_2">代码</h2>
-<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">BIT</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
-    <span class="n">BIT</span><span class="p">()</span> <span class="p">{}</span>
-    <span class="n">BIT</span><span class="p">(</span><span class="kt">int</span> <span class="n">_sz</span><span class="p">)</span> <span class="o">:</span> <span class="n">sz</span><span class="p">(</span><span class="n">_sz</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">bit</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sz</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="n">BIT</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">arr</span><span class="p">)</span> <span class="o">:</span> <span class="n">sz</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">bit</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sz</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sz</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-            <span class="k">this</span><span class="o">-&gt;</span><span class="n">Add</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-    <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">Add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="o">++</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">x</span> <span class="o">+=</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">x</span><span class="p">)</span>
-            <span class="n">bit</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="n">val</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">T</span> <span class="n">Query</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">// Sum [0, x]</span>
-        <span class="n">T</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="o">++</span><span class="p">;</span> <span class="n">x</span><span class="p">;</span> <span class="n">x</span> <span class="o">-=</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">x</span><span class="p">)</span>
-            <span class="n">ans</span> <span class="o">+=</span> <span class="n">bit</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
-        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">T</span> <span class="n">Query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Sum [l, r)</span>
-        <span class="k">return</span> <span class="n">Query</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">Query</span><span class="p">(</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="k">private</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">sz</span><span class="p">;</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">bit</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">State</span> <span class="p">{</span>
+    <span class="n">State</span> <span class="o">*</span><span class="n">par</span><span class="p">,</span> <span class="o">*</span><span class="n">trans</span><span class="p">[</span><span class="mi">26</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+    <span class="n">State</span><span class="p">(</span><span class="kt">int</span> <span class="n">_val</span><span class="p">)</span> <span class="o">:</span> <span class="n">par</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">val</span><span class="p">(</span><span class="n">_val</span><span class="p">)</span> <span class="p">{</span> <span class="n">memset</span><span class="p">(</span><span class="n">trans</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">trans</span><span class="p">);</span> <span class="p">}</span>
 <span class="p">};</span>
+
+<span class="n">State</span> <span class="o">*</span><span class="n">root</span><span class="p">,</span> <span class="o">*</span><span class="n">last</span> <span class="o">=</span> <span class="k">new</span> <span class="n">State</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">extend</span><span class="p">(</span><span class="kt">int</span> <span class="n">w</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">State</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">last</span><span class="p">;</span>
+    <span class="n">State</span> <span class="o">*</span><span class="n">np</span> <span class="o">=</span> <span class="n">p</span> <span class="o">?</span> <span class="k">new</span> <span class="n">State</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">:</span> <span class="k">new</span> <span class="n">State</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">p</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">trans</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">trans</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">par</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">-&gt;</span><span class="n">par</span> <span class="o">=</span> <span class="n">root</span><span class="p">;</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="n">State</span> <span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">trans</span><span class="p">[</span><span class="n">w</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span>
+            <span class="n">np</span><span class="o">-&gt;</span><span class="n">par</span> <span class="o">=</span> <span class="n">q</span><span class="p">;</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="n">State</span> <span class="o">*</span><span class="n">nq</span> <span class="o">=</span> <span class="k">new</span> <span class="n">State</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="n">memcpy</span><span class="p">(</span><span class="n">nq</span><span class="o">-&gt;</span><span class="n">trans</span><span class="p">,</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">trans</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">trans</span><span class="p">);</span>
+            <span class="n">nq</span><span class="o">-&gt;</span><span class="n">par</span> <span class="o">=</span> <span class="n">q</span><span class="o">-&gt;</span><span class="n">par</span><span class="p">;</span>
+            <span class="n">q</span><span class="o">-&gt;</span><span class="n">par</span> <span class="o">=</span> <span class="n">nq</span><span class="p">;</span>
+            <span class="n">np</span><span class="o">-&gt;</span><span class="n">par</span> <span class="o">=</span> <span class="n">nq</span><span class="p">;</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">p</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">trans</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">==</span> <span class="n">q</span><span class="p">)</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">trans</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">nq</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">par</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">last</span> <span class="o">=</span> <span class="n">np</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
 
-<h2 id="_3">算法</h2>
-<p><img alt="Fenwick" src="../images/fenwick.png" /></p>
-<p>树中节点编号 <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 代表前i个元素。每个节点存储的是相比父节点多出来的那一部分元素和。顾对于任意节点，其回溯到根节点的路径上的元素之和就是原数组的前缀和。</p>
-<p>注：若 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> 为正，则 <span><span class="MathJax_Preview">x \&amp; -x</span><script type="math/tex">x \& -x</script></span> 为 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> 低位 <span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span> 所代表的数。</p>
-<h2 id="_4">讨论</h2>
-<ul>
-<li>与线段树的区别</li>
-</ul>
-<p>对于树状数组和线段树的区别，从树状数组索引更新的方式可见端倪：</p>
-<p>BIT的索引更新方式为减去或加上最低位 <span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span> ，线段树的索引更新方式为左移或右移 <span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span> 位。这导致树状数组的父子节点所表征的区间没有交集，一枝中的所有节点一起构成一个索引所决定前缀的内容；而线段树的父子节点之间是有重合的，甚至父节点 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 存储的值就是由两个儿子节点（<span><span class="MathJax_Preview">p &lt;&lt; 1</span><script type="math/tex">p << 1</script></span> 和 <span><span class="MathJax_Preview">p &lt;&lt; 1 | 1</span><script type="math/tex">p << 1 | 1</script></span> ）直接决定的。这也解释了为什么树状数组不支持维护区间最值，而线段树却支持，因为线段树为此额外付出了 <span><span class="MathJax_Preview">O(n)</span><script type="math/tex">O(n)</script></span> 的空间复杂度。
-注：树状数组的空间复杂度为 <span><span class="MathJax_Preview">O(n)</span><script type="math/tex">O(n)</script></span> ，线段树的空间复杂度 <span><span class="MathJax_Preview">O(2n)</span><script type="math/tex">O(2n)</script></span> 。</p>
+<h2 id="_3">应用</h2>
+<ol>
+<li>求字符串 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span> 的所有循环移位中字典序最小的</li>
+</ol>
+<p>沿 <span><span class="MathJax_Preview">s\#s</span><script type="math/tex">s\#s</script></span> 的SAM按照字典序移动 <span><span class="MathJax_Preview">len(s)</span><script type="math/tex">len(s)</script></span> 次得到的字符串为所求，时间空间复杂度都是线性。</p>
+<ol>
+<li>求两个字符串 <span><span class="MathJax_Preview">A, B</span><script type="math/tex">A, B</script></span> 的LCS（最长公共连续子串）
+待续...</li>
+</ol>
                 
               
               
@@ -826,7 +851,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="">
         
-          <a href="../../string/suffix_automation/" title="后缀自动机" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../trie/" title="字典树" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -835,19 +860,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                后缀自动机
+                字典树
               </div>
             </div>
           </a>
         
         
-          <a href="../segment_tree/" title="线段树" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../data_structure/fenwick/" title="树状数组" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                线段树
+                树状数组
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
