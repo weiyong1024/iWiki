@@ -38,6 +38,7 @@ nav:
   - 字符串:
     - Z 函数（扩展KMP）: string/z-func.md
     - 字典树: string/trie.md
+    - 后缀自动机: string/suffix_automation.md
   - 数据结构:
     - 树状数组: data_structure/fenwick.md
     - 线段树: data_structure/segment_tree.md
