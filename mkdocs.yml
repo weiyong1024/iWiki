@@ -35,6 +35,7 @@ nav:
     - 快速幂: math/quick_power.md
     - 组合数: math/combination.md
     - 乘法逆元: math/inverse.md
+    - 埃拉托色尼筛: math/eratosthenes.md
   - 字符串:
     - Z 函数（扩展KMP）: string/z-func.md
     - 字典树: string/trie.md
