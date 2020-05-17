@@ -10,6 +10,9 @@ repo_name: 'weiyong1024/iWiki'
 repo_url: 'https://github.com/weiyong1024/iWiki'
 edit_uri: ''
 
+# Copyright
+copyright: Copyright &copy; Yong Wei 2020
+
 # Theme
 theme:
   name: 'material'
