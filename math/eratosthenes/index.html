@@ -768,10 +768,11 @@
                 
                 <h1 id="_1">埃拉托色尼筛选法</h1>
 <h2 id="_2">问题</h2>
-<p>寻找 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 以内所有素数</p>
+<p>寻找 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 以内所有素数。</p>
 <h2 id="_3">算法</h2>
 <p>初始化长度为 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 的空表未被标记，从 <span><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span> 到 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 递增，若当前元素未被标记，则记录该元素为素数，并标记该元素在 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 以内的所有倍数为合数。</p>
-<p>据Codeforces上的水友所述该算法的时间复杂度为 <span><span class="MathJax_Preview">O(n\log n \log n)</span><script type="math/tex">O(n\log n \log n)</script></span></p>
+<p>注意到 <strong>标记倍数为合数</strong> 的操作只对 <span><span class="MathJax_Preview">[2, \sqrt{n}]</span><script type="math/tex">[2, \sqrt{n}]</script></span> 范围内找到的素数操作即可。</p>
+<p>可证明该算法的时间复杂度为 <span><span class="MathJax_Preview">O(n\log \log n)</span><script type="math/tex">O(n\log \log n)</script></span>。</p>
 <h2 id="_4">代码</h2>
 <div class="highlight"><pre><span></span><code><span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
 <span class="kt">bool</span> <span class="n">vis</span><span class="p">[</span><span class="n">N</span> <span class="o">+</span> <span class="mi">5</span><span class="p">];</span>
@@ -789,7 +790,7 @@
 <h2 id="_5">应用</h2>
 <ol>
 <li>生成 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 以内所有整数的最小素因数<br />
-在标记 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 的所有倍数的过程中 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 即为所有倍数的最小素因数</li>
+在标记 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 的所有倍数的过程中 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 即为所有倍数的最小素因数。</li>
 </ol>
                 
               
