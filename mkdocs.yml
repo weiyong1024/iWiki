@@ -30,6 +30,9 @@ theme:
 nav:
   - 简介: index.md
   - 基础:
+    - 搜索:
+      - 二分搜索: basic/binary_search.md
+      - 三分搜索: basic/ternary_search.md
     - 排序:
       - 快速排序: basic/quick_sort.md
       - 归并排序: basic/merge_sort.md
