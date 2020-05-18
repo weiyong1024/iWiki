@@ -1,8 +1,8 @@
 # Project information
 site_name: iWiki
-site_description: iWiki 提供代码模板的快速获取
+site_description: weiyong1024的个人博客
 site_author: weiyong1024
-# site_url: https://oi-wiki.org
+site_url: https://weiyong.org
 strict: true
 
 # Repository
