@@ -62,9 +62,6 @@ nav:
 extra_javascript: 
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
-extra:
-  disqus: iwiki1024
-
 # Extensions
 markdown_extensions:
   - pymdownx.arithmatex
