@@ -4,6 +4,7 @@
 ## 邮箱
 weiyong1024@gmail.com
 
+## No excuses. Just learn.
 ![DID_NOT_FINISH](./did_not_finish.png)
 
 ![NEITHER_DO_I](./neither_do_i.png)
