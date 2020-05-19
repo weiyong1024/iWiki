@@ -5,6 +5,6 @@
 weiyong1024@gmail.com
 
 ## No excuses. Just learn.
-![DID_NOT_FINISH](./did_not_finish.png)
+![DID_NOT_FINISH](./did_not_finish.jpg)
 
-![NEITHER_DO_I](./neither_do_i.png)
+![NEITHER_DO_I](./neither_do_i.jpg)
