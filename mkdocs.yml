@@ -57,11 +57,11 @@ nav:
       - 所有点对之间最短路: graph_theory/floyd.md
     - 最小生成树: graph_theory/minimum_spanning_tree.md
     - 二分图匹配: graph_theory/bipartite_matching.md
-  # - 操作系统
-  # - 设计模式
-  # - 机器学习
-  # - 经济学原理
-  # - 行业思考
+  - 操作系统: operating_system/index.md
+  - 设计模式: design_pattern/index.md
+  - 机器学习: machine_learning/index.md
+  - 经济学原理: economics/index.md
+  - 行业思考: thinking_in_industry/index.md
   - 关于作者: about.md
 
 extra_javascript: 
