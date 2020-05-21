@@ -1,0 +1,573 @@
+# C++基础
+
+## 构造函数、拷贝构造函数与析构函数
+
+解释如下程序的运行结果：
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Test {
+   public:
+    Test() { cout << "Test()" << endl; }
+    Test(const Test& src) { cout << "Test(const Test&)" << endl; }
+    ~Test() { cout << "~Test()" << endl; }
+};
+
+void func1(Test obj) { cout << "func1()..." << endl; }
+
+Test func2() {
+    cout << "func2()..." << endl;
+    return Test();
+}
+
+int main() {
+    cout << "main()..." << endl;
+    Test t;
+    func1(t);
+    t = func2();
+    return 0;
+}
+```
+
+**拷贝构造函数** 会在函数由实参获得形参时调用。
+
+输出
+```
+main()...
+Test()
+Test(const Test&)
+func1()...
+~Test()
+func2()...
+Test()
+~Test()
+~Test()
+```
+
+
+## 赋值运算符 `=` 重载
+
+解释如下程序的运行结果
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Test {
+   public:
+    Test(int _id) : id(_id) { cout << "obj_" << id << "created\n"; }
+    
+    Test& operator= (const Test& right) {
+        if (this == &right) cout << "same obj!\n";
+        else {
+            cout << "obj_" << id << " = obj_" << right.id << endl;
+        }
+        return *this;
+    }
+
+   private:
+    int id;
+};
+
+int main() {
+    Test a(1), b(2);
+
+    cout << "a = a: ";
+    a = a;
+
+    cout << "a = b: ";
+    a = b;
+
+    return 0;
+}
+}
+```
+
+输出
+```
+obj_1created
+obj_2created
+a = a: same obj!
+a = b: obj_1 = obj_2
+```
+
+
+## 流运算符 `<</>>` 重载
+
+解释如下程序运行结果
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Test {
+    int id;
+
+   public:
+    Test(int _id) : id(_id) {
+        cout << "obj_" << id << "created\n";
+    }
+
+    friend istream& operator>> (istream& in, Test& dst);
+    friend ostream& operator<< (ostream& out, const Test& src);
+};
+
+istream& operator>> (istream& in, Test& dst) {
+    in >> dst.id;
+    return in;
+}
+
+ostream& operator<< (ostream& out, const Test& src) {
+    cout << src.id << endl;
+    return out;
+}
+
+int main() {
+    Test obj(1);
+    cout << obj;
+    
+    cin >> obj;
+    cout << obj;
+
+    return 0;
+}
+```
+
+* 将 **流运算符** 声明成 $Test$ 类的友元，在实现的时候可以访问其私有变量。
+
+* 返回流对象是为了支持流运算符的链式操作。
+
+输出（中间输入流内容为 $2$ ）
+```
+obj_1created
+1
+2
+2
+```
+
+
+## 函数运算符 `()` 重载
+
+解释如下程序运行结果
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Test {
+   public:
+    int operator()(int a, int b) {
+        cout << "operator() called. " << a << ' ' << b << endl;
+        return a + b;
+    }
+};
+
+int main() {
+    Test sum;
+    int s = sum(3, 4);
+    cout << "a + b = " << s << endl;
+
+    return 0;
+}
+```
+
+sum对象看上去像一个函数，故也称“函数对象”。
+
+输出
+```
+operator() called. 3 4
+a + b = 7
+```
+
+
+## 下标运算符 `[]` 和 `++/--` 自增减运算符
+
+### 下标运算符
+
+下面的代码体现设计模式中“包装”的思想，让原本只支持数字的`[]`运算符对外支持字符串类型索引。
+```cpp
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+
+char week_name[7][4] = {"mon", "tu", "wed", "thu", "fri", "sat", "sun"};
+
+class WeekTemp {
+   public:
+    int& operator[](const char* name) {
+        for (int i = 0; i < 7; i++) {
+            if (strcmp(week_name[i], name) == 0) return temp[i];
+        }
+    }
+
+   private:
+    int temp[7];
+};
+
+int main() {
+    WeekTemp beijing;
+    beijing["mon"] = -3;
+    beijing["tu"] = -1;
+    cout << "Monday Temperture: " << beijing["mon"] << endl;
+    return 0;
+}
+```
+
+输出
+```
+Monday Temperture: -3
+```
+
+### 前缀`++/--`与后缀`++/--`
+
+前缀运算符重载声明
+```cpp
+ReturnType operator++();
+ReturnType operator--();
+```
+
+后缀运算符重载声明
+```cpp
+ReturnType operator++(int dummy);
+ReturnType operator--(int dummy);
+```
+
+通过在函数参数中的哑元参数`dummy`来区分前缀和后缀的同名重载。
+
+哑元：函数体语句中没有使用该参数。
+
+
+## 静态成员和常量成员
+
+### 静态成员
+
+`static`修饰的数据成员隶属于类。
+
+* 静态数据成员被该类的所有对象共享（即所有对象中的这个数据域处于同一内存位置）
+
+* 静态数据成员要在 **实现文件** 中赋初值，格式为：
+`Type ClassName::static_var = Value;`
+
+对于静态成员函数，编译器不提供指向对象的指针，它们不能调用非静态成员函数。
+
+类的静态成员既可以通过对象来访问，也可以通过类名来访问。
+
+解释如下代码行为：
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Test {
+   public:
+    Test() { count++; }
+    ~Test() { count--; }
+    static int how_many() { return count; }
+
+   private:
+    static int count;
+};
+
+int Test::count = 0;
+
+void print(Test t) { cout << "in print(), Test#: " << t.how_many() << endl; }
+
+int main() {
+    Test t1;
+    cout << "Test#: " << Test::how_many() << endl;
+
+    Test t2 = t1;
+    cout << "Test#: " << Test::how_many() << endl;
+
+    print(t2);
+
+    cout << "Test#: " << t1.how_many() << ", " << t2.how_many() << endl;
+
+    return 0;
+}
+```
+
+输出
+```
+Test#: 1
+Test#: 1
+in print(), Test#: 1
+Test#: 0, 0
+```
+
+注意到 `t2 = t1;` 此处调用的是`=`运算符，而`print(t2);`调用的是 **拷贝构造函数** ，但在`Test`里面均未定义行为。但 `print(t2);` 返回时调用了 **析构函数** ，故最后一行静态成员`count`变成了0。
+
+### 常量成员
+
+`const`修饰的数据成员，称为类的常量数据成员，在对象的整个生命周期里不可改变。
+
+* 常量数据成员只能在构造函数初始化列表中被设置，不能在函数体中通过赋值设置。
+
+`const`修饰的成员函数，则该成员函数在实现时不能修改类的数据成员 ———— 即静态函数不能改变对象状态。
+
+* 若对象被定义为常量，则它只能调用以`const`修饰的成员函数，其他普通成员函数则不允许调用。
+
+解释如下代码行为
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Test {
+   public:
+    Test(int id) : ID(id) {}
+    int MyID() const { return ID; }
+    int Who() { return ID; }
+
+   private:
+    const int ID;
+};
+
+int main() {
+    Test obj1(12231031);
+    cout << "ID_1 = " << obj1.MyID() << endl;
+    cout << "ID_2 = " << obj1.Who() << endl;
+
+    const Test obj2(1602401);
+    cout << "id_1: " << obj2.MyID() << endl;
+
+    return 0;
+}
+```
+
+输出
+```
+ID_1 = 12231031
+ID_2 = 12231031
+id_1: 1602401
+```
+
+
+## 对象组合
+
+可以在类中使用其他类来定义数据成员，通常称之为“子对象”。这种包含关系称为 **组合** ，组合关系可以嵌套。
+
+子对象构造时若需要参数，则应在当前类的构造函数的 **初始化列表** 中进行。若使用默认构造函数来构造子对象则不用做任何处理。
+
+对象构造与析构次序：穿脱原理
+
+* 先完成子对象构造，再完成当前对象构造
+* 先对外层对象析构，再对内层对象析构
+
+解释如下代码行为
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class C1 {
+   public:
+    C1(int id) : ID(id) { cout << "C1(int)" << endl; }
+    ~C1() { cout << "~C1()" << endl; }
+
+   private:
+    int ID;
+};
+
+class C2 {
+   public:
+    C2() { cout << "C2()" << endl; }
+    ~C2() { cout << "~C2()" << endl; }
+};
+
+class C3 {
+   public:
+    C3() : num(0), sub_obj1(123) { cout << "C3()" << endl; }
+    C3(int n) : num(n), sub_obj1(123) { cout << "C3(int)" << endl; }
+    C3(int n, int k) : num(n), sub_obj1(k) { cout << "C3(int, int)" << endl; }
+    ~C3() { cout << "~C3()" << endl; }
+
+   private:
+    int num;
+    C1 sub_obj1;
+    C2 sub_obj2;
+};
+
+int main() {
+    C3 a, b(1), c(2), d(3, 4);
+    return 0;
+}
+```
+
+`C1`、`C2`是`C3`的子对象，其中`C2`提供了缺省构造函数，故在`C3`中不用显式初始化；但`C1`只提供了一个带参数的构造函数，故必须在`C3`的 **初始化列表** 里面完成初始化。
+
+输出
+```
+C1(int)
+C2()
+C3()
+C1(int)
+C2()
+C3(int)
+C1(int)
+C2()
+C3(int)
+C1(int)
+C2()
+C3(int, int)
+~C3()
+~C2()
+~C1()
+~C3()
+~C2()
+~C1()
+~C3()
+~C2()
+~C1()
+~C3()
+~C2()
+~C1()
+```
+
+从输出可以看出构造链从内到外，而析构链从外向内。
+
+
+## 移动构造函数 (C++ 11引入)
+
+语法：`ClassName(ClassName&&);`
+
+目的
+
+* 用来偷“临时变量”中的资源（如内存）。
+
+* 临时变量被编译器设置为常量形式，使用“拷贝构造”函数无法将资源“偷”出来（改动了元对象，违反常量的限制）。
+
+* 基于 **右值引用** 定义的 **移动构造函数** 支持接受临时变量，能“偷”出临时变量中的资源。
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Test {
+   public:
+    int* buf;
+    Test() {
+        buf = new int(3);
+        cout << "Test(): this->buf @ " << hex << buf << endl;
+    }
+
+    ~Test() {
+        cout << "~Test(): this->buf @ " << hex << buf << endl;
+        if (buf) delete buf;
+    }
+
+    Test(Test& t) : buf(new int(*t.buf)) {
+        cout << "Test(const Test&) called. this->buf @ " << hex << buf << endl;
+        t.buf = nullptr;
+    }
+
+    Test(Test&& t) : buf(t.buf) {
+        cout << "Test(Test&&) called. this->buf @ " << hex << buf << endl;
+        t.buf = nullptr;
+    }
+};
+
+Test GetTemp() {
+    Test tmp;
+    cout << "GetTemp(): tmp.buf @ " << hex << tmp.buf << endl;
+    return tmp;
+}
+
+void fun(Test t) { cout << "fun(Test t): t.buf @ " << hex << t.buf << endl; }
+
+int main() {
+    Test a = GetTemp();
+    cout << "main() : a.buf @ " << hex << a.buf << endl;
+
+    fun(a);
+
+    return 0;
+}
+```
+
+输出
+```
+Test(): this->buf @ 0x558bd1e13e70
+GetTemp(): tmp.buf @ 0x558bd1e13e70
+main() : a.buf @ 0x558bd1e13e70
+Test(const Test&) called. this->buf @ 0x558bd1e142a0
+fun(Test t): t.buf @ 0x558bd1e142a0
+~Test(): this->buf @ 0x558bd1e142a0
+~Test(): this->buf @ 0
+```
+
+在如上结果中没有调用移动构造函数，欲执行该函数，需要增加编译选项，禁止编译器进行返回值优化
+
+```shell
+g++ main.cpp --std=c++11 -fno-elide-constructors -o main
+```
+
+输出
+```
+Test(): this->buf @ 0x560b6f4dce70
+GetTemp(): tmp.buf @ 0x560b6f4dce70
+Test(Test&&) called. this->buf @ 0x560b6f4dce70
+~Test(): this->buf @ 0
+Test(Test&&) called. this->buf @ 0x560b6f4dce70
+~Test(): this->buf @ 0
+main() : a.buf @ 0x560b6f4dce70
+Test(const Test&) called. this->buf @ 0x560b6f4dd2a0
+fun(Test t): t.buf @ 0x560b6f4dd2a0
+~Test(): this->buf @ 0x560b6f4dd2a0
+~Test(): this->buf @ 0
+```
+
+可见，函数返回的时候调用的是移动构造函数。
+
+如果将`Test`类中的移动构造函数去掉，同样禁用编译优化，则编译报错：
+```
+main.cpp: In function ‘int main()’:
+main.cpp:38:21: error: cannot bind non-const lvalue reference of type ‘Test&’ to an rvalue of type ‘Test’
+     Test a = GetTemp();
+              ~~~~~~~^~
+main.cpp:18:5: note:   initializing argument 1 of ‘Test::Test(Test&)’
+     Test(Test& t) : buf(new int(*t.buf)) {
+     ^~~~
+```
+
+
+## default修饰符 (C++ 11引入)
+
+### 编译器自动生成的成员函数
+
+如果以下成员函数用户都没有为类实现，则编译器会自动为类生成它们的缺省实现
+
+* 默认构造函数 - 空函数，什么也不做
+
+* 析构函数 - 空函数，什么也不做
+
+* 拷贝构造函数 - 按bit位赋值对象所占内存内容
+
+* 移动构造函数 - 与默认拷贝构造函数一样
+
+* 赋值运算符重载 - 与默认拷贝构造函数一样
+
+如果用户定义了上述某个成员函数，则编译器不再自动提供相应的默认实现。
+
+### `=default`显式缺省
+
+在默认函数定义或声明加上`=default`，可显式的只是编译器生成该函数的默认版本。
+
+```cpp
+class T {
+   public:
+    T() = default;
+    T(int i) : data(i) {}
+
+   private:
+    int data;
+};
+```
+
