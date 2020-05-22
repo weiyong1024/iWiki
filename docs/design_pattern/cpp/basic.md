@@ -571,3 +571,391 @@ class T {
 };
 ```
 
+
+## 继承
+
+在已有类的基础上，可以通过“继承”来定义新的类，实现对已有代码的复用。
+
+常见的继承方式：`public`, `private`
+
+* `class Derived: [private] Base {...};` 缺省继承方式是`private`继承。
+
+* `class Derived: public Base {...};`
+
+基类/父类 - base class - 被继承的已有类
+
+派生类/子类/扩展类 - derived class - 通过继承得到的新类
+
+### 子类对象的构造与析构过程
+
+基类中的数据成员通过继承成为子类对象的一部分，需要在构造子类对象的过程中调用积累的构造函数来初始化。
+
+* 若没有显式调用，则编译器会自动生成一个对基类的默认构造函数的调用
+
+* 若采用显式调用，则只能在子类构造函数的初始化列表中进行
+
+先执行基类的构造函数来初始化继承来的数据，再执行子类的构造函数。
+
+对象析构时，先执行子类的析构函数，再执行由编译器自动调用的基类的析构函数。
+
+### 继承基类的构造函数
+
+以如下代码为例
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Base {
+   public:
+    Base(int _data) : data(_data) { cout << "Base::Base(" << _data << ")\n"; }
+
+   private:
+    int data;
+};
+
+class Derive : public Base {
+   public:
+    using Base::Base;
+    void print() { cout << "data = " << data << endl; }
+
+   private:
+    int data{2020};
+};
+
+int main() {
+    Derive obj(356);
+    obj.print();
+    return 0;
+}
+```
+
+`Derive`中使用`using Base::Base;`将`Base`中的所有构造函数都继承了过来。故可以调用带一个`int`型参数的构造函数。
+
+```
+Base::Base(356)
+data = 2020
+```
+
+虽然基类构造函数的默认值不会被子类继承，但由默认参数导致的多个构造函数版本都会被子类继承。
+
+如果基类的某个构造函数被声明成私有成员函数，则不能在子类中声明继承该构造函数。
+
+如果子类使用了继承基类构造函数，编译器就不会再为子类生成默认构造函数。
+
+
+## 函数重写 (override)
+
+### 子类中的基类成员
+
+子类对象包含从基类继承来的数据成员，它们构成了“基类子对象”。
+
+基类中的私有成员，不允许在子类成员函数中被访问，也不允许子类的对象访问它们。
+
+* 真正体现“基类私有”，对子类也不开放其权限
+
+基类中的公有成员：
+
+* 若使用`public`继承方式，则成为子类的公有成员，既可以在子类成员中访问，也可以被子类的对象访问；
+
+* 若使用`private`继承方式，则只能供子类成员函数的访问，不能被子类对象访问。
+
+
+考虑如下代码
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class B {
+   public:
+    void f() { cout << "in B::f()..." << endl; }
+};
+
+class D1 : public B {};
+
+class D2 : private B {
+   public:
+    void g() {
+        cout << "in D2::g(), calling f()..." << endl;
+        f();
+    }
+};
+
+int main() {
+    cout << "in main()..." << endl;
+
+    D1 obj1;
+    cout << "calling obj1.f()..." << endl;
+    obj1.f();
+
+    D2 obj2;
+    cout << "calling obj2.g()..." << endl;
+    obj2.g();
+
+    return 0;
+}
+```
+
+输出
+
+```
+in main()...
+calling obj1.f()...
+in B::f()...
+calling obj2.g()...
+in D2::g(), calling f()...
+in B::f()...
+```
+
+如果私有继承的子类`D2`调用父类的共有函数，则会报错：
+
+```
+error: ‘B’ is not an accessible base of ‘D2
+```
+
+这里基类接口不许子类对象调用。
+
+
+### 子类重写基类的成员函数
+
+基类已定义的成员函数，在子类中可以重新定义，这被称为“函数重写”（override）
+
+重写发生时，基类中该成员函数的其他重载函数都将被屏蔽掉，不能提供给子类对象使用。
+
+可以在子类中通过`using 类名::成员函数名;`在子类中“=恢复”指定的基类成员函数（去掉屏蔽），使之重新可用。
+
+考虑如下代码
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class T {};
+
+class B {
+   public:
+    void f() { cout << "B::f()\n"; }
+    void f(int i) { cout << "B::f(" << i << ")\n"; }
+    void f(double d) { cout << "B::f(" << d << ")\n"; }
+    void f(T) { cout << "B::f(T)\n"; }
+};
+
+class D1 : public B {
+   public:
+    void f(int i) { cout << "D1::f(" << i << ")\n"; }
+};
+
+int main() {
+    D1 d;
+    d.f(10);
+    d.f(4.9);
+    // d.f();
+    // d.f(T())
+};
+```
+
+注意`d.f(4.9);`这一句编译会出警告，编译器执行强制类型转换使用整型参数的函数版本。
+而被注释的两个语句则会出现编译错误，因为重写导致其他重载函数被屏蔽掉
+
+输出
+
+```
+D1::f(10)
+D1::f(4)
+```
+
+使用`using`恢复基类函数
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class T {};
+
+class B {
+   public:
+    void f() { cout << "B::f()\n"; }
+    void f(int i) { cout << "B::f(" << i << ")\n"; }
+    void f(double d) { cout << "B::f(" << d << ")\n"; }
+    void f(T) { cout << "B::f(T)\n"; }
+};
+
+class D1 : public B {
+   public:
+    using B::f;
+    void f(int i) { cout << "D1::f(" << i << ")\n"; }
+};
+
+int main() {
+    D1 d;
+    d.f(10);
+    d.f(4.9);
+    d.f();
+    d.f(T());
+    return 0;
+};
+```
+
+输出
+
+```
+D1::f(10)
+B::f(4.9)
+B::f()
+B::f(T)
+```
+
+
+## 虚函数
+
+### 向上映射和向下映射
+
+子类对象转换成基类对象，称为向上映射。而基类对象转换为子类对象，成为向下映射。
+
+向上映射可以由编译器自动完成，是一种隐式的自动类型转换。
+
+所有接受基类对象的地方（如函数参数），都可以使用子类对象，编译器会自动将子类对象转换为基类对象以便使用。
+
+在如下代码中，子类重写了基类的`print`函数，将子类对象传给以基类作为形参的函数，子类被隐式转换为基类，故函数内调用的是基类的`print`函数。
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Base {
+   public:
+    void print() { cout << "Base::print()" << endl; }
+};
+
+class Derive : public Base {
+   public:
+    void print() { cout << "Derive::print()" << endl; }
+};
+
+void fun(Base obj) {
+    obj.print();
+}
+
+int main() {
+    Derive d;
+    d.print();
+    fun(d);
+    return 0;
+}
+```
+
+输出
+
+```
+Derive::print()
+Base::print()
+```
+
+### 虚函数
+
+对于被子类重写的成员函数，若它在基类中被声明为虚函数（如下所示），则通过积累指针或引用调用该函数成员时，编译器将根据所指（或引用）对象的实际类型决定是调用积累中的函数，还是调用子类重写的函数。
+
+```cpp
+class Base {
+    public:
+    virtual 返回类型 函数名(形参);
+    ...
+};
+```
+
+若某成员函数在基类中被声明为虚函数，当子类重写它时，无论是否声明为虚函数，该成员函数仍然是虚函数。
+
+将上一节的例子中基类的`print`函数定义为虚函数，而函数`fun`的形参改为基类的引用类型，则调用的就是虚函数在子类中的实现。
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Base {
+   public:
+    virtual void print() { cout << "Base::print()" << endl; }
+};
+
+class Derive : public Base {
+   public:
+    void print() { cout << "Derive::print()" << endl; }
+};
+
+void fun(Base& obj) {
+    obj.print();
+}
+
+int main() {
+    Derive d;
+    d.print();
+    fun(d);
+    return 0;
+}
+```
+
+输出
+```
+Derive::print()
+Derive::print()
+```
+
+### 虚析构函数
+
+基类的析构函数总是要被声明成`virtual`的，这样才能保证子类定义的析构函数总能被执行。
+
+事实上，最好的做法是：任何类的析构函数都应该被声明成`virtual`的，因为谁又能保证这个类不会被其他的类继承呢？
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class B {
+   public:
+    virtual void show() { cout << "B.show()\n"; }
+    virtual ~B() { cout << "~B()\n"; }
+};
+
+class D : public B {
+   public:
+    void show() { cout << "D.show()\n"; }
+    ~D() { cout << "~D()\n"; }
+};
+
+void test(B* ptr) { ptr->show(); }
+
+int main() {
+    B* ptr = new D;
+    test(ptr);
+    delete ptr;
+
+    return 0;
+}
+```
+
+输出
+
+```
+D.show()
+~D()
+~B()
+```
+
+从输出可见析构函数的调用顺序是 **先调用子类的析构函数，再调用基类的析构函数** 。
+
+如果删除基类析构函数前的`virtual`关键字，则输出为
+
+```
+D.show()
+~B()
+```
+
+此时如果子类中独有的数据成员，则他们不会被释放，进而导致内存泄露。
+
