@@ -988,3 +988,158 @@ class C : public B {
 `class A`中的`virtual void fun() = 0;`将`fun()`定义为一个 **纯虚函数** 。`A`由此成为一个 **抽象类** 。
 
 C++中抽象类不能用于定义对象，这样的类一般用于 **定义接口** 。
+
+
+## 自动类型转换
+
+### 方法一 - 在源类中定义“目标类型转换运算符”
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Dst {
+   public:
+    Dst() { cout << "Dst::Dst()" << endl; }
+};
+
+class Src {
+   public:
+    Src() { cout << "Src::operator Dst() called" << endl; }
+
+    operator Dst() const {
+        cout << "Src::operator Dst() called" << endl;
+        return Dst();
+    }
+};
+```
+
+### 方法二 - 在目标类中定义“源类对象做参数的构造函数”
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Src;
+
+class Dst {
+   public:
+    Dst() { cout << "Dst::Dst()" << endl; }
+    Dst(const Src& s) { cout << "Dst::Dst(const Src&)" << endl; }
+};
+
+class Src {
+   public:
+    Src() { cout << "Src::Src()" << endl; }
+};
+```
+
+注： `class Src;`这一行是一个前置的类型声明，因为在`Dst`的定义中要用到`Src`类。
+
+### 自动类型转换举例
+
+测试代码如下（隐式转换）
+
+```cpp
+void Func(Dst d) {}
+
+int main() {
+    Src s;
+    Dst d1(s);  // 这是直接构造，不是类型转换
+
+    Dst d2 = s; // 自动类型转换，不是拷贝构造函数
+    Func(s);    // 自动类型转换
+
+    return 0；
+}
+```
+
+注意：两种自定义类型转换的方法不能同时使用，只有在上述方法一和方法二使用且使用一个的前提下才能编译通过。
+
+
+## 禁止自动类型转换
+
+### 方法一 - `explicit`关键字
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class Src;
+
+class Dst {
+   public:
+    Dst() { cout << "Dst::Dst()" << endl; }
+
+    explicit  // <1> 不准用于自动类型转换
+    Dst(const Src& s) {
+        cout << "Dst::Dst(const Src&)" << endl;
+    }
+};
+
+class Src {
+   public:
+    Src() { cout << "Src::Src()" << endl; }
+
+    explicit  // <2> 不准用于自动类型转换
+    operator Dst() const {
+        cout << "Src::operator Dst() called" << endl;
+        return Dst();
+    }
+};
+```
+
+<1> - 该函数只用于构造函数，不用于自动类型转换（不能自动调用）
+
+<2> - 该函数只用于类型转换，不用于自动类型转换（不能自动调用）
+
+为此，如想让下方代码通过，上方代码中两处`explicit`必须保留且仅保留一处。
+
+```cpp
+void Func(Dst d) {}
+
+int main() {
+    Src s;
+    Dst d1(s);
+
+    Dst d2 = s;
+    Func(s);
+
+    return 0;
+}
+```
+
+### 方法二 - `=delete`限定 (C++ 11 引入)
+
+使用`=delete`修饰的成员函数，不允许被调用。
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class T {
+   public:
+    T(int) {}
+    T(char) = delete;   // 可消除自动类型转换带来的隐患，如没有` = delete`修饰符，则主函数中的语句都能编译通过。
+};
+
+void Fun(T t) {}
+
+int main() {
+    Fun(1);
+    // Fun('X');    自动类型转换失败，编译不通过
+
+    T ci(1);
+    // T cc('X');   自动类型转换失败，编译不通过
+
+    return 0;
+}
+```
+
+* **`=delete`修饰一个函数** 和 **不写这个函数** 的区别:
+
+
