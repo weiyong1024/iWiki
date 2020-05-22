@@ -959,3 +959,32 @@ D.show()
 
 此时如果子类中独有的数据成员，则他们不会被释放，进而导致内存泄露。
 
+
+### 禁止重写的虚函数`final` (c++ 11引入)
+
+使用`final`管啊架子修饰的虚函数，子类不可对它进行重写 —— 改变函数的定义。
+
+在派生过程中，`final`可以再继承关系链的`中途`进行设定，禁止后续子类对指定虚函数重写。
+
+下属代码中，`class C`的实现是无法通过编译的。
+
+```cpp
+class A {
+   public:
+    virtual void fun() = 0;
+};
+
+class B : public A {
+   public:
+    void fun() final;
+};
+
+class C : public B {
+   public:
+    void fun();
+};
+```
+
+`class A`中的`virtual void fun() = 0;`将`fun()`定义为一个 **纯虚函数** 。`A`由此成为一个 **抽象类** 。
+
+C++中抽象类不能用于定义对象，这样的类一般用于 **定义接口** 。
