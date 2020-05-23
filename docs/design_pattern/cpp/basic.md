@@ -1143,3 +1143,81 @@ int main() {
 * **`=delete`修饰一个函数** 和 **不写这个函数** 的区别:
 
 
+## 强制类型转换（显式转换）
+
+`dynamic_cast<Dst_type>(Src_var)` - 用于在类的集成体系中做转换
+
+* `Src_var`必须是引用或指针类型，`Dst_Type`类中含有虚函数，否则会有编译错误
+
+* 若目标类与原类之间没有及陈骨干西，转换失败，返回空指针（注：失败不导致运行崩溃）
+
+`static_cast<Dst_Type>(Src_var)`
+
+* 基类对象不能转换成子类对象，但基类指针可以转换成子类指针
+
+* 子类对象（指针）可以转换成基类对象（指针）
+
+* 没有继承关系的类之间，必须具有转换途径才能进行转换（自定义或者语言语法原生支持）
+
+以如下代码为例
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class B {
+    public : virtual void f() {}
+};
+
+class D : public B {};
+
+class E {};
+
+int main() {
+    D d1;
+    B b1;
+    
+    // d1 = static_cast<D>(b1); /// Error: 从基类无法转换回子类
+    b1 = static_cast<B>(d1);    /// OK: 可以从子类转换到基类
+    // b1 - dynamic_cast<B>(d1);    /// ERROR: 被转换的必须是引用或指针
+
+    B* pb1 = new B();
+    D* pd1 = static_cast<D*>(pb1);
+    if (pd1) {
+        cout << "static_cast, B* --> D*: OK" << endl;
+    }
+    pd1 = dynamic_cast<D*>(pb1);
+    if (pd1) {
+        cout << "dynamic_cast, B* --> D*: OK" << endl;
+    }
+
+    D* pd2 = new D();
+    B* pb2 = static_cast<B*>(pd2);
+    if (pb2) {
+        cout << "static_cast, D* --> B*: OK" << endl;
+    }
+    pb2 = dynamic_cast<B*>(pd2);
+    if (pb2) {
+        cout << "dynamic_cast, D* --> B*: OK" << endl;
+    }
+
+    E* pe = dynamic_cast<E*>(pb1);
+    if (!pe) {
+        cout << "dynamic_cast, B* --> E*: FAILED" << endl;
+    }
+    // pe = static_cast<E*>(pb1);   /// ERROR: 没有继承关系不能转换
+    // E e = static_cast<E>(b1);    /// ERROR：没有提供转换途径
+
+    return 0;
+}
+```
+
+输出
+
+```
+static_cast, B* --> D*: OK
+static_cast, D* --> B*: OK
+dynamic_cast, D* --> B*: OK
+dynamic_cast, B* --> E*: FAILED
+```
