@@ -1041,6 +1041,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    函数模板
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    类模板
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    成员函数模板
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    模板特化
+  </a>
+  
+    <nav class="md-nav" aria-label="模板特化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    模板的部分特化（偏特化）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1409,6 +1450,47 @@
   <a href="#_23" class="md-nav__link">
     强制类型转换（显式转换）
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    函数模板
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    类模板
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    成员函数模板
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    模板特化
+  </a>
+  
+    <nav class="md-nav" aria-label="模板特化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    模板的部分特化（偏特化）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2494,6 +2576,229 @@ static_cast, D* --&gt; B*: OK
 dynamic_cast, D* --&gt; B*: OK
 dynamic_cast, B* --&gt; E*: FAILED
 </code></pre></div>
+
+<h2 id="_24">函数模板</h2>
+<p>有些算法实现与类型无关，所以可以将函数的参数类型也定义为一种特殊的“参数”，这样就得到了“函数模板”。</p>
+<p>定义函数模板的方法
+<div class="highlight"><pre><span></span><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="err">返回类型</span> <span class="err">函数名</span><span class="p">(</span><span class="err">函数参数</span><span class="p">)</span><span class="err">；</span>
+</code></pre></div></p>
+<p>例如，任意两个变量相加的“函数模板”
+<div class="highlight"><pre><span></span><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">sum</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></div></p>
+<p>函数模板在调用时，因为编译器能自动推导出实际参数的类型，所以，形式上调用一个函数模板与普通函数没有区别，如</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">1.3</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mf">1.9</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>函数模板参数也可以赋默认值（缺省值），如</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T0</span> <span class="o">=</span> <span class="kt">float</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T2</span> <span class="o">=</span> <span class="kt">float</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T3</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T4</span><span class="o">&gt;</span>
+<span class="n">T0</span> <span class="n">func</span><span class="p">(</span><span class="n">T1</span> <span class="n">v1</span><span class="p">,</span> <span class="n">T2</span> <span class="n">v2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">T3</span> <span class="n">v3</span><span class="p">,</span> <span class="n">T4</span> <span class="n">v4</span><span class="p">)</span> <span class="p">{...}</span>
+
+<span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">func</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="sc">&#39;b&#39;</span><span class="p">,</span> <span class="s">&quot;cde&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</code></pre></div>
+
+<h2 id="_25">类模板</h2>
+<p>在定义类时也可以将一些类型信息抽取出来，用模板参数来替换，从而使类更具有通用性。这种类被称为“类模板”。</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">print</span><span class="p">()</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+
+   <span class="k">private</span><span class="o">:</span>
+    <span class="n">T</span> <span class="n">data</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+
+<p>类模板 &rarr; 类 &rarr; 对象</p>
+<p>类模板的“模板参数”</p>
+<ul>
+<li>
+<p>类型参数：使用<code>typename</code>或<code>class</code>标记</p>
+</li>
+<li>
+<p>非类型参数：整数，枚举，指针（指向对象或函数），引用（引用对象或引用函数）。其中整数类型是比较常用的，如
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">size</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Array</span> <span class="p">{</span>
+    <span class="n">T</span> <span class="n">elems</span><span class="p">[</span><span class="n">size</span><span class="p">];</span>
+    <span class="p">...</span>
+<span class="p">};</span>
+<span class="n">Array</span> <span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="mi">10</span><span class="o">&gt;</span> <span class="n">array</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>模板参数是另一个类模板，如下所示：
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">TT0</span><span class="p">,</span> <span class="k">typename</span> <span class="n">TT1</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">Foo</span> <span class="p">{</span>
+    <span class="n">A</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">bar</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></p>
+</li>
+</ul>
+<h2 id="_26">成员函数模板</h2>
+<p>普通类中定义成员函数模板</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">NormalClass</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">set</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="kt">int</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="n">get</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">NormalClass</span><span class="o">::</span><span class="n">get</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">valuel</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>类模板中定义成员函数模板</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T0</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+    <span class="n">T0</span> <span class="n">value</span><span class="p">;</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">set</span><span class="p">(</span><span class="n">T1</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">T0</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="o">&gt;</span> <span class="n">T1</span> <span class="n">get</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T0</span><span class="o">&gt;</span> <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="o">&gt;</span>
+<span class="n">T1</span> <span class="n">A</span><span class="o">::</span><span class="n">get</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">T1</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>对于类模板外面定义的成员函数模板，会报编译错误
+<div class="highlight"><pre><span></span><code>% g++ main.cpp -std=c++11 -o main
+
+main.cpp:16:4: error: ‘template&lt;class T0&gt; class A’ used without template parameters
+ T1 A::get() {
+    ^
+main.cpp:16:4: error: too many template-parameter-lists
+</code></pre></div></p>
+<h2 id="_27">模板特化</h2>
+<p>模板参数的具体化/特殊化</p>
+<p>有时，有些类型并不适用，则需要对模板进行特殊化处理，这称为“模板特化”。</p>
+<p>对于函数模板，如果有多个模板参数，则特化时必须提供所有参数的特例类型， <strong>不能部分特化</strong> 。</p>
+<p>如 <code>char* Sum(char* char*);</code></p>
+<ul>
+<li>
+<p>在函数名后用&lt;&gt;括号扩起具体类型
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;&gt;</span>
+<span class="kt">char</span><span class="o">*</span> <span class="n">Sum</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="p">{...}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>由编译器推导出具体类型，函数名为普通形式
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;&gt;</span>
+<span class="kt">char</span><span class="o">*</span> <span class="n">Sum</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="p">{...}</span>
+</code></pre></div></p>
+</li>
+</ul>
+<h3 id="_28">模板的部分特化（偏特化）</h3>
+<ul>
+<li>
+<p>对于类模板，允许部分特化，即部分限制模板的通用性，如：
+<div class="highlight"><pre><span></span><code><span class="c1">// 通用模板类</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">A</span> <span class="p">{...};</span>
+<span class="c1">// 部分特化的模板类：第二个类型参数指定为 int</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="o">&lt;</span><span class="n">T1m</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="p">{...};</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>若指定所有类型，则&lt;&gt;内将为空
+<div class="highlight"><pre><span></span><code><span class="n">tempalte</span><span class="o">&lt;&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="p">{...};</span>
+</code></pre></div></p>
+</li>
+</ul>
+<p>函数模板特化示例
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">Sum</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">template</span><span class="o">&lt;&gt;</span>
+<span class="kt">char</span><span class="o">*</span> <span class="n">Sum</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">char</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">strlen</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">b</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Sum</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">Sum</span><span class="p">(</span><span class="mf">5.1</span><span class="p">,</span> <span class="mf">13.8</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="kt">char</span> <span class="n">str1</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Hello, &quot;</span><span class="p">,</span> <span class="n">str2</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;world&quot;</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Sum</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="n">str2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>输出
+<div class="highlight"><pre><span></span><code>7 18.9
+Hello, world
+</code></pre></div></p>
+<p>类模板特化示例</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Sum</span> <span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+    <span class="n">Sum</span><span class="p">(</span><span class="n">T</span> <span class="n">op1</span><span class="p">,</span> <span class="n">T</span> <span class="n">op2</span><span class="p">)</span> <span class="o">:</span> <span class="n">a</span><span class="p">(</span><span class="n">op1</span><span class="p">),</span> <span class="n">b</span><span class="p">(</span><span class="n">op2</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="n">T</span> <span class="n">DoIT</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span> <span class="p">}</span>
+
+   <span class="k">private</span><span class="o">:</span>
+    <span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="k">class</span> <span class="nc">Sum</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span> <span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+    <span class="n">Sum</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">s1</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s2</span><span class="p">)</span> <span class="o">:</span> <span class="n">str1</span><span class="p">(</span><span class="n">s1</span><span class="p">),</span> <span class="n">str2</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="kt">char</span><span class="o">*</span> <span class="n">DoIT</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kt">char</span><span class="o">*</span> <span class="n">tmp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">str1</span><span class="p">)</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+        <span class="n">strcpy</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">str1</span><span class="p">);</span>
+        <span class="n">strcat</span><span class="p">(</span><span class="n">tmp</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str1</span><span class="p">),</span> <span class="n">str2</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="p">}</span>
+
+   <span class="k">private</span><span class="o">:</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">str1</span><span class="p">,</span> <span class="o">*</span><span class="n">str2</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Sum</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">obj1</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj1</span><span class="p">.</span><span class="n">DoIT</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="kt">char</span> <span class="n">s1</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Hello&quot;</span><span class="p">,</span> <span class="n">s2</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;THU&quot;</span><span class="p">;</span>
+    <span class="n">Sum</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span> <span class="n">obj2</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">obj2</span><span class="p">.</span><span class="n">DoIT</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>输出：
+<div class="highlight"><pre><span></span><code>7
+HelloTHU
+</code></pre></div></p>
                 
               
               
