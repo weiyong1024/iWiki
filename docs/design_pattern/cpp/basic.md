@@ -1221,3 +1221,256 @@ static_cast, D* --> B*: OK
 dynamic_cast, D* --> B*: OK
 dynamic_cast, B* --> E*: FAILED
 ```
+
+
+## 函数模板
+
+有些算法实现与类型无关，所以可以将函数的参数类型也定义为一种特殊的“参数”，这样就得到了“函数模板”。
+
+定义函数模板的方法
+```cpp
+template <typename T>
+返回类型 函数名(函数参数)；
+```
+
+例如，任意两个变量相加的“函数模板”
+```cpp
+template <typename T>
+T sum(T a, T b) { return a + b; }
+```
+
+函数模板在调用时，因为编译器能自动推导出实际参数的类型，所以，形式上调用一个函数模板与普通函数没有区别，如
+
+```cpp
+int main() {
+    int a = 3, b = 4;
+    cout << sum(a, b);
+    float c = 1.3, d = 1.9;
+    cout << sum(c, d);
+}
+```
+
+函数模板参数也可以赋默认值（缺省值），如
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+template<typename T0 = float, typename T1, typename T2 = float, typename T3, typename T4>
+T0 func(T1 v1, T2 v2 = 0, T3 v3, T4 v4) {...}
+
+func(1, 2, 3, 4);
+func('a', 'b', "cde", 5);
+```
+
+
+## 类模板
+
+在定义类时也可以将一些类型信息抽取出来，用模板参数来替换，从而使类更具有通用性。这种类被称为“类模板”。
+
+```cpp
+template <typename T>
+class A {
+   public:
+    void print() { cout << data << endl; }
+
+   private:
+    T data;
+};
+```
+
+类模板 --> 类 --> 对象
+
+类模板的“模板参数”
+
+* 类型参数：使用`typename`或`class`标记
+
+* 非类型参数：整数，枚举，指针（指向对象或函数），引用（引用对象或引用函数）。其中整数类型是比较常用的，如
+```cpp
+template<typename T, unsigned size>
+class Array {
+    T elems[size];
+    ...
+};
+Array <char, 10> array;
+```
+
+* 模板参数是另一个类模板，如下所示：
+```cpp
+template<typename T, template<typename TT0, typename TT1> class A>
+struct Foo {
+    A<T, T> bar;
+};
+```
+
+## 成员函数模板
+
+普通类中定义成员函数模板
+
+```cpp
+class NormalClass {
+    public:
+    int value;
+    template<typename T> void set(T const& v) {
+        value = int(v);
+    }
+    template<typename T> T get();
+};
+
+template<typename T>
+T NormalClass::get() {
+    return valuel;
+}
+```
+
+类模板中定义成员函数模板
+
+```cpp
+template<typename T0>
+class A {
+    public:
+    T0 value;
+    template<typename T1> void set(T1 const& v) {
+        value = T0(v);
+    }
+    template<typename T1> T1 get();
+};
+
+template<typename T0> template<typename T1>
+T1 A::get() {
+    return T1(value);
+}
+```
+
+对于类模板外面定义的成员函数模板，会报编译错误
+```
+% g++ main.cpp -std=c++11 -o main
+
+main.cpp:16:4: error: ‘template<class T0> class A’ used without template parameters
+ T1 A::get() {
+    ^
+main.cpp:16:4: error: too many template-parameter-lists
+```
+
+## 模板特化
+
+模板参数的具体化/特殊化
+
+有时，有些类型并不适用，则需要对模板进行特殊化处理，这称为“模板特化”。
+
+对于函数模板，如果有多个模板参数，则特化时必须提供所有参数的特例类型， **不能部分特化** 。
+
+如 `char* Sum(char* char*);`
+
+* 在函数名后用<>括号扩起具体类型
+```cpp
+template<>
+char* Sum<char*>(char* a, char* b) {...}
+```
+
+* 由编译器推导出具体类型，函数名为普通形式
+```cpp
+template<>
+char* Sum(char* a, char* b) {...}
+```
+
+### 模板的部分特化（偏特化）
+
+* 对于类模板，允许部分特化，即部分限制模板的通用性，如：
+```cpp
+// 通用模板类
+template<class T1, class T2> class A {...};
+// 部分特化的模板类：第二个类型参数指定为 int
+template<class T1> class A<T1m int> {...};
+```
+
+* 若指定所有类型，则<>内将为空
+```cpp
+tempalte<> class A<int, int> {...};
+```
+
+函数模板特化示例
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+template<typename T>
+T Sum(T a, T b) {
+    return a + b;
+}
+
+template<>
+char* Sum(char* a, char* b) {
+    char* p = new char[strlen(a), strlen(b) + 1];
+    strcpy(p, a);
+    strcpy(p + strlen(a), b);
+    return p;
+}
+
+int main() {
+    cout << Sum(3, 4) << ' ' << Sum(5.1, 13.8) << endl;
+
+    char str1[] = "Hello, ", str2[] = "world";
+    cout << Sum(str1, str2) << endl;
+
+    return 0;
+}
+```
+
+输出
+```
+7 18.9
+Hello, world
+```
+
+类模板特化示例
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+template <typename T>
+class Sum {
+   public:
+    Sum(T op1, T op2) : a(op1), b(op2) {}
+    T DoIT() { return a + b; }
+
+   private:
+    T a, b;
+};
+
+template <>
+class Sum<char*> {
+   public:
+    Sum(char* s1, char* s2) : str1(s1), str2(s2) {}
+    char* DoIT() {
+        char* tmp = new char[strlen(str1) + strlen(str2) + 1];
+        strcpy(tmp, str1);
+        strcat(tmp + strlen(str1), str2);
+        return tmp;
+    }
+
+   private:
+    char *str1, *str2;
+};
+
+int main() {
+    Sum<int> obj1(3, 4);
+    cout << obj1.DoIT() << endl;
+
+    char s1[] = "Hello", s2[] = "THU";
+    Sum<char*> obj2(s1, s2);
+    cout << obj2.DoIT() << endl;
+
+    return 0;
+}
+```
+
+输出：
+```
+7
+HelloTHU
+```
