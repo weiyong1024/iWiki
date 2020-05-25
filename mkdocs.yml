@@ -59,7 +59,8 @@ nav:
     - 二分图匹配: graph_theory/bipartite_matching.md
   - 操作系统: operating_system/index.md
   - 设计模式:
-    - C++: design_pattern/cpp/basic.md
+    - C++基础: design_pattern/cpp/basic.md
+    - 找到对象，确定接口: design_pattern/object_and_interface.md
   - 机器学习: machine_learning/index.md
   - 经济学原理: economics/index.md
   - 行业思考: thinking_in_industry/index.md
