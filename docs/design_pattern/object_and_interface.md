@@ -81,3 +81,9 @@ int main() {
 
 * 接口：类暴露出来的部分，是类所提供的功能，隐藏实现细节
 
+UML类图
+
+| Calculator                                                        |
+|:------------------------------------------------------------------|
+| - apple_price: float<br> - banana_price: float                    |
+| + CalTotal(in apple_weight: float, in banana_weight:float): float |
