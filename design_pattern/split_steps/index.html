@@ -11,7 +11,7 @@
         <meta name="description" content="weiyong1024的个人博客">
       
       
-        <link rel="canonical" href="https://weiyong.org/basic/binary_search/">
+        <link rel="canonical" href="https://weiyong.org/design_pattern/split_steps/">
       
       
         <meta name="author" content="weiyong1024">
@@ -21,7 +21,7 @@
     
     
       
-        <title>二分搜索 - iWiki</title>
+        <title>算法横向拆分 - iWiki</title>
       
     
     
@@ -90,7 +90,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              二分搜索
+              算法横向拆分
             
           </span>
         </div>
@@ -200,12 +200,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       基础
@@ -227,12 +225,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
     
     <label class="md-nav__link" for="nav-2-1">
       搜索
@@ -254,100 +250,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        二分搜索
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="二分搜索" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../basic/binary_search/" title="二分搜索" class="md-nav__link">
       二分搜索
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    问题
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    代码
-  </a>
-  
-    <nav class="md-nav" aria-label="代码">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    连续型区间的二分搜索
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    离散型区间的二分搜索
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    应用
-  </a>
-  
-    <nav class="md-nav" aria-label="应用">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    在有序数组中判断目标值的存在性
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -357,7 +264,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ternary_search/" title="三分搜索" class="md-nav__link">
+    <a href="../../basic/ternary_search/" title="三分搜索" class="md-nav__link">
       三分搜索
     </a>
   </li>
@@ -399,7 +306,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../quick_sort/" title="快速排序" class="md-nav__link">
+    <a href="../../basic/quick_sort/" title="快速排序" class="md-nav__link">
       快速排序
     </a>
   </li>
@@ -411,7 +318,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../merge_sort/" title="归并排序" class="md-nav__link">
+    <a href="../../basic/merge_sort/" title="归并排序" class="md-nav__link">
       归并排序
     </a>
   </li>
@@ -785,10 +692,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
     
     <label class="md-nav__link" for="nav-8">
       设计模式
@@ -812,7 +721,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../design_pattern/object_and_interface/" title="对象与接口" class="md-nav__link">
+    <a href="../object_and_interface/" title="对象与接口" class="md-nav__link">
       对象与接口
     </a>
   </li>
@@ -822,11 +731,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../design_pattern/split_steps/" title="算法横向拆分" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="算法横向拆分" class="md-nav__link md-nav__link--active">
       算法横向拆分
     </a>
+    
   </li>
 
         
@@ -836,7 +754,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../design_pattern/split_representation/" title="算法纵向拆分" class="md-nav__link">
+    <a href="../split_representation/" title="算法纵向拆分" class="md-nav__link">
       算法纵向拆分
     </a>
   </li>
@@ -848,7 +766,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../design_pattern/compose_interfaces/" title="接口组合" class="md-nav__link">
+    <a href="../compose_interfaces/" title="接口组合" class="md-nav__link">
       接口组合
     </a>
   </li>
@@ -860,7 +778,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../design_pattern/add_layers/" title="增加抽象层级" class="md-nav__link">
+    <a href="../add_layers/" title="增加抽象层级" class="md-nav__link">
       增加抽象层级
     </a>
   </li>
@@ -1020,70 +938,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    问题
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    代码
-  </a>
-  
-    <nav class="md-nav" aria-label="代码">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    连续型区间的二分搜索
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    离散型区间的二分搜索
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    应用
-  </a>
-  
-    <nav class="md-nav" aria-label="应用">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    在有序数组中判断目标值的存在性
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1098,56 +952,7 @@
                   
                 
                 
-                <h1 id="_1">二分搜索</h1>
-<h2 id="_2">问题</h2>
-<p>寻找阈值：若所求问题具有大于等于某一阈值“可行”、小于该阈值“不可行”的二段性，或者属于寻找满足条件的最小数量问题，可利用寻找阈值的二分搜索求解</p>
-<h2 id="_3">代码</h2>
-<p><code>check()</code>函数用于判定当前值是否可行</p>
-<h3 id="_4">连续型区间的二分搜索</h3>
-<p>在 <span><span class="MathJax_Preview">x \in [0, 10^9]</span><script type="math/tex">x \in [0, 10^9]</script></span> 范围内寻找满足条件 <span><span class="MathJax_Preview">check(x)=true</span><script type="math/tex">check(x)=true</script></span> 的指定精度的最小 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span></p>
-<div class="highlight"><pre><span></span><code><span class="kt">double</span> <span class="nf">bi_search</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">double</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mf">1e9</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">double</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2l</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">(</span><span class="n">m</span><span class="p">))</span> <span class="n">r</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
-        <span class="k">else</span> <span class="n">l</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">l</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>迭代步数可由 <strong>初始区间长度</strong> 和 <strong>精度要求</strong> 确定。</p>
-<h3 id="_5">离散型区间的二分搜索</h3>
-<p>在 <span><span class="MathJax_Preview">x \in [0, n - 1], x \in \mathbb{Z}</span><script type="math/tex">x \in [0, n - 1], x \in \mathbb{Z}</script></span> 范围内寻找满足条件 <span><span class="MathJax_Preview">check(x)=true</span><script type="math/tex">check(x)=true</script></span> 的最小 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> ，如不存在返回 <span><span class="MathJax_Preview">-1</span><script type="math/tex">-1</script></span> 。</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">bi_search</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">check</span><span class="p">(</span><span class="n">m</span><span class="p">))</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">m</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="k">else</span> <span class="n">l</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p><span><span class="MathJax_Preview">[l, r]</span><script type="math/tex">[l, r]</script></span> 维护的是剩余搜索域。</p>
-<h2 id="_6">应用</h2>
-<h3 id="_7">在有序数组中判断目标值的存在性</h3>
-<p>以数组下标为搜索域，实现函数返回<code>bool</code>型变量，判断目标值 <span><span class="MathJax_Preview">target</span><script type="math/tex">target</script></span> 是否在序列 <span><span class="MathJax_Preview">a</span><script type="math/tex">a</script></span> 中出现。</p>
-<div class="highlight"><pre><span></span><code><span class="kt">bool</span> <span class="nf">bi_search</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">)</span> <span class="n">l</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="k">else</span> <span class="n">r</span> <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p><span><span class="MathJax_Preview">[l, r]</span><script type="math/tex">[l, r]</script></span> 维护的是剩余搜索域。</p>
+                <h1 id="_1">算法横向拆分，分离步骤</h1>
                 
               
               
@@ -1156,7 +961,7 @@
 
   <h2 id="__comments">评论</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="https://weiyong.org/basic/binary_search/",this.page.identifier="/basic/binary_search/"};!function(){var e=document,i=e.createElement("script");i.src="//iwiki1024.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
+  <script>var disqus_config=function(){this.page.url="https://weiyong.org/design_pattern/split_steps/",this.page.identifier="/design_pattern/split_steps/"};!function(){var e=document,i=e.createElement("script");i.src="//iwiki1024.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
 
               
             </article>
@@ -1170,7 +975,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="">
         
-          <a href="../.." title="简介" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../object_and_interface/" title="对象与接口" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1179,19 +984,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                简介
+                对象与接口
               </div>
             </div>
           </a>
         
         
-          <a href="../ternary_search/" title="三分搜索" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../split_representation/" title="算法纵向拆分" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                三分搜索
+                算法纵向拆分
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
