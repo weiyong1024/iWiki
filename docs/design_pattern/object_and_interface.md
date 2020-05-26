@@ -190,3 +190,124 @@ int main() {
 
 基于OOP版本的实现，问题可以很容易地扩展到 $n$ 个候选人，且有 $m$ 个候选人的陈述真实的情况。
 
+## 如何定义接口
+
+### 问题：旋转矩阵
+
+设计一个类，对于给定整数 $N$ ，输出旋转矩阵，形式如下：
+
+$$
+1, 16, 15, 14, 13\\
+2, 17, 24, 23, 12\\
+3, 18, 25, 22, 11\\
+4, 19, 20, 21, 10\\
+5,  6,  7,  8,  9
+$$
+
+### 设计思路：自顶向下
+
+这个类如何被使用？
+
+```cpp
+Matrix obj(size);
+obj.fill();
+cout << obj;
+```
+
+根据使用方法设计`Matrix`的接口
+
+```cpp
+class matrix {
+   public:
+    Matrix(int size);
+    void fill();
+    friend ostream& operator<< (ostream& out, const Matrix& m);
+};
+```
+
+实现类的接口
+
+确定需要哪些成员变量
+
+```cpp
+class Matrix {
+   public:
+    Matrix(int size);
+    ~Matrix();
+    void fill();
+    friend ostream& operator<< (ostream& out, const Matrix& m);
+   private:
+    int size_;
+    int *data_;
+};
+```
+
+实现构造函数、析构函数和输出流操作符
+
+```cpp
+Matrix::Matrix(int size) : size_(size) {
+    data_ = new int[size * size];
+    memset(data_, 0, sizeof(int) * size_ * size_);
+}
+
+Matrix::~Matrix() {
+    delete[] data_;
+}
+
+ostream& operator<< (ostream& out, const Matrix& m) {
+    for (int r = 0; r < m.size_; r++) {
+        for (int c = 0; c < m.size_; c++)
+            cout << *(m.data_ + r * m.size_ + c) << '\t';
+        cout << endl;
+    }
+}
+```
+
+实现填充函数
+
+增加一个辅助函数计算并填充
+
+```cpp
+class Matrix {
+   public:
+    ...
+   private:
+    ...
+    int FindPosition();
+};
+
+void Matrix::fill() {
+    for (int num = 1; num <= size_ * size_; num++) {
+        int pos = FindPosition();
+        data_[pos] = num;
+    }
+}
+```
+
+剩下的任务就是实现`FindPosition()`。
+
+对于不同的矩阵形式，也只需改变`FindPosition`即可。
+
+
+## 多态的应用
+
+程序设计的 **开闭原则** ，程序对变化的需求应该是open的，但应该尽量不改动原有代码
+
+这时可以将`FindPostion`在`Matrix`定义为纯虚函数。
+
+### 模板方法
+
+抽象类（基类）定义算法不变的骨架。
+
+算法的需要改变的细节由实现类（子类）以重写（override）的实现。
+
+在使用时，调用抽象类的算法骨架方法，再由这个方法根据需要调用累的算法细节实现。
+
+### 针对接口而不是针对实现
+
+* 通过抽象出“抽象概念”，设计出描述这个抽象概念的“抽象类”，或称为“接口类”，这个类有一系列（纯）虚函数，描述了这个类的“接口”
+
+* 对这个接口类进行继承并实现这些（纯）虚函数，从而形成这个抽象概念的“实现类” —— 实现可以有很多种以适应变化
+
+* 在使用这个概念的时候，我们使用接口类来引用这个概念，而不直接使用实现类，从而避免实现类的改变造成整个程序的大规模修改
+
