@@ -335,4 +335,179 @@ GUI有多种不同的实现（Windows, X-Win, QT, ...），来实现多个不同
 
 * 结果采用命令行显示还是GUI显示
 
+![Display5](./images/display5.png)
 
+* **Bridge模式** - 把抽象部分和实现部分分离，是它们可以独立变化。
+
+实现
+```cpp
+class Display {
+   public:
+    virtual void Show(float load, long total_memory, long used_memory,
+                      float latency) = 0;
+    virtual ~Display() {}
+};
+
+class ConsoleDisplay : public Display {
+   public:
+    void Show(float load, long total_memory, long used_memory, float latency) {
+        cout << "load = " << load << endl;
+        cout << "total_memory = " << total_memory << endl;
+        cout << "used_memory = " << used_memory << endl;
+        cout << "latency = " << latency << endl;
+    }
+};
+```
+
+新的接口
+```cpp
+class GUIDisplay : public Display {
+   public:
+    virtual void Show(float load, long total_memory, long used_memory,
+                      float latency) = 0;
+    GUIDisplay(GUIDisplayImpl* impl) : impl_(impl) {}
+    ~GUIDisplay();
+    GUIDisplay(const GUIDisplay& d);
+    GUIDisplay& operator=(const GUIDisplay& d);
+
+   protected:
+    void DrawLine(int x1, int y1, int x2, int y2);
+    void DrawRect(int x1, int y1, int x2, int y2);
+    //...
+   private:
+    void DrawPoint(int x, int y);
+    void DrawText(int x, int y, string text);
+    GUIDisplayImpl* impl_;
+};
+```
+
+将`GUIDisplay`类的`DrawPoint`和`DrawText` **委托** 给`GUIDisplayImpl`类（将基础类中与环境相关的功能交给和环境相关的类去实现）。
+
+`GUIDisplayImpl`的实现：
+```cpp
+class GUIDisplayImpl {
+   public:
+    GUIDisplayImpl() : use(1) {}    // 注意这里引用计数的使用
+    virtual void DrawPoint(int x, int y) = 0;
+    virtual void DrawText(int x, int y, string text) = 0;
+
+   private:
+    int use;
+    friend class GUIDisplay;
+};
+
+void GUIDisplay::DrawPoint(int x, int y) {
+    impl_->DrawPoint(x, y);
+}
+
+void GUIDisplay::DrawText(int x, int y, string text) {
+    impl_->DrawText(x, y, text);
+}
+```
+注意这里将`GUIDisplay`声明成`GUIDisplayImpl`的友元是 **引用计数** 的需要。
+
+实现新的接口
+
+`WindowsDisplayImpl`
+```cpp
+class WindowsDisplayImpl : public GUIDisplayImpl {
+   public:
+    WindowsDisplayImpl() { /* init it here. */ }
+    ~WindowsDisplayImpl();
+    void DrawPoint(int x, int y);
+    void DrawText(int x, int y, string text);
+};
+
+void WindowsDisplayImpl::DrawPoint(int x, int y) {
+    SetPixel(hdc, x, y, forColor);
+}
+
+void WindowsDisplayImpl::DrawText(int x, int y, string text) {
+    TextOut(hdc, x, y, text.c_str(), text.size());
+}
+```
+
+`XWinDisplayImpl`
+```cpp
+class XWinDisplayImpl : public GUIDisplayImpl {
+   public:
+    XWinDisplayImpl() { /* init it here. */ }
+    ~XWinDisplayImpl() {}
+    void DrawPoint(int x, int y);
+    void DrawText(int x, int y, string text);
+};
+
+void XWinDisplayImpl::DrawPoint(int x, int y) {
+    XDrawPoint(display, win, gc, x, y);
+}
+
+void XWinDisplayImpl::DrawText(int x, int y, string text) {
+    XDrawString(display, win, gc, x, y, text, text.size());
+}
+```
+
+### 不变的部分
+
+对于那些基于`DrawPoint`和`DrawText`实现的函数，在`GUIDisplay`中直接实现即可。
+
+```cpp
+void GUIDisplay::DrawLine(int x1, int y1, int x2, int y2) {
+    for (int x = x1; x < x2; x++) {
+        int y = x1 + (x - x1) * (y2 - y1) / (x2 - x1);
+        DrawPoint(x, y);
+    }
+}
+
+void GUIDisplay::DrawRect(int x1, int y1, int x2, int y2) {
+    DrawLine(x1, y1, x2, y2);
+    DrawLine(x2, y1, x2, y2);
+    DrawLine(x2, y2, x1, y2);
+    DrawLine(x1, y2, x1, y1);
+}
+
+```
+
+### 另一个层面的可变部分
+
+对于`Show`函数，其多样性体现在显示数据的方式（折线图或柱状图或二者的组合）
+
+这一部分可以留给`GUIDisplay`定义虚函数的实现
+
+使用继承实现`GUIDisplay` —— 画一个方框显示CPU负载：
+```cpp
+class Layout1 : public GUIDisplay {
+   public:
+    Layout1(GUIDisplayImpl* impl) : GUIDisplay(impl) {}
+    void Show(float load, long total_memory, long used_memory, float latency);
+};
+
+void Layout1::Show(float load, long tota_memory, long used_memory,
+                   float latency) {
+    DrawRect(10, 10, 300, 20);
+    DrawText(10, 10, float2str(load));
+    //......
+}
+```
+
+实现不同的`Layout` —— 画一个方框，其中画一个横向柱状图：
+```cpp
+class Layout2 : public GUIDisplay {
+   public:
+    Layout2(GUIDisplayImpl* impl) : GUIDisplay(impl) {}
+    void Show(float load, long total_momery, long used_momery, float latency);
+};
+
+void Layout2::Show(float load, long total_memory, long used_memory,
+                   float latency) {
+    DrawRect(10, 10, 30, 300);
+    int miny = load * 290 / 100 + 10;
+    for (int y = 300; y > miny; y -= 3) DrawLine(10, y, 30, y);
+    //...
+}
+```
+
+总结：
+
+* 使用不同的`Layout`指针可以显示不同的汇报风格；
+
+* 当需要改变环境的时候，只需改变`GUIDisplayImpl` —— **Bridge模式** ，即可适应不用的系统环境。
