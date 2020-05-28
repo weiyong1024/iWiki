@@ -29,34 +29,35 @@ theme:
 # Page tree
 nav:
   - 简介: index.md
-  - 基础:
-    - 搜索:
-      - 二分搜索: basic/binary_search.md
-      - 三分搜索: basic/ternary_search.md
-    - 排序:
-      - 快速排序: basic/quick_sort.md
-      - 归并排序: basic/merge_sort.md
-  - 数学:
-    - 最大公约数: math/greatest_common_devisor.md
-    - 快速幂: math/quick_power.md
-    - 组合数: math/combination.md
-    - 乘法逆元: math/inverse.md
-    - 埃拉托色尼筛: math/eratosthenes.md
-  - 字符串:
-    - Z 函数（扩展KMP）: string/z-func.md
-    - 字典树: string/trie.md
-    - 后缀自动机: string/suffix_automation.md
-  - 数据结构:
-    - 树状数组: data_structure/fenwick.md
-    - 线段树: data_structure/segment_tree.md
-    - 并查集: data_structure/union_find.md
-    - LRU缓存: data_structure/lru_cache.md
-  - 图论:
-    - 最短路径:
-      - 单源最短路: graph_theory/dijkstra.md
-      - 所有点对之间最短路: graph_theory/floyd.md
-    - 最小生成树: graph_theory/minimum_spanning_tree.md
-    - 二分图匹配: graph_theory/bipartite_matching.md
+  - 算法竞赛:
+    - 基础:
+      - 搜索:
+        - 二分搜索: competitive_programming/basic/binary_search.md
+        - 三分搜索: competitive_programming/basic/ternary_search.md
+      - 排序:
+        - 快速排序: competitive_programming/basic/quick_sort.md
+        - 归并排序: competitive_programming/basic/merge_sort.md
+    - 数学:
+      - 最大公约数: competitive_programming/math/greatest_common_devisor.md
+      - 快速幂: competitive_programming/math/quick_power.md
+      - 组合数: competitive_programming/math/combination.md
+      - 乘法逆元: competitive_programming/math/inverse.md
+      - 埃拉托色尼筛: competitive_programming/math/eratosthenes.md
+    - 字符串:
+      - Z 函数（扩展KMP）: competitive_programming/string/z-func.md
+      - 字典树: competitive_programming/string/trie.md
+      - 后缀自动机: competitive_programming/string/suffix_automation.md
+    - 数据结构:
+      - 树状数组: competitive_programming/data_structure/fenwick.md
+      - 线段树: competitive_programming/data_structure/segment_tree.md
+      - 并查集: competitive_programming/data_structure/union_find.md
+      - LRU缓存: competitive_programming/data_structure/lru_cache.md
+    - 图论:
+      - 最短路径:
+        - 单源最短路: competitive_programming/graph_theory/dijkstra.md
+        - 所有点对之间最短路: competitive_programming/graph_theory/floyd.md
+      - 最小生成树: competitive_programming/graph_theory/minimum_spanning_tree.md
+      - 二分图匹配: competitive_programming/graph_theory/bipartite_matching.md
   - 操作系统: operating_system/index.md
   - 设计模式:
     - 对象与接口: design_pattern/object_and_interface.md
@@ -70,6 +71,8 @@ nav:
   - 经济学原理: 
     - 微观经济学: economics/micro_economics.md
     - 宏观经济学: economics/macro_economics.md
+  - 杂项梳理:
+    - 内容分发网络: extra/cdn.md
   - 行业思考: thinking_in_industry/index.md
   - 关于作者: about.md
 
