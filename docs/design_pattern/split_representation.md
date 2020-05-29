@@ -178,7 +178,7 @@ class ArrayIterator : public Iterator {
    public:
     ArrayIterator(float* data, int index) : data_(data), index_(index) {}
     ArrayIterator(const ArrayIterator& other)
-        : data_(other.data_), index_(pther.index_) {}
+        : data_(other.data_), index_(other.index_) {}
     ~ArrayIterator() {}
     const Iterator& operator++();
     const Iterator& operator++(int);
@@ -213,9 +213,9 @@ bool ArrayIterator::operator!=(const Iterator& other) const {
 
 重写`Analyze`和`main`
 ```cpp
-void Analyze(Iterator* begin, Iterator end) {
+void Analyze(Iterator* begin, Iterator* end) {
     int passed = 0, count = 0;
-    for (Iterator* p = begin; *p != end; (*p)++) {
+    for (Iterator* p = begin; *p != *end; (*p)++) {
         if (**p >= 60) passed++;
         count++;
     }
@@ -264,3 +264,202 @@ while (it.HasNext()) {
 }
 //...
 ```
+
+
+## 迭代器与模板
+
+固定的东西：
+
+* 产生迭代器的方法
+
+* 迭代器遍历集合的接口
+
+变化的东西：
+
+* 集合的存储方式
+
+* 迭代器遍历集合的具体实现
+
+迭代器实现了 **遍历操作** 与 **存储方法** 的隔离。使得实现算法逻辑时无需关心数据表示，而实现数据存储的时候又无需关心算法的逻辑。
+
+###　算法的通用化
+
+可以设计一些列通用算法：`max`, `min`, `sort`, `count`, `count_if`, `find`, ...
+
+```cpp
+int main() {
+    float scores[] = {90, 20, 40, 40, 30, 60, 70, 30, 90, 100};
+    Collection* c = new ArrayCollection(10, scores);
+    cout << "passing rate = "
+         << (float)count_if(c->begin(), c->end(), passed()) / c.size() << endl;
+
+    system("PAUSE");
+    return EXIT_SUCCESS;
+}
+```
+
+### 改进目标
+
+#### 问题 1
+
+当前的使用方式
+```cpp
+void Analyze(Iterator* begin, Iterator* end) {
+    for (Iterator *p = begin; *p != *end; (*p)++) {
+        if (**p >= 60)   //...
+    }
+}
+```
+
+期待的使用方式
+```cpp
+void Analyze(const Iterator& begin, const Iterator& end) {
+    for (Iterator p = begin; p != end; p++) {
+        if (*p >= 60)   //...
+    }
+}
+```
+
+#### 问题 2
+
+只支持`float`类型，见如下`*`和`->`的重载
+
+```cpp
+class Iterator {
+   public:
+    virtual ~Iterator() {}
+    virtual bool operator!=(const Iterator& other) const = 0;
+    virtual const Iterator& operator++() = 0;
+    virtual const Iterator* operator++(int) = 0;
+    virtual float& operator*() const = 0;
+    virtual float& operator->() const = 0;
+    bool operator==(const Iterator& other) const { return !(*this != other); }
+};
+```
+
+### 引入模板
+
+我们需要一种方法，在编写代码时将类型作为可变部分，这些部分在使用前必须做出指明。如此一来，可以先考虑通用的算法和抽象的数据结构，然后再在使用时予以实例化
+
+使用 **模板** 技术实现 **泛型**。
+
+#### 通用算法
+
+```cpp
+template <class iterator_>
+void Analysis(iterator_ begin, iterator_ end) {
+    int passed = 0, count = 0;
+    for (iterator_ p = begin; p != end; p++) {
+        if (*p >= 60) passed++;
+        count++;
+    }
+
+    cout << "passing rate = " << (float)passed / count << endl;
+}
+```
+
+这里`iterator_`类型的变量需要实现`=`, `!=`, `++`运算符。
+
+```cpp
+template <class T>
+class ArrayCollection {
+   public:
+    ArrayCollection() : size_(10) { data_ = new T[size_]; }
+    ArrayCollection(int size) : size(size_) { data_ = new T[size_]; }
+    ArrayCollection(int size, T* data) : size_(size) {
+        data_ = new T[size_];
+        for (int i = 0; i < size_; i++) *(data_ + i) = *(data + i);
+    }
+    ~ArrayCollection() { delete[] data_; }
+    T* begin(){ return data_; }
+    T* end() { return data_ + size_; }
+
+   private:
+    T* data_;
+    int size_;
+};
+```
+
+#### 链表节点、链表迭代器、链表容器
+
+```cpp
+template <class T>
+struct LinkiedListNode {
+    T data_;
+    LinkedListNode* next;
+    LinkedListNode() : next(nullptr) {}
+    LinkedListNode(T data) : data_(data), next(nullptr) {}
+};
+
+template <class T>
+struct LinkedListIterator {
+    LinkedListNode<T>* pointer;
+    LinkedListIterator(LinkiedListNode<T>* p) : pointer(p) {}
+    LinkedListIterator(const LinkedListIterator<T>& it) : pointer(it.pointer) {}
+
+    LinkedListIterator<T>& operator++() {
+        pointer = pointer->next;
+        return *this;
+    }
+    const LinkedListIterator<T> operator++(int) {
+        LinkedListIterator<T> temp = *this;
+        pointer = pointer->next;
+        return temp;
+    }
+    T& operator*() const { return pointer->data_; }
+    T* operator->() const { return &(pointer->data_); }
+    bool operator!=(const LinkedListIterator<T>& other) {
+        return pointer != other.pointer;
+    }
+    bool operator==(const LinkedListIterator<T>& other) {
+        return pointer == other.pointer;
+    }
+};
+
+template <class T>
+class LinkedListCollection {
+   public:
+    LinkedListCollection() : head_(nullptr) {}
+    LinkedListCollection(int size, T* datq) {
+        //...
+    }
+    ~LinkedListCollection() {
+        //...
+    }
+    
+    LinkedListIterator<T> begin() { return LinkedListIterator<T>(head_); }
+    LinkedListIterator<T> end() { return LinkedListIterator<T>(nullptr); }
+
+   private:
+    LinkedListNode<T>* head;
+};
+```
+
+使用如下：
+```cpp
+int main() {
+    float scores[] = {90, 20, 40, 40, 30, 60, 70, 30, 90, 100};
+    ArrayCollection<float> collection2(10, scores);
+    LinkedListCollection<float> collection1(10, scores);
+
+    Analyze(scores, scores + 10);
+    Analyze(collection1.begin(), collection1.end());
+    Analyze(collection2.begin(), collection2.end());
+
+    system("PAUSE");
+    return EXIT_SUCCESS;
+}
+```
+
+这里指针由于支持`=`, `!=`, `++`操作，在这里也可以作为迭代器使用。
+
+事实上，指针是一种迭代器，迭代器也是一种指针。
+
+
+## 算法与数据解耦
+
+## 抽象结构与类模板
+
+## 函数对象与算法分解
+
+## 基于模板的策略模式
