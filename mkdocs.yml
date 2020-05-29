@@ -72,7 +72,7 @@ nav:
     - 微观经济学: economics/micro_economics.md
     - 宏观经济学: economics/macro_economics.md
   - 杂项梳理:
-    - 内容分发网络: extra/cdn.md
+    - CDN加速: extra/cdn.md
   - 行业思考: thinking_in_industry/index.md
   - 关于作者: about.md
 
