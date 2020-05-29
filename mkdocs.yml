@@ -23,7 +23,7 @@ theme:
   include_search_page: false
   search_index_only: true
   favicon: 'favicon.ico'
-  feature:
+  features:
     tabs: true
 
 # Page tree
