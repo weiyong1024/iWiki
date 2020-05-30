@@ -61,8 +61,8 @@ nav:
   - 操作系统: operating_system/index.md
   - 设计模式:
     - 对象与接口: design_pattern/object_and_interface.md
-    - 算法横向拆分: design_pattern/split_steps.md
-    - 算法纵向拆分: design_pattern/split_representation.md
+    - 算法拆分 - 分离步骤: design_pattern/split_steps.md
+    - 算法拆分 - 分离表示: design_pattern/split_representation.md
     - 接口组合: design_pattern/compose_interfaces.md
     - 增加抽象层级: design_pattern/add_layers.md
   - 编程语言:
