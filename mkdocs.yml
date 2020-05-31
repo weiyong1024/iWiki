@@ -43,6 +43,7 @@ nav:
       - 组合数: competitive_programming/math/combination.md
       - 乘法逆元: competitive_programming/math/inverse.md
       - 埃拉托色尼筛: competitive_programming/math/eratosthenes.md
+      - 卡特兰数: competitive_programming/math/catalan_number.md
     - 字符串:
       - Z 函数（扩展KMP）: competitive_programming/string/z-func.md
       - 字典树: competitive_programming/string/trie.md
