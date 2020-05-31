@@ -11,7 +11,7 @@
         <meta name="description" content="weiyong1024的个人博客">
       
       
-        <link rel="canonical" href="https://weiyong.org/competitive_programming/data_structure/segment_tree/">
+        <link rel="canonical" href="https://weiyong.org/competitive_programming/math/catalan_number/">
       
       
         <meta name="author" content="weiyong1024">
@@ -21,7 +21,7 @@
     
     
       
-        <title>线段树 - iWiki</title>
+        <title>卡特兰数 - iWiki</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#catalan-number" class="md-skip">
           跳转至
         </a>
       
@@ -90,7 +90,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              线段树
+              卡特兰数
             
           </span>
         </div>
@@ -491,10 +491,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" checked>
     
     <label class="md-nav__link" for="nav-2-2">
       数学
@@ -518,7 +520,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../math/greatest_common_devisor/" title="最大公约数" class="md-nav__link">
+    <a href="../greatest_common_devisor/" title="最大公约数" class="md-nav__link">
       最大公约数
     </a>
   </li>
@@ -530,7 +532,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../math/quick_power/" title="快速幂" class="md-nav__link">
+    <a href="../quick_power/" title="快速幂" class="md-nav__link">
       快速幂
     </a>
   </li>
@@ -542,7 +544,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../math/combination/" title="组合数" class="md-nav__link">
+    <a href="../combination/" title="组合数" class="md-nav__link">
       组合数
     </a>
   </li>
@@ -554,7 +556,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../math/inverse/" title="乘法逆元" class="md-nav__link">
+    <a href="../inverse/" title="乘法逆元" class="md-nav__link">
       乘法逆元
     </a>
   </li>
@@ -566,7 +568,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../math/eratosthenes/" title="埃拉托色尼筛" class="md-nav__link">
+    <a href="../eratosthenes/" title="埃拉托色尼筛" class="md-nav__link">
       埃拉托色尼筛
     </a>
   </li>
@@ -576,11 +578,94 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../math/catalan_number/" title="卡特兰数" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        卡特兰数
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="卡特兰数" class="md-nav__link md-nav__link--active">
       卡特兰数
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    问题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#catalan" class="md-nav__link">
+    Catalan数
+  </a>
+  
+    <nav class="md-nav" aria-label="Catalan数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    通项公式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catalan_1" class="md-nav__link">
+    关于 Catalan数 的常见公式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#catalan_2" class="md-nav__link">
+    可用Catalan数列建模的问题
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -659,12 +744,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
     
     <label class="md-nav__link" for="nav-2-4">
       数据结构
@@ -688,7 +771,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../fenwick/" title="树状数组" class="md-nav__link">
+    <a href="../../data_structure/fenwick/" title="树状数组" class="md-nav__link">
       树状数组
     </a>
   </li>
@@ -698,81 +781,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        线段树
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="线段树" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../data_structure/segment_tree/" title="线段树" class="md-nav__link">
       线段树
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    问题
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    代码
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    算法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    讨论
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    变体
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -782,7 +795,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../union_find/" title="并查集" class="md-nav__link">
+    <a href="../../data_structure/union_find/" title="并查集" class="md-nav__link">
       并查集
     </a>
   </li>
@@ -794,7 +807,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../lru_cache/" title="LRU缓存" class="md-nav__link">
+    <a href="../../data_structure/lru_cache/" title="LRU缓存" class="md-nav__link">
       LRU缓存
     </a>
   </li>
@@ -1382,36 +1395,49 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     问题
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#catalan" class="md-nav__link">
+    Catalan数
+  </a>
+  
+    <nav class="md-nav" aria-label="Catalan数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    代码
+    通项公式
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catalan_1" class="md-nav__link">
+    关于 Catalan数 的常见公式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    算法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    讨论
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    变体
+  <a href="#catalan_2" class="md-nav__link">
+    可用Catalan数列建模的问题
   </a>
   
 </li>
@@ -1432,134 +1458,105 @@
                   
                 
                 
-                <h1 id="_1">线段树</h1>
-<p>相较Fenwick树，线段树除了支持在 <span><span class="MathJax_Preview">O(\log n)</span><script type="math/tex">O(\log n)</script></span> 时间内更新制定元素和计算区间和以外，还支持在 <span><span class="MathJax_Preview">O(\log n)</span><script type="math/tex">O(\log n)</script></span> 时间内计算区间最值，但为此多付出了 <span><span class="MathJax_Preview">O(n)</span><script type="math/tex">O(n)</script></span> 的空间开销。</p>
-<h2 id="_2">问题</h2>
-<p>给定长度为 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 的序列 <span><span class="MathJax_Preview">v</span><script type="math/tex">v</script></span> ，要求在 <span><span class="MathJax_Preview">O(\log n)</span><script type="math/tex">O(\log n)</script></span> 的时间内完成如下操作：</p>
+                <h1 id="catalan-number">Catalan number / 卡特兰数</h1>
+<h2 id="_1">问题</h2>
+<p><span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 对括号 <code>()</code> 构成的序列，求满足括号合法匹配的排列数量。</p>
+<h2 id="_2">分析</h2>
 <ul>
 <li>
-<p>更新单个元素 <span><span class="MathJax_Preview">v[i]</span><script type="math/tex">v[i]</script></span> 的值</p>
+<p>排列的第一个元素一定是 <code>(</code><br />
+证明：如果首元是 <code>)</code> 则其无法被匹配</p>
 </li>
 <li>
-<p>查询位于区间 <span><span class="MathJax_Preview">[l, r)</span><script type="math/tex">[l, r)</script></span> 的元素和</p>
+<p>给定合法排列，则匹配方式唯一</p>
 </li>
 </ul>
-<h2 id="_3">代码</h2>
-<p>用于维护区间求和的线段树：</p>
-<div class="highlight"><pre><span></span><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">class</span> <span class="nc">SGT</span> <span class="p">{</span>
-   <span class="k">public</span><span class="o">:</span>
-    <span class="n">SGT</span><span class="p">()</span> <span class="p">{}</span>
-    <span class="n">SGT</span><span class="p">(</span><span class="kt">int</span> <span class="n">_sz</span><span class="p">)</span> <span class="o">:</span> <span class="n">sz</span><span class="p">(</span><span class="n">_sz</span><span class="p">)</span> <span class="p">{</span> <span class="n">sgt</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sz</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">}</span>
-    <span class="n">SGT</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">arr</span><span class="p">)</span> <span class="o">:</span> <span class="n">sz</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">sgt</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sz</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sz</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">Add</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-    <span class="p">}</span>
-    <span class="n">T</span> <span class="n">Query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">T</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">l</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">,</span> <span class="n">r</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">;</span> <span class="n">l</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">l</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">ans</span> <span class="o">+=</span> <span class="n">sgt</span><span class="p">[</span><span class="n">l</span><span class="o">++</span><span class="p">];</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">r</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">ans</span> <span class="o">+=</span> <span class="n">sgt</span><span class="p">[</span><span class="o">--</span><span class="n">r</span><span class="p">];</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">Add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">sgt</span><span class="p">[</span><span class="n">x</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">]</span> <span class="o">+=</span> <span class="n">val</span><span class="p">;</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span> <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">sgt</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sgt</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">sgt</span><span class="p">[</span><span class="n">x</span> <span class="o">^</span> <span class="mi">1</span><span class="p">];</span>
-    <span class="p">}</span>
-
-   <span class="k">private</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">sz</span><span class="p">;</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">sgt</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></div>
-
-<p>操作说明：</p>
-<div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="n">ll</span> <span class="o">=</span> <span class="kt">long</span> <span class="kt">long</span><span class="p">;</span>
-
-<span class="c1">// 建立一个长度为10的段树</span>
-<span class="n">SGT</span><span class="o">&lt;</span><span class="n">ll</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
-<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">s</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="c1">// 查询 [3, 7) 的和</span>
-<span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">Query</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-</code></pre></div>
-
-<p>输出：</p>
-<div class="highlight"><pre><span></span><code>18
-</code></pre></div>
-
-<h2 id="_4">算法</h2>
-<p>线段树是一颗有奇数个节点的的完全二叉树:</p>
-<p><img alt="SGT" src="../images/segment_tree.png" /></p>
-<p>由于线段树的后半段（叶节点）存储了原数组的内容，故线段树的操作无论建立、求和或者更新值都是先定位到叶节点然后自底向上进行。</p>
-<p>具体地，区间和操作是先将表征左右端点指针定位在叶节点相应位置，然后一步步上移紧缩，过程每当端点出现奇数则需要“接漏”——其中左端是闭区间所以先加再缩，右端是开区间所以先缩再加。</p>
-<h2 id="_5">讨论</h2>
+<p>设 <span><span class="MathJax_Preview">a_i</span><script type="math/tex">a_i</script></span> 表示由 <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 对括号组成的匹配排列的数量，显然 <span><span class="MathJax_Preview">a_1 = 1</span><script type="math/tex">a_1 = 1</script></span>，从下面的递推式分析中可以看出 <span><span class="MathJax_Preview">a_0</span><script type="math/tex">a_0</script></span> 起到了乘法幺元的作用，故令 <span><span class="MathJax_Preview">a_0 = 1</span><script type="math/tex">a_0 = 1</script></span>。</p>
+<p>对于由 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 对括号组成的排列，考虑与首位 <code>(</code> 匹配的 <code>)</code> 的位置，其左右各有一个长度更短的匹配序列，递推式为</p>
+<div>
+<div class="MathJax_Preview">
+a_n = \sum_{i=0}^{n-1} a_i a_{n - 1 - i}
+</div>
+<script type="math/tex; mode=display">
+a_n = \sum_{i=0}^{n-1} a_i a_{n - 1 - i}
+</script>
+</div>
+<p>如此可以在 <span><span class="MathJax_Preview">O(n^2)</span><script type="math/tex">O(n^2)</script></span> 的时间内得到结果。</p>
+<h2 id="catalan">Catalan数</h2>
+<p>在这个问题中，数列 <span><span class="MathJax_Preview">{a_1, a_2, ...}</span><script type="math/tex">{a_1, a_2, ...}</script></span> 称为 <strong>Catalan数列</strong> 。</p>
+<p>通项 <span><span class="MathJax_Preview">a_n</span><script type="math/tex">a_n</script></span> 称为 <strong>Catalan数</strong></p>
+<h3 id="_3">通项公式</h3>
+<p>上述递推关系的解为：</p>
+<div>
+<div class="MathJax_Preview">
+a_0 = a_1 = 1
+</div>
+<script type="math/tex; mode=display">
+a_0 = a_1 = 1
+</script>
+</div>
+<div>
+<div class="MathJax_Preview">
+a_n = \frac{C_{2n}^n}{n+1} (n \geq 2, n \in \mathbb{N}_+)
+</div>
+<script type="math/tex; mode=display">
+a_n = \frac{C_{2n}^n}{n+1} (n \geq 2, n \in \mathbb{N}_+)
+</script>
+</div>
+<h3 id="catalan_1">关于 Catalan数 的常见公式</h3>
+<div>
+<div class="MathJax_Preview">
+a_n = \begin{cases} \sum_{i=1}^{n} a_{i-1} a_{n-i} &amp; n \geq 2, n \in \mathbb{N_{+}}\ 1 &amp; n = 0, 1 \end{cases}
+</div>
+<script type="math/tex; mode=display">
+a_n = \begin{cases} \sum_{i=1}^{n} a_{i-1} a_{n-i} & n \geq 2, n \in \mathbb{N_{+}}\ 1 & n = 0, 1 \end{cases}
+</script>
+</div>
+<div>
+<div class="MathJax_Preview">
+a_n = \frac{a_{n-1} (4n-2)}{n+1}
+</div>
+<script type="math/tex; mode=display">
+a_n = \frac{a_{n-1} (4n-2)}{n+1}
+</script>
+</div>
+<div>
+<div class="MathJax_Preview">
+a_n = C_{2n}^{n} - C_{2n}^{n-1}
+</div>
+<script type="math/tex; mode=display">
+a_n = C_{2n}^{n} - C_{2n}^{n-1}
+</script>
+</div>
+<h2 id="catalan_2">可用Catalan数列建模的问题</h2>
 <ul>
-<li>关于为什么数组表示的二叉树一般不使用下标 <span><span class="MathJax_Preview">0</span><script type="math/tex">0</script></span></li>
+<li>
+<p>买票找零： <span><span class="MathJax_Preview">2n</span><script type="math/tex">2n</script></span> 个人买票，票价 <span><span class="MathJax_Preview">50</span><script type="math/tex">50</script></span>，其中 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 个人手中握有 <span><span class="MathJax_Preview">100</span><script type="math/tex">100</script></span> 元钞票， <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 个人手中握有 <span><span class="MathJax_Preview">50</span><script type="math/tex">50</script></span> 元钞票。假设开始时售票处没有零钱，请问有多少种排队方式可以避免出现找不开钱的问题？</p>
+</li>
+<li>
+<p><span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 个节点可构造多少个不同的二叉树</p>
+</li>
+<li>
+<p>多边形划分成三角形的问题：求一个凸多边形区域划分成三角形区域的方法数</p>
+<ul>
+<li>类似题目：圆上的 <span><span class="MathJax_Preview">2n</span><script type="math/tex">2n</script></span> 个点，成对连接得到 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 条线段不想交，求可行的方法数</li>
 </ul>
-<p>从上至下，从左至右对一棵满二叉树编号，如根节点编号为 <span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>，则节点的左右儿子和父亲分别为 <span><span class="MathJax_Preview">p &lt;&lt; 1</span><script type="math/tex">p << 1</script></span>, <span><span class="MathJax_Preview">p &lt;&lt; 1 | 1</span><script type="math/tex">p << 1 | 1</script></span>, <span><span class="MathJax_Preview">p &gt;&gt; 1</span><script type="math/tex">p >> 1</script></span>，节点之间的转移可以只通过位运算完成。然而若根节点从开始编号，则节点p的左右儿子分别为 <span><span class="MathJax_Preview">2p + 1</span><script type="math/tex">2p + 1</script></span>, <span><span class="MathJax_Preview">2p + 2</span><script type="math/tex">2p + 2</script></span>，父亲的索引与 <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> 的奇偶性有关，索引转移因而复杂得多。</p>
-<h2 id="_6">变体</h2>
-<p>用线段树维护、查询区间最值。</p>
-<p>最大值
-<div class="highlight"><pre><span></span><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">class</span> <span class="nc">SGT</span> <span class="p">{</span>
-   <span class="k">public</span><span class="o">:</span>
-    <span class="n">SGT</span><span class="p">()</span> <span class="p">{}</span>
-    <span class="n">SGT</span><span class="p">(</span><span class="kt">int</span> <span class="n">_sz</span><span class="p">)</span> <span class="o">:</span> <span class="n">sz</span><span class="p">(</span><span class="n">_sz</span><span class="p">)</span> <span class="p">{</span> <span class="n">sgt</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sz</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">}</span>
-    <span class="n">SGT</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">arr</span><span class="p">)</span> <span class="o">:</span> <span class="n">sz</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">sgt</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sz</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sz</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">Update</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-    <span class="p">}</span>
-    <span class="n">T</span> <span class="n">Query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">T</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">numeric_limits</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">min</span><span class="p">();</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">l</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">,</span> <span class="n">r</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">;</span> <span class="n">l</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">l</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">sgt</span><span class="p">[</span><span class="n">l</span><span class="o">++</span><span class="p">]);</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">r</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">sgt</span><span class="p">[</span><span class="o">--</span><span class="n">r</span><span class="p">]);</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">Update</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">sgt</span><span class="p">[</span><span class="n">x</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span> <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">sgt</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">sgt</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">sgt</span><span class="p">[</span><span class="n">x</span> <span class="o">^</span> <span class="mi">1</span><span class="p">]);</span>
-    <span class="p">}</span>
-
-   <span class="k">private</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">sz</span><span class="p">;</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">sgt</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></div></p>
-<p>最小值
-<div class="highlight"><pre><span></span><code><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="k">class</span> <span class="nc">SGT</span> <span class="p">{</span>
-   <span class="k">public</span><span class="o">:</span>
-    <span class="n">SGT</span><span class="p">()</span> <span class="p">{}</span>
-    <span class="n">SGT</span><span class="p">(</span><span class="kt">int</span> <span class="n">_sz</span><span class="p">)</span> <span class="o">:</span> <span class="n">sz</span><span class="p">(</span><span class="n">_sz</span><span class="p">)</span> <span class="p">{</span> <span class="n">sgt</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sz</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">}</span>
-    <span class="n">SGT</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">arr</span><span class="p">)</span> <span class="o">:</span> <span class="n">sz</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">sgt</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sz</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sz</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">Update</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-    <span class="p">}</span>
-    <span class="n">T</span> <span class="n">Query</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">T</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">numeric_limits</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">();</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">l</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">,</span> <span class="n">r</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">;</span> <span class="n">l</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">l</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">sgt</span><span class="p">[</span><span class="n">l</span><span class="o">++</span><span class="p">]);</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">r</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">sgt</span><span class="p">[</span><span class="o">--</span><span class="n">r</span><span class="p">]);</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">Update</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">sgt</span><span class="p">[</span><span class="n">x</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span> <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">sgt</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">sgt</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">sgt</span><span class="p">[</span><span class="n">x</span> <span class="o">^</span> <span class="mi">1</span><span class="p">]);</span>
-    <span class="p">}</span>
-
-   <span class="k">private</span><span class="o">:</span>
-    <span class="kt">int</span> <span class="n">sz</span><span class="p">;</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">sgt</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></div></p>
+</li>
+<li>
+<p>路径计数问题：</p>
+</li>
+</ul>
+<p>考虑非降路径</p>
+<ol>
+<li>
+<p>从 <span><span class="MathJax_Preview">(0, 0)</span><script type="math/tex">(0, 0)</script></span> 到 <span><span class="MathJax_Preview">(m, n)</span><script type="math/tex">(m, n)</script></span> 的非降路径数等于 <span><span class="MathJax_Preview">m</span><script type="math/tex">m</script></span> 个 <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> 和 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 个 <span><span class="MathJax_Preview">y</span><script type="math/tex">y</script></span> 的排列数，即 <span><span class="MathJax_Preview">C_{n + m}^m</span><script type="math/tex">C_{n + m}^m</script></span></p>
+</li>
+<li>
+<p>从 <span><span class="MathJax_Preview">0, 0</span><script type="math/tex">0, 0</script></span> 到 <span><span class="MathJax_Preview">n, n</span><script type="math/tex">n, n</script></span> 的除端点外不接触直线 <span><span class="MathJax_Preview">y = x</span><script type="math/tex">y = x</script></span> 的非降路径数：</p>
+<p>先考虑 <span><span class="MathJax_Preview">y=x</span><script type="math/tex">y=x</script></span> 下方的路径，都是从 <span><span class="MathJax_Preview">(0, 0)</span><script type="math/tex">(0, 0)</script></span> 出发，经过 <span><span class="MathJax_Preview">(1, 0)</span><script type="math/tex">(1, 0)</script></span> 及 <span><span class="MathJax_Preview">(n, n-1)</span><script type="math/tex">(n, n-1)</script></span> 到 <span><span class="MathJax_Preview">(n,n)</span><script type="math/tex">(n,n)</script></span> ，可以看做是 <span><span class="MathJax_Preview">(1,0)</span><script type="math/tex">(1,0)</script></span> 到 <span><span class="MathJax_Preview">(n,n-1)</span><script type="math/tex">(n,n-1)</script></span> 不接触 <span><span class="MathJax_Preview">y=x</span><script type="math/tex">y=x</script></span> 的非降路径数。</p>
+<p>所有的的非降路径有 <span><span class="MathJax_Preview">C_{2n-2}^{n-1}</span><script type="math/tex">C_{2n-2}^{n-1}</script></span> 条。对于这里面任意一条接触了 <span><span class="MathJax_Preview">y=x</span><script type="math/tex">y=x</script></span> 的路径，可以把它最后离开这条线的点到 <span><span class="MathJax_Preview">(1,0)</span><script type="math/tex">(1,0)</script></span> 之间的部分关于 <span><span class="MathJax_Preview">y=x</span><script type="math/tex">y=x</script></span> 对称变换，就得到从 <span><span class="MathJax_Preview">(0,1)</span><script type="math/tex">(0,1)</script></span> 到 <span><span class="MathJax_Preview">(n,n-1)</span><script type="math/tex">(n,n-1)</script></span> 的一条非降路径。反之也成立。从而 <span><span class="MathJax_Preview">y=x</span><script type="math/tex">y=x</script></span> 下方的非降路径数是 <span><span class="MathJax_Preview">C_{2n-2}^{n-1} - C_{2n-2}^n</span><script type="math/tex">C_{2n-2}^{n-1} - C_{2n-2}^n</script></span> 。根据对称性可知所求答案为 <span><span class="MathJax_Preview">2(C_{2n-2}^{n-1} - C_{2n-2}^n)</span><script type="math/tex">2(C_{2n-2}^{n-1} - C_{2n-2}^n)</script></span> 。</p>
+</li>
+</ol>
                 
               
               
@@ -1568,7 +1565,7 @@
 
   <h2 id="__comments">评论</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="https://weiyong.org/competitive_programming/data_structure/segment_tree/",this.page.identifier="/competitive_programming/data_structure/segment_tree/"};!function(){var e=document,i=e.createElement("script");i.src="//iwiki1024.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
+  <script>var disqus_config=function(){this.page.url="https://weiyong.org/competitive_programming/math/catalan_number/",this.page.identifier="/competitive_programming/math/catalan_number/"};!function(){var e=document,i=e.createElement("script");i.src="//iwiki1024.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
 
               
             </article>
@@ -1582,7 +1579,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="">
         
-          <a href="../fenwick/" title="树状数组" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../eratosthenes/" title="埃拉托色尼筛" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1591,19 +1588,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                树状数组
+                埃拉托色尼筛
               </div>
             </div>
           </a>
         
         
-          <a href="../union_find/" title="并查集" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../string/z-func/" title="Z 函数（扩展KMP）" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                并查集
+                Z 函数（扩展KMP）
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
