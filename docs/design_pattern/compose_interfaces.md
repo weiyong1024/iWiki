@@ -236,7 +236,7 @@ Lazy load的好处：
 
 #### 代码实现
 
-增加一个`Component`作为可显示内容的基类，`TextView`作为其子类。而所有的装饰类都是可显示的，也就都是`Component`的子类。
+增加一个`Component`作为可显示内容的基类，`TextView`作为其子类。而所有的 **装饰类** 都是可显示的，也就都是`Component`的子类。
 
 对于不同的装饰类，实现不同的装饰能力。
 
@@ -331,3 +331,155 @@ Bordered HScrolled VScrolled TextView.
 
 
 ## 责任的传递与责任链
+
+装饰器的使用成一种链式调用关系，每层对象无需了解整个链的全貌，只需知道“下一个”对象是谁即可。
+
+![DecoratorChain](./images/decorator_chain.png)
+
+### 责任链
+
+将一系列的处理者连城一条链，将请求沿着这个链传递并由链上的处理着予以处理
+
+![DutyChain](./images/duty_chain.png)
+
+### 一个邮件过滤器
+
+设置过滤器：根据发件人、根据主题、根据关键字等
+
+![DutyChainEmail](./images/duty_chain_email.png)
+
+#### 实现
+
+定义请求
+```cpp
+class MailRequest {
+    //...
+   public:
+    string GetSender();
+    string GetTitle();
+    string GetBody();
+    string GetAll();
+
+    void Accept() { reject_ = false; }
+    void Reject() { reject_ = true; }
+
+    bool IsReject() { return reject_; }
+
+   private:
+    bool reject_;
+};
+```
+
+定义“处理者”，“处理者”用`DoHandle()`做“分内之事”，如不成功再将轻轨去传递给后续的处理者
+```cpp
+class Handler {
+   public:
+    Handler(Handler* successor) : successor_(successor) {}
+    virtual ~Handler() {}
+    virtual bool DoHandle(MailRequest* request) = 0;
+    void Handle(MailRequest* request) {
+        if (!DoHandle(request)) {
+            if (successor_ != nullptr) successor_->Handle(request);
+        }
+    }
+
+   private:
+    Handler* successor_;
+};
+```
+
+实现各种过滤器逻辑
+```cpp
+class SenderFilter : public Handler {
+   public:
+    SenderFilter(Handler* successor) : Handler(successor);
+
+    bool DoHandle(MailRequest* request) {
+        if (IsWhite(request->GetSender())) {
+            request->Accept();
+            return true;
+        }
+        if (IsBlack(request->GetSender())) {
+            request->Reject();
+            return true;
+        }
+        return false;
+    }
+};
+
+class TitleFilter : public Handler {
+   public:
+    TitleFilter(Handler* successor) : Handler(successor) {}
+    bool DoHandle(MailRequest* request) {
+        if (!IsValid(request->GetTitle())) {
+            request->Reject();
+            return true;
+        }
+        return false;
+    }
+};
+
+class BodyFilter : public Handler {
+   public:
+    BodyFilter(Handler* successor) : Handler(successor) {}
+    bool DoHandle(MailRequest* request) {
+        for (auto s : invalid_texts) {
+            if (request->GetBody().find(s) != string::npos) {
+                request->Reject();
+                return true;
+            }
+        }
+        return false;
+    }
+
+   private:
+    vector<string> invalid_texts = {"text1", "text2" /*, .....*/};
+};
+```
+
+一般在责任链末端有一个缺省的处理者
+```cpp
+class DefaultFilter : public Handler {
+    public:
+    DefaultFilter(Handler* successor) : Handler(successor) {}
+    bool DoHandle(MailRequest* request) {
+        request->Accept();
+        return true;
+    }
+};
+```
+
+责任链的产生从链尾到链头反向声明，使用责任链时只要把处理请求交给责任链开始的处理者即可。
+```cpp
+int main(int argc, char* argv[]) {
+    DefaultFilter f1(nullptr);
+    BodyFilter f2(&f1);
+    TitleFilter f3(&f2);
+    SenderFilter f4(&f3);
+
+    MailRequest* request = GetRequest();
+    f4.Handle(request);
+    if (request->IsReject()) {
+        cout << "Rejected." << endl;
+    } else {
+        cout << "Accepted." << endl;
+    }
+}
+```
+
+![EmailDutyChain](./images/email_duty_chain.png)
+
+### 与装饰、代理对比
+
+#### 责任链与装饰
+
+两者都有“调用链”，责任链强调的是链整体的行为，而装饰则更强调调用链带来的组织结果。
+
+具体而言，责任链不一定调用到底，可能在某一环得到结果；但装饰链一定调用到底，每一环都会起作用。
+
+#### 责任链与代理
+
+责任链也可以看作一连串代理。
+
+代理强调控制被代理对象，改变对象的行为；责任链则组织多个对象的行为。
+
