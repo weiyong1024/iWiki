@@ -83,6 +83,8 @@ nav:
       - Storm: open_source/streaming/storm.md
     - 数据库:
       - LevelDB: open_source/database/leveldb.md
+    - 浏览器: 
+      - Chromium: open_source/browser/chromium.md
   - 行业思考: thinking_in_industry/index.md
   - 关于作者: about.md
 
