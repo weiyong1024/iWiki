@@ -67,7 +67,9 @@ nav:
     - 接口组合: design_pattern/compose_interfaces.md
     - 增加抽象层级: design_pattern/add_layers.md
   - 编程语言:
-    - C++梳理: languages/cpp/basic.md 
+    - C++:
+      - 基础梳理: languages/cpp/basic.md
+      - Effective C++: languages/cpp/effective_cpp.md
   - 机器学习: machine_learning/index.md
   - 经济学原理: 
     - 微观经济学: economics/micro_economics.md
