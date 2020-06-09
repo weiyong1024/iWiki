@@ -53,6 +53,7 @@ nav:
       - 线段树: competitive_programming/data_structure/segment_tree.md
       - 并查集: competitive_programming/data_structure/union_find.md
       - LRU缓存: competitive_programming/data_structure/lru_cache.md
+      - 跳表: competitive_programming/data_structure/skiplist.md
     - 图论:
       - 最短路径:
         - 单源最短路: competitive_programming/graph_theory/dijkstra.md
