@@ -1516,6 +1516,7 @@
 <p>显然， <strong>平衡树</strong>（如红黑树）类的数据结构组织数据可以打满足上述要求，增、删、查的时间复杂度都是 <span><span class="MathJax_Preview">O(\log n)</span><script type="math/tex">O(\log n)</script></span>，而顺序迭代额复杂度为 <span><span class="MathJax_Preview">O(1)</span><script type="math/tex">O(1)</script></span> 。除此之外还有什么思路？</p>
 <h2 id="_3">跳表</h2>
 <p>通过在有序链表上增加若干级索引层实现上述需求。</p>
+<p>具体地，在有序链表上增加给定层数上限的索引，将部分位于低层的节点按照概率上移形成对下级的索引，由于随机性跳表的最终形态往往是不唯一的。</p>
 <h2 id="c">C++实现</h2>
 <p>实现成员为<code>int</code>型的跳表<code>SkipList</code>类：
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Node</span> <span class="p">{</span>
