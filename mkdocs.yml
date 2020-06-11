@@ -78,19 +78,21 @@ nav:
   - 经济学原理: 
     - 微观经济学: economics/micro_economics.md
     - 宏观经济学: economics/macro_economics.md
-  - 技术调研:
-    - CDN: survey/cdn.md
-    - ECS: survey/ecs.md
-    - OSS: survey/oss.md
   - 开源库解读:
+    - 数据库:
+      - LevelDB: open_source/database/leveldb.md
+    - 消息系统:
+      - kafka: open_source/message_system/kafka.md
+    - 浏览器: 
+      - Chromium: open_source/browser/chromium.md
     - 流式计算:
       - Flink: open_source/streaming/flink.md
       - Spark: open_source/streaming/spark.md
       - Storm: open_source/streaming/storm.md
-    - 数据库:
-      - LevelDB: open_source/database/leveldb.md
-    - 浏览器: 
-      - Chromium: open_source/browser/chromium.md
+  - 技术调研:
+    - CDN: survey/cdn.md
+    - ECS: survey/ecs.md
+    - OSS: survey/oss.md
   - 行业思考: thinking_in_industry/index.md
   - 关于作者: about.md
 
