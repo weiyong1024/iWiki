@@ -61,6 +61,8 @@ nav:
         - 所有点对之间最短路: competitive_programming/graph_theory/floyd.md
       - 最小生成树: competitive_programming/graph_theory/minimum_spanning_tree.md
       - 二分图匹配: competitive_programming/graph_theory/bipartite_matching.md
+    - 大数据算法:
+      - 布隆过滤器: competitive_programming/big_data/bloom_filter.md
   - 操作系统: operating_system/index.md
   - 设计模式:
     - 对象与接口: design_pattern/object_and_interface.md
