@@ -81,6 +81,7 @@ nav:
   - 开源库解读:
     - 数据库:
       - LevelDB: open_source/database/leveldb.md
+      - Redius: open_source/database/redius.md
     - 消息系统:
       - kafka: open_source/message_system/kafka.md
     - 浏览器: 
