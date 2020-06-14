@@ -1,7 +1,5 @@
 # LevelDB
 
-LevelDB是Google数据库项目BigTable的单机版本。
-
 * [Github](https://github.com/google/leveldb)
 
 * [Handbook](https://leveldb-handbook.readthedocs.io/zh/latest/basic.html)
@@ -9,6 +7,8 @@ LevelDB是Google数据库项目BigTable的单机版本。
 Authors: Sanjay Ghemawat (sanjay@google.com) and Jeff Dean (jeff@google.com)
 
 ## 概述
+
+LevelDB是Google对结构化数据的分布式存储系统 **BigTable** 的单机版本。BigTable在 **数千台** 商用服务器上管理 **PB** 量级数据，为Google网页索引、谷歌地球、谷歌金融等项目提供数据存储服务。
 
 LevelDB的实现基于LSMT，主题思想是： **将数据首先更新在内存中，当内存中的数据达到一定的阈值，将这部分数据真正刷新到磁盘文件中** ，因而获得极高的写性能。
 
@@ -31,11 +31,11 @@ LevelDB的主要组成部分：
 
 ### 背景
 
-几乎对于所有存储介质， **顺序存储的效率一定比随机存储更高** ，并且要高很多。下图可以直观阐述了两者的效率差，其中红色部分和绿色部分分别表示硬盘随机读取和顺序读取的吞吐量：
+从硬件角度出发，几乎对于所有存储介质， **顺序存储的效率一定比随机存储更高** ，并且要高很多。下图可以直观阐述了两者的效率差，其中红色部分和绿色部分分别表示硬盘随机读取和顺序读取的吞吐量：
 
 ![DiskIO](./images/disk_io.png)
 
-从纵坐标可以看出二者差的不是一点半点，而是已经有数量级的差距了， **几乎达到了三个数量级** 。
+从纵坐标可以看出二者差的不是一点半点，而是已经有数量级的差距了，而且 **几乎达到了三个数量级** 。
 
 ### 动机
 
