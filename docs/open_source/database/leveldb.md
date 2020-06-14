@@ -1,12 +1,30 @@
 # LevelDB
 
-LevelDB可以视为Google数据库项目BigTable的单机版本，底层数据结构基于LSMT实现。
+LevelDB是Google数据库项目BigTable的单机版本。
 
 * [Github](https://github.com/google/leveldb)
 
 * [Handbook](https://leveldb-handbook.readthedocs.io/zh/latest/basic.html)
 
 Authors: Sanjay Ghemawat (sanjay@google.com) and Jeff Dean (jeff@google.com)
+
+## 概述
+
+LevelDB的实现基于LSMT，主题思想是： **将数据首先更新在内存中，当内存中的数据达到一定的阈值，将这部分数据真正刷新到磁盘文件中** ，因而获得极高的写性能。
+
+* LevelDB底层数据结构基于LSMT，放弃部分读的性能，换取最大的写入能力；
+* 用布隆过滤器判断指定的key是否在SSTable中，加速查找；
+* 内存数据库用跳表实现；
+* 用LRUCache做缓存。
+
+LevelDB的主要组成部分：
+
+* memtable
+* immutable memtable
+* log
+* sstable
+* manifest
+* current
 
 
 ## 背景和研发动机
@@ -37,7 +55,11 @@ LevelDB正是基于LSMT实现的。
 
 ## LSMT
 
-整个LevelDB都建立在LSMT之上，
+LSMT写入性能极高的原理，简单来说就是尽量减少随机写的次数。对于每次写入操作，并不是直接将最新的数据驻留在磁盘中，而是将其拆分成：
+
+* 一次日志文件的顺序写
+
+* 一次内存中数据的插入
 
 ### SSTable
 
@@ -98,6 +120,12 @@ LSMT的读取速度相比B+树要低，但对于大数据的写入支持更好�
 
 ## 主体架构
 
-![LevelDB](./images/leveldb.png)
+![LevelDB](./images/leveldb_arch.jpeg)
 
 ## 设计亮点
+
+## 参考文献
+
+[1] [leveldb-handbook](https://leveldb-handbook.readthedocs.io/zh/latest/basic.html)
+
+[2] [TechFlow讲解LSMT](https://mp.weixin.qq.com/s?__biz=MzUyMTM5OTM2NA==&mid=2247484853&idx=1&sn=99fa9bf9cc6a31d1f248a87c25966858&chksm=f9daf89ecead71885c7fb7cabc2ba719500aea4a8af277cd0744536dedd9b3dbead5f9253898&scene=21#wechat_redirect)
