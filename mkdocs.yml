@@ -63,7 +63,6 @@ nav:
       - 二分图匹配: competitive_programming/graph_theory/bipartite_matching.md
     - 大数据算法:
       - 布隆过滤器: competitive_programming/big_data/bloom_filter.md
-  - 操作系统: operating_system/index.md
   - 设计模式:
     - 对象与接口: design_pattern/object_and_interface.md
     - 算法拆分 - 分离步骤: design_pattern/split_steps.md
@@ -74,6 +73,9 @@ nav:
     - C++:
       - 基础梳理: languages/cpp/basic.md
       - Effective C++: languages/cpp/effective_cpp.md
+  - 操作系统: operating_system/index.md
+  - 计算机网络:
+    - 科学上网: network/sciencetific_surfing.md
   - 机器学习: machine_learning/index.md
   - 经济学原理: 
     - 微观经济学: economics/micro_economics.md
