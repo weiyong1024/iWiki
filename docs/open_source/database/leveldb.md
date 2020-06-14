@@ -1,13 +1,12 @@
 # LevelDB
 
-Updated: 2020.6.4
+LevelDB可以视为Google数据库项目BigTable的单机版本，底层数据结构基于LSMT实现。
 
-[Github](https://github.com/google/leveldb)
+* [Github](https://github.com/google/leveldb)
 
-[Handbook](https://leveldb-handbook.readthedocs.io/zh/latest/basic.html)
+* [Handbook](https://leveldb-handbook.readthedocs.io/zh/latest/basic.html)
 
 Authors: Sanjay Ghemawat (sanjay@google.com) and Jeff Dean (jeff@google.com)
-
 
 
 ## 背景和研发动机
