@@ -93,6 +93,7 @@ nav:
       - Spark: open_source/streaming/spark.md
       - Storm: open_source/streaming/storm.md
   - 技术调研:
+    - Hadoop: survey/hadoop.md
     - CDN: survey/cdn.md
     - ECS: survey/ecs.md
     - OSS: survey/oss.md
