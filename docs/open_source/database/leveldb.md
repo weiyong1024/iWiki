@@ -8,7 +8,7 @@ Authors: Sanjay Ghemawat (sanjay@google.com) and Jeff Dean (jeff@google.com)
 
 ## 概述
 
-LevelDB是Google对结构化数据的分布式存储系统 **BigTable** 的单机版本。BigTable在 **数千台** 商用服务器上管理 **PB** 量级数据，为Google网页索引、谷歌地球、谷歌金融等项目提供数据存储服务。
+LevelDB是Google的分布式结构化数据存储系统 **BigTable** 的单机版本。BigTable在 **数千台** 商用服务器上管理 **PB** 量级数据，为Google网页索引、谷歌地球、谷歌金融等项目提供数据存储服务。
 
 LevelDB的实现基于LSMT，主题思想是： **将数据首先更新在内存中，当内存中的数据达到一定的阈值，将这部分数据真正刷新到磁盘文件中** ，因而获得极高的写性能。
 
