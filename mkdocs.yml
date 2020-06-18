@@ -37,6 +37,7 @@ nav:
       - 排序:
         - 快速排序: competitive_programming/basic/quick_sort.md
         - 归并排序: competitive_programming/basic/merge_sort.md
+      - 单调栈: competitive_programming/basic/monotune_stack.md
     - 数学:
       - 最大公约数: competitive_programming/math/greatest_common_devisor.md
       - 快速幂: competitive_programming/math/quick_power.md
