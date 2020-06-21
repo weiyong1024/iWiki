@@ -98,7 +98,10 @@ nav:
     - CDN: survey/cdn.md
     - ECS: survey/ecs.md
     - OSS: survey/oss.md
-  - 行业思考: thinking_in_industry/index.md
+  - 行业观察:
+    - 财务报表:
+      - 微软: industry/fiscal/microsoft/2019_annual_report.md
+      - 腾讯: industry/fiscal/tencent/2019_annual_report.md
   - 关于作者: about.md
 
 extra_javascript: 
