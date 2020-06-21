@@ -74,7 +74,11 @@ nav:
     - C++:
       - 基础梳理: languages/cpp/basic.md
       - Effective C++: languages/cpp/effective_cpp.md
-  - 操作系统: operating_system/index.md
+  - 操作系统:
+    - 基础梳理:
+      - 进程管理: operating_system/basic/process_management.md
+      - 内存管理: operating_system/basic/memory_management.md
+      - 存储管理: operating_system/basic/storage_management.md
   - 计算机网络:
     - 科学上网: network/sciencetific_surfing.md
   - 机器学习: machine_learning/index.md
