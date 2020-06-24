@@ -1,0 +1,3291 @@
+
+
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="weiyong1024的个人博客">
+      
+      
+        <link rel="canonical" href="https://weiyong.org/operating_system/basic/process_management/">
+      
+      
+        <meta name="author" content="weiyong1024">
+      
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.5">
+    
+    
+      
+        <title>进程管理 - iWiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.df84b5fe.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.8435c73a.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    <body dir="" data-md-color-primary="white" data-md-color-accent="red">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="">
+    <a href="https://weiyong.org" title="iWiki" class="md-header-nav__button md-logo" aria-label="iWiki">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            iWiki
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              进程管理
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/weiyong1024/iWiki" title="前往 GitHub 仓库" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    weiyong1024/iWiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." class="md-tabs__link">
+        简介
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    
+    
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../competitive_programming/basic/binary_search/" class="md-tabs__link">
+          算法竞赛
+        </a>
+      
+    </li>
+  
+
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../design_pattern/object_and_interface/" class="md-tabs__link">
+          设计模式
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../languages/cpp/basic/" class="md-tabs__link">
+          编程语言
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="./" class="md-tabs__link md-tabs__link--active">
+          操作系统
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../network/sciencetific_surfing/" class="md-tabs__link">
+          计算机网络
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../economics/micro_economics/" class="md-tabs__link">
+          经济学原理
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../open_source/database/leveldb/" class="md-tabs__link">
+          开源库解读
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../survey/hadoop/" class="md-tabs__link">
+          技术调研
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../industry/fiscal/microsoft/2019_annual_report/" class="md-tabs__link">
+          行业观察
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://weiyong.org" title="iWiki" class="md-nav__button md-logo" aria-label="iWiki">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    iWiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/weiyong1024/iWiki" title="前往 GitHub 仓库" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    weiyong1024/iWiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="简介" class="md-nav__link">
+      简介
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      算法竞赛
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="算法竞赛" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        算法竞赛
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      基础
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="基础" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        基础
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1-1" type="checkbox" id="nav-2-1-1">
+    
+    <label class="md-nav__link" for="nav-2-1-1">
+      搜索
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="搜索" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-1-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        搜索
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/basic/binary_search/" title="二分搜索" class="md-nav__link">
+      二分搜索
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/basic/ternary_search/" title="三分搜索" class="md-nav__link">
+      三分搜索
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1-2" type="checkbox" id="nav-2-1-2">
+    
+    <label class="md-nav__link" for="nav-2-1-2">
+      排序
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="排序" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-1-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        排序
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/basic/quick_sort/" title="快速排序" class="md-nav__link">
+      快速排序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/basic/merge_sort/" title="归并排序" class="md-nav__link">
+      归并排序
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/basic/monotune_stack/" title="单调栈" class="md-nav__link">
+      单调栈
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      数学
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="数学" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        数学
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/math/greatest_common_devisor/" title="最大公约数" class="md-nav__link">
+      最大公约数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/math/quick_power/" title="快速幂" class="md-nav__link">
+      快速幂
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/math/combination/" title="组合数" class="md-nav__link">
+      组合数
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/math/inverse/" title="乘法逆元" class="md-nav__link">
+      乘法逆元
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/math/eratosthenes/" title="埃拉托色尼筛" class="md-nav__link">
+      埃拉托色尼筛
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/math/catalan_number/" title="卡特兰数" class="md-nav__link">
+      卡特兰数
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      字符串
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="字符串" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        字符串
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/string/z-func/" title="Z 函数（扩展KMP）" class="md-nav__link">
+      Z 函数（扩展KMP）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/string/trie/" title="字典树" class="md-nav__link">
+      字典树
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/string/suffix_automation/" title="后缀自动机" class="md-nav__link">
+      后缀自动机
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
+    
+    <label class="md-nav__link" for="nav-2-4">
+      数据结构
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="数据结构" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        数据结构
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/data_structure/fenwick/" title="树状数组" class="md-nav__link">
+      树状数组
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/data_structure/segment_tree/" title="线段树" class="md-nav__link">
+      线段树
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/data_structure/union_find/" title="并查集" class="md-nav__link">
+      并查集
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/data_structure/lru_cache/" title="LRU缓存" class="md-nav__link">
+      LRU缓存
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/data_structure/skiplist/" title="跳表" class="md-nav__link">
+      跳表
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/data_structure/btree/" title="B树" class="md-nav__link">
+      B树
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-5" type="checkbox" id="nav-2-5">
+    
+    <label class="md-nav__link" for="nav-2-5">
+      图论
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="图论" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        图论
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-5-1" type="checkbox" id="nav-2-5-1">
+    
+    <label class="md-nav__link" for="nav-2-5-1">
+      最短路径
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="最短路径" data-md-level="3">
+      <label class="md-nav__title" for="nav-2-5-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        最短路径
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/graph_theory/dijkstra/" title="单源最短路" class="md-nav__link">
+      单源最短路
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/graph_theory/floyd/" title="所有点对之间最短路" class="md-nav__link">
+      所有点对之间最短路
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/graph_theory/minimum_spanning_tree/" title="最小生成树" class="md-nav__link">
+      最小生成树
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/graph_theory/bipartite_matching/" title="二分图匹配" class="md-nav__link">
+      二分图匹配
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-6" type="checkbox" id="nav-2-6">
+    
+    <label class="md-nav__link" for="nav-2-6">
+      大数据算法
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="大数据算法" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        大数据算法
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../competitive_programming/big_data/bloom_filter/" title="布隆过滤器" class="md-nav__link">
+      布隆过滤器
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      设计模式
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="设计模式" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        设计模式
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../design_pattern/object_and_interface/" title="对象与接口" class="md-nav__link">
+      对象与接口
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../design_pattern/split_steps/" title="算法拆分 - 分离步骤" class="md-nav__link">
+      算法拆分 - 分离步骤
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../design_pattern/split_representation/" title="算法拆分 - 分离表示" class="md-nav__link">
+      算法拆分 - 分离表示
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../design_pattern/compose_interfaces/" title="接口组合" class="md-nav__link">
+      接口组合
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../design_pattern/add_layers/" title="增加抽象层级" class="md-nav__link">
+      增加抽象层级
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      编程语言
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="编程语言" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        编程语言
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      C++
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="C++" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        C++
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../languages/cpp/basic/" title="基础梳理" class="md-nav__link">
+      基础梳理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../languages/cpp/effective_cpp/" title="Effective C++" class="md-nav__link">
+      Effective C++
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      操作系统
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="操作系统" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        操作系统
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1" checked>
+    
+    <label class="md-nav__link" for="nav-5-1">
+      基础梳理
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="基础梳理" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        基础梳理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        进程管理
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="进程管理" class="md-nav__link md-nav__link--active">
+      进程管理
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    进程
+  </a>
+  
+    <nav class="md-nav" aria-label="进程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    进程概念
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    进程调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    进程运行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    进程间通信
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipc" class="md-nav__link">
+    IPC系统例子
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    客户机/服务器通信
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    多线程编程
+  </a>
+  
+    <nav class="md-nav" aria-label="多线程编程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    多核编程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    多线程模型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    线程库
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    隐式多线程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    多线程问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    操作系统例子
+  </a>
+  
+    <nav class="md-nav" aria-label="操作系统例子">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    Windows线程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    Linux线程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    进程调度
+  </a>
+  
+    <nav class="md-nav" aria-label="进程调度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    基本概念
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    调度准则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    调度算法
+  </a>
+  
+    <nav class="md-nav" aria-label="调度算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    先到先服务
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    最短作业优先调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    优先级调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    轮转调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    多级队列调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    多级反馈队列调度
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    线程调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    多处理器调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu" class="md-nav__link">
+    实时CPU调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    操作系统例子
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    算法评估
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    同步
+  </a>
+  
+    <nav class="md-nav" aria-label="同步">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    背景
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    临界区问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    硬件同步
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    互斥锁
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    信号量
+  </a>
+  
+    <nav class="md-nav" aria-label="信号量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    信号量的使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    信号量的实现
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    经典同步问题
+  </a>
+  
+    <nav class="md-nav" aria-label="经典同步问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    有限缓冲问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    读者-作者问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    哲学家就餐问题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    管程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    同步例子
+  </a>
+  
+    <nav class="md-nav" aria-label="同步例子">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    Windows同步
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    Linux同步
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solaris" class="md-nav__link">
+    Solaris同步
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pthreads" class="md-nav__link">
+    Pthreads同步
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    替代方法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    死锁
+  </a>
+  
+    <nav class="md-nav" aria-label="死锁">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    系统模型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    死锁特征
+  </a>
+  
+    <nav class="md-nav" aria-label="死锁特征">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    必要条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    资源分配图
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    死锁处理方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    死锁预防
+  </a>
+  
+    <nav class="md-nav" aria-label="死锁预防">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    互斥
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    持有且等待
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    无抢占
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    循环等待
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    死锁避免
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    死锁检测
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    死锁恢复
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../memory_management/" title="内存管理" class="md-nav__link">
+      内存管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../storage_management/" title="存储管理" class="md-nav__link">
+      存储管理
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      计算机网络
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="计算机网络" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        计算机网络
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../network/sciencetific_surfing/" title="科学上网" class="md-nav__link">
+      科学上网
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../machine_learning/" title="机器学习" class="md-nav__link">
+      机器学习
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      经济学原理
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="经济学原理" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        经济学原理
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../economics/micro_economics/" title="微观经济学" class="md-nav__link">
+      微观经济学
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../economics/macro_economics/" title="宏观经济学" class="md-nav__link">
+      宏观经济学
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      开源库解读
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="开源库解读" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        开源库解读
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9-1" type="checkbox" id="nav-9-1">
+    
+    <label class="md-nav__link" for="nav-9-1">
+      数据库
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="数据库" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        数据库
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../open_source/database/leveldb/" title="LevelDB" class="md-nav__link">
+      LevelDB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../open_source/database/redius/" title="Redius" class="md-nav__link">
+      Redius
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9-2" type="checkbox" id="nav-9-2">
+    
+    <label class="md-nav__link" for="nav-9-2">
+      消息系统
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="消息系统" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        消息系统
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../open_source/message_system/kafka/" title="kafka" class="md-nav__link">
+      kafka
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9-3" type="checkbox" id="nav-9-3">
+    
+    <label class="md-nav__link" for="nav-9-3">
+      浏览器
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="浏览器" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        浏览器
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../open_source/browser/chromium/" title="Chromium" class="md-nav__link">
+      Chromium
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9-4" type="checkbox" id="nav-9-4">
+    
+    <label class="md-nav__link" for="nav-9-4">
+      流式计算
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="流式计算" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        流式计算
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../open_source/streaming/flink/" title="Flink" class="md-nav__link">
+      Flink
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../open_source/streaming/spark/" title="Spark" class="md-nav__link">
+      Spark
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../open_source/streaming/storm/" title="Storm" class="md-nav__link">
+      Storm
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      技术调研
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="技术调研" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        技术调研
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../survey/hadoop/" title="Hadoop" class="md-nav__link">
+      Hadoop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../survey/cdn/" title="CDN" class="md-nav__link">
+      CDN
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../survey/ecs/" title="ECS" class="md-nav__link">
+      ECS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../survey/oss/" title="OSS" class="md-nav__link">
+      OSS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      行业观察
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="行业观察" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        行业观察
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11-1" type="checkbox" id="nav-11-1">
+    
+    <label class="md-nav__link" for="nav-11-1">
+      财务报表
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="财务报表" data-md-level="2">
+      <label class="md-nav__title" for="nav-11-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        财务报表
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../industry/fiscal/microsoft/2019_annual_report/" title="微软" class="md-nav__link">
+      微软
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../industry/fiscal/tencent/2019_annual_report/" title="腾讯" class="md-nav__link">
+      腾讯
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../about/" title="关于作者" class="md-nav__link">
+      关于作者
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    进程
+  </a>
+  
+    <nav class="md-nav" aria-label="进程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    进程概念
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    进程调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    进程运行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    进程间通信
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipc" class="md-nav__link">
+    IPC系统例子
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    客户机/服务器通信
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    多线程编程
+  </a>
+  
+    <nav class="md-nav" aria-label="多线程编程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    多核编程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    多线程模型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    线程库
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    隐式多线程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    多线程问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    操作系统例子
+  </a>
+  
+    <nav class="md-nav" aria-label="操作系统例子">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    Windows线程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    Linux线程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    进程调度
+  </a>
+  
+    <nav class="md-nav" aria-label="进程调度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    基本概念
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    调度准则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    调度算法
+  </a>
+  
+    <nav class="md-nav" aria-label="调度算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    先到先服务
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    最短作业优先调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    优先级调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    轮转调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    多级队列调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    多级反馈队列调度
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    线程调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    多处理器调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu" class="md-nav__link">
+    实时CPU调度
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    操作系统例子
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    算法评估
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    同步
+  </a>
+  
+    <nav class="md-nav" aria-label="同步">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    背景
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    临界区问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    硬件同步
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    互斥锁
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    信号量
+  </a>
+  
+    <nav class="md-nav" aria-label="信号量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    信号量的使用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    信号量的实现
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    经典同步问题
+  </a>
+  
+    <nav class="md-nav" aria-label="经典同步问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    有限缓冲问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    读者-作者问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    哲学家就餐问题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    管程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    同步例子
+  </a>
+  
+    <nav class="md-nav" aria-label="同步例子">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    Windows同步
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    Linux同步
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solaris" class="md-nav__link">
+    Solaris同步
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pthreads" class="md-nav__link">
+    Pthreads同步
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    替代方法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    死锁
+  </a>
+  
+    <nav class="md-nav" aria-label="死锁">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    系统模型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    死锁特征
+  </a>
+  
+    <nav class="md-nav" aria-label="死锁特征">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    必要条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    资源分配图
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    死锁处理方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    死锁预防
+  </a>
+  
+    <nav class="md-nav" aria-label="死锁预防">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    互斥
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    持有且等待
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    无抢占
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    循环等待
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    死锁避免
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    死锁检测
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    死锁恢复
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="_1">进程管理</h1>
+<h2 id="_2">进程</h2>
+<h3 id="_3">进程概念</h3>
+<p>进程是执行的程序，随着进程的执行，它改变状态。进程状态是由进程当前活动定义的。每个进程可以处于如下状态：<strong>新的</strong>、<strong>就绪</strong>、<strong>运行</strong>、<strong>等待</strong>、<strong>终止</strong>。在操作系统内，每个进程通过它的 <strong>进程控制块（PCB）</strong> 来表示。</p>
+<h3 id="_4">进程调度</h3>
+<p>进程，当不执行时，位于某个等待队列。操作系统有两种主要队列：<strong>IO请求队列</strong>、<strong>就绪队列</strong> 。就绪队列包括所有等待执行并等待CPU的进程。每个进程都用PCB来表示。</p>
+<p>操作系统应从各个调度队列中选择进程。<strong>长期调度</strong>（用于作业）选择进程以便竞争CPU。通常，长期调度充分考虑资源分配，尤其内存管理。<strong>短期调度</strong> 从就绪队列中选择进程。</p>
+<h3 id="_5">进程运行</h3>
+<p>操作系统必须提供一种机制，以便父进程创建子进程。父进程在继续之前可以等待其子进程终止，也可以与子进程并发执行。允许并发有多个原因：信息共享、计算加速、模块化、方便。</p>
+<h3 id="_6">进程间通信</h3>
+<p>操作系统内的执行进程可以是独立的，也可以是协作的。协作进程需要进程间具有相互通信的机制。通信主要有两种形式： <strong>共享内存</strong> 和 <strong>消息系统</strong> 。</p>
+<ul>
+<li><strong>共享内存</strong>：进程共享一些变量，进程通过使用这些共享变量来交换信息。对于共享内存系统，提供通信的责任主要在应用程序员，操作系统只需要提供共享内存。</li>
+<li><strong>消息系统</strong>：操作系统负责提供通信机制。</li>
+</ul>
+<p>两种方法相互不排斥，可以在统一操作系统内同时实现。</p>
+<h3 id="ipc">IPC系统例子</h3>
+<p>POSIX共享内存、Mach的消息传递、Windows的ALPC（高级本地程序调用）工具。</p>
+<h3 id="_7">客户机/服务器通信</h3>
+<p><strong>套接字</strong> 、 <strong>远程过程调用（PRC）</strong> 、 <strong>管道</strong> </p>
+<ul>
+<li><strong>套接字</strong>：套接字定义为通信的端点。一对应用程序之间的连接由一对套接字组成，通信的两端各有一个套接字。</li>
+<li><strong>RPC</strong>：是另一种形式的分布式通信，当一个进程/线程调用一个远程应用的过程时，就有了RPC。</li>
+<li><strong>管道</strong>：提供了一个相对简单的进程间相互通信，普通管道允许父进程和子进程之间的通信，命名管道允许不相关进程的通信。</li>
+</ul>
+<h2 id="_8">多线程编程</h2>
+<h3 id="_9">概述</h3>
+<p>线程是进程内的控制流。多线程进程在同一地址空间内包括多个不同的控制流。多线程的优点包括：用户响应的改进、进程内资源的共享、经济和可扩展性的因素（如更有效的使用多个处理核）。</p>
+<h3 id="_10">多核编程</h3>
+<p>多核系统的引入使得 <strong>并发</strong> 表示线程能够 <strong>并行</strong> 执行，因为系统可以给每个核分配一个单独线程。</p>
+<p>多核机制引入的编程挑战：</p>
+<ul>
+<li><strong>任务识别</strong>：这涉及分析应用程序，查找区域以便分为独立的、并发的任务。在理想情况下，任务是相互独立的，因此可以在多核上并行运行。</li>
+<li><strong>平衡</strong>：在识别可以并行运行的任务时，程序员还需确保任务执行同等价值的工作。在有些情况下，有的任务与其他任务相比，可能对整个任务的贡献并不多；采用单独核来执行整个任务就不值得了。</li>
+<li><strong>数据分割</strong>：正如应用程序要分为单独任务，有任务访问和操作的数据也应划分以便运行在单独的核上。</li>
+<li><strong>数据依赖</strong>：任务访问的数据必须分析多个任务之间的依赖关系。当一个任务依赖于另一个任务的数据时，程序员必须确保任务执行是同步的，以适应数据依赖性。</li>
+<li><strong>测试与调试</strong>：当一个程序并行运行于多核时，可能产生许多不同的执行路径。测试与调试这样的并发程序比测试和调试单线程的应用程序难度大得多。</li>
+</ul>
+<p>通常，有两种类型的并行：<strong>数据并行</strong> 和 <strong>任务并行</strong>。</p>
+<ul>
+<li><strong>数据并行</strong>：将数据分布在相同的计算核上，并在每个核上执行相同操作；</li>
+<li><strong>任务并行</strong>：将任务（线程）而不是数据分配到多个计算核，每个线程都执行一个独特的操作。</li>
+</ul>
+<h3 id="_11">多线程模型</h3>
+<p><strong>用户线程</strong>（user thread）对用户来说是可见的，对内核则是未知的。操作系统支持和管理 <strong>内核级线程</strong>（kernel thread）。通常，用户线程与内核线程相比，创建和管理要更快，因为它不需要内核干预。</p>
+<p>三种不同类型的模型关联用户线程和内核线程 </p>
+<ul>
+<li><strong>多对一模型</strong>：将多个用户线程映射到一个内核线程</li>
+</ul>
+<p><img alt="MultiSingleModel" src="../images/multi_single_model.png" /></p>
+<ul>
+<li><strong>一对一模型</strong>：将每个用户线程映射到一个对应的内核线程</li>
+</ul>
+<p><img alt="SingleSingleModel" src="../images/single_single_model.png" /></p>
+<ul>
+<li><strong>多对多模型</strong>：将多个用户线程在同样（或更少）数量的内核线程之间切换</li>
+</ul>
+<p><img alt="MultiMultiModel" src="../images/multi_single_model.png" /></p>
+<p>以上设计对并发性的影响<br />
+<em>虽然多对一模型允许开发人员创建任意多的用户线程，但由于内核只能一次调度一个线程，所以并未增加并发性。虽然一对一模型提供了更大的并发性，但是开发人员不宜在应用程序内创建太多线程（有时系统可能会限制创建线程的数量）。多对多模型没有这两个缺点：开发人员可以创建任意多的用户线程，并且相应内核线程能在多处理器系统上并发执行。而且，当一个线程执行阻塞系统调用时，内核可以调度另一个线程来执行。</em></p>
+<p>大多数现代操作系统，如Windows、Mac OS X、Linux和Solaris等，都对线程提供内核支持。</p>
+<h3 id="_12">线程库</h3>
+<p>线程库为应用程序员提供了创建和管理线程的API。常用的主要线程库有三个：<strong>POSIX Pthreads</strong>、<strong>Windows线程</strong> 和 <strong>Java线程</strong>。</p>
+<h3 id="_13">隐式多线程</h3>
+<p>除了采用线程库API来显式创建线程，还可以使用隐式线程，这种线程的创建和管理交由编译器和运行时库来完成。隐式线程方法包括：<strong>线程池</strong>、<strong>OpenMP</strong> 和 <strong>Grand Central Dispatch</strong> 等。</p>
+<h3 id="_14">多线程问题</h3>
+<p>多线程程序为程序员带来了许多挑战，包括<code>fork()</code>和<code>exec()</code>系统调用的语义。其他问题包括 <strong>信号处理</strong>、<strong>线程撤销</strong>、<strong>线程本地存储</strong> 和 <strong>调度激活</strong> 等</p>
+<h3 id="_15">操作系统例子</h3>
+<h4 id="windows">Windows线程</h4>
+<p>每个Windows应用程序按单独进程来运行，每个进程可以包括一个或多个线程。Windows使用一对一映射，即每个用户线程映射到一个相关的内核线程。</p>
+<p>线程一般包括如下部件：</p>
+<ul>
+<li><strong>线程ID</strong> - 用于唯一标识线程。</li>
+<li><strong>寄存器组</strong> - 用于表示处理器状态。</li>
+<li><strong>堆栈</strong> - <strong>用户堆栈</strong>，以供线程在用户模式下运行；<strong>内核堆栈</strong>，以供线程在内核模式下运行。</li>
+<li><strong>私有存储区域</strong> - 用于各种运行时库和动态链接库（DLL）。</li>
+</ul>
+<p>寄存器组、堆栈和私有存储区域，通常称为 <strong>线程上下文</strong>（context）</p>
+<p>线程的主要数据结构：</p>
+<ul>
+<li><strong>ETHREAD</strong>：执行线程快。包括所属进程指针、线程控制开始的程序的地址以及对应的KTHREAD的指针等。</li>
+<li><strong>KTHREAD</strong>：内核线程快。包括线程的调度和同步信息。另外，KTHREAD也包括内核堆栈（以供线程在内核模式下运行）和TEB的指针。</li>
+<li><strong>TEB</strong>：线程环境块</li>
+</ul>
+<h4 id="linux">Linux线程</h4>
+<ul>
+<li>系统调用<code>fork()</code>：进程复制的传统功能</li>
+<li>系统调用<code>clone()</code>：创建线程</li>
+</ul>
+<p>Linux在讨论程序的控制流时，常采用任务（task）一词，而非进程（process）或线程（thread）。</p>
+<h2 id="_16">进程调度</h2>
+<h3 id="_17">基本概念</h3>
+<p>CPU调度的任务是，从就绪队列中选择一个等待进程，并为其分配CPU。调度程序分配CPU到选中的进程。</p>
+<h3 id="_18">调度准则</h3>
+<ul>
+<li><strong>CPU使用率</strong>：应使CPU尽可能地忙碌。从概念上讲，CPU使用率从 <span><span class="MathJax_Preview">0%</span><script type="math/tex">0%</script></span> 到 <span><span class="MathJax_Preview">100%</span><script type="math/tex">100%</script></span>。对于一个实际系统，他的范围应从和 <span><span class="MathJax_Preview">40%</span><script type="math/tex">40%</script></span>（轻复核系统）到 <span><span class="MathJax_Preview">90%</span><script type="math/tex">90%</script></span>（重符合系统）。</li>
+<li><strong>吞吐量</strong>：如果CPU忙于执行进程，那么工作就在完成。一种测量工作的方法称为 <strong>吞吐量</strong>（throughput），它是在一个时间单元内进城完成的数量。对于长进程，吞吐量可能为每小时一个进程；对于短进程，吞土量可能为每秒是个进程。</li>
+<li><strong>周转时间</strong>：从一个特定进程的角度看，一个重要准则是运行这个进程需要多长时间。从进程提交到进城完成的时间段称为周转时间（turnaround time）。周转时间为所有时间段之和，包括进程等待进入内存、在就绪队列中等待、在CPU上执行和I/O执行。</li>
+<li><strong>等待时间</strong>：CPU调度算法并不影响进程运行和执行I/O的时间，它只影响进程在就绪队列中因等待所需的时间。等待时间为在就绪队列中等待所花时间之和。</li>
+<li><strong>响应时间</strong>：对于交互系统，周转时间不是最佳准则。通常，进程可以相当早地产生输出，并且继续计算新的结果同时输出以前的结果给用户。因此，另一时间是从提交请求到产生第一响应的时间。这种时间称为响应时间，是开始相应所需的时间，而非输出相应所需的时间。周转时间通常受输出设备速度的限制。</li>
+</ul>
+<h3 id="_19">调度算法</h3>
+<p>CPU调度处理的问题是：从就绪队列中选择进程以便为其分配CPU。</p>
+<h4 id="_20">先到先服务</h4>
+<p>First-Come First-Served, FCFS，最简单的调度算法，但它会让段进城等待很长的进程。</p>
+<h4 id="_21">最短作业优先调度</h4>
+<p>Shortest-Job-First, SJF，在最短平均等待时间意义上是最佳的。</p>
+<p>然而，SJF调度实现的难点在于预测下一个CPU执行的长度。</p>
+<h4 id="_22">优先级调度</h4>
+<p>Priority-Scheduling，SJF算法是通用优先级调度算法（简单分配CPU到具有最优优先级的进程）的一个特例。</p>
+<p>优先级和SJF的调度可能产生饥饿，老化技术阻止饥饿。</p>
+<h4 id="_23">轮转调度</h4>
+<p>Round-Robin, RR，更适合于分时（交互）系统。RR调度为就绪队列的首个进程，分配 <span><span class="MathJax_Preview">q</span><script type="math/tex">q</script></span> 个时间单位，这里 <span><span class="MathJax_Preview">q</span><script type="math/tex">q</script></span> 是时间片。在 <span><span class="MathJax_Preview">q</span><script type="math/tex">q</script></span> 个时间单位之后，如果该进程还没有释放CPU，那么它被强占并添加到就绪队列尾部。</p>
+<p>该算法的主要问题是选择时间片。如果时间片太大，那么RR算法就变成了FCFS算法；如果时间片太小，那么有上下文切换引起的调度开销就过大。</p>
+<p>FCFS算法是非抢占的，而RR算法是抢占的。SJF和优先级算法可以是抢占的也可以是非抢占的。</p>
+<h4 id="_24">多级队列调度</h4>
+<p>Multilevel queue scheduling，允许多个不同算法用于不同类型的进程。最常用模型包括：使用RR调度的 <strong>前台交互队列</strong> 与使用FCFS调度的 <strong>后台批处理队列</strong> 。</p>
+<h4 id="_25">多级反馈队列调度</h4>
+<p>Multilevel feedback queue scheduling，多及反馈队列允许进程在队列之间迁移。</p>
+<h3 id="_26">线程调度</h3>
+<p>在支持线程的操作系统上，内核级线程（而不是进程）才是操作系统所调度的。用户级线程是由线程库来管理的，而内核并不知道它们。用户线程为了运行在CPU上，最终应映射到相关的内核级线程，但这种映射可能不是直接的，可能采用 <strong>轻量级进程（LWP）</strong> 。</p>
+<h3 id="_27">多处理器调度</h3>
+<p>许多现代操作系统支持多处理器，并允许每个处理器独立调度。通常，每个处理器维护各自的、私有的、可运行的进程（或线程）队列。与多处理器调度相关的问题包括处理器亲和性、负载平衡和多核处理等。</p>
+<h3 id="cpu">实时CPU调度</h3>
+<p>实时计算机系统要求在截止期限之前得到结果；在截止期限之后得到的结果是无用的。<strong>硬实时系统</strong>（hard read-time system）应保证，实时任务在截止期限内得到服务。<strong>软实时系统</strong>（soft read-time system）的限制较少，分配给实时任务的调度优先级高于其他服务。</p>
+<p>实时调度算法包括 <strong>单调速率</strong>（rate-monotonic）和 <strong>最早截止优先</strong>（Earliest-Deadline-First, EDF）调度。单调速率调度通常为需要更多CPU的任务，分配更高优先级。最早截止优先队列根据即将到来的截止期限来分配优先级；截止期限越早，优先级越高。<strong>比例分享调度</strong>（proportional share）将处理器时间划分为股份，并为每个进程分配一个数量的份额，从而保证每个进程具有按比例的CPU时间份额。</p>
+<p>POSIX和Pthreads API为实时调度线程，也提供各种特征。</p>
+<h3 id="_28">操作系统例子</h3>
+<p>支持内核级线程的操作系统应调度执行线程（而不是进程）。Solaris和Windows就是这样的系统。这两个系统都通过基于抢占的优先级调度算法来调度线程，包括支持实时线程。Linux进程调度程序使用基于优先级的算法，也提供实时支持。这三个操作系统的调度算法通常偏向支持交互式进程（而非CPU密集型继承）。</p>
+<h3 id="_29">算法评估</h3>
+<p>各种各样的调度算法要求有选择算法的方法。分析方法使用 <strong>数学分析</strong> 法以确定算法性能。<strong>仿真</strong> 方法对代表性的进程，采用调度算法仿真，并计算性能，进而确定优劣。然而，仿真最多只能提供真实系统性能的近似值。评估调度算法的唯一可靠技术是：在实际系统上实现算法，并在“现实世界”环境中监视性能。</p>
+<h2 id="_30">同步</h2>
+<p><strong>协作进程</strong>（cooperating process）能与系统内的其他进程相互影响。协作进程或能直接共享逻辑地址空间（即代码和数据），或能通过文件或消息来共享数据。前一种情况可以通过线程来实现。然而，共享数据的并发可能导致数据的不一致。这一节讨论多种机制，以便确保同一逻辑地址空间的协作进程的有序执行，从而维护数据的一致性。</p>
+<h3 id="_31">背景</h3>
+<ul>
+<li><strong>竞争条件</strong>（race condition）：多个进程并发访问和操作同一数据并且执行结果与特定访问顺序有关。</li>
+</ul>
+<p>由于竞争条件的存在，我们分析 <strong>进程同步</strong>（process synchronization）和 <strong>进程协调</strong>（process coordination）。</p>
+<h3 id="_32">临界区问题</h3>
+<p>假设某个系统有 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> 个进程 <span><span class="MathJax_Preview">{P_0, P_1, ..., P_{n-1}}</span><script type="math/tex">{P_0, P_1, ..., P_{n-1}}</script></span>。每个进程有一段代码，称为 <strong>临界区</strong>（critical section），进程在执行该区时可能修改公共变量、更新一个表、写一个文件等。该系统的一个重要特征是，当一个进程在临界区内执行时，其他进程不允许在各自的临界区执行。</p>
+<p><strong>临界区问题</strong>（ciritical-section problem）是，设计一个协议以便协作进程。在进入临界区前，每个进程应请求许可。实现这一请求的代码段称为 <strong>进入区</strong>（entry section）。临界区之后可以有 <strong>退出区</strong>（exit-section），其他代码为 <strong>剩余区</strong>（remainder section）。一个典型进程 <span><span class="MathJax_Preview">P_i</span><script type="math/tex">P_i</script></span> 的通用结构如下如所示：</p>
+<p><img alt="EntrySectionExitSection" src="../images/entry_section_exit_section.png" /></p>
+<p>临界区问题的解决方案应满足如下三条要求：</p>
+<ul>
+<li><strong>互斥</strong>（mutual exclusion）：如果进程 <span><span class="MathJax_Preview">P_i</span><script type="math/tex">P_i</script></span> 在其临界区内执行，，那么其它进程都不能在其临界区内执行。</li>
+<li><strong>进步</strong>（progress）：如果没有进程在其临界区内执行，并且有进程需要进入临界区，那么只有那些不在剩余区内执行的进程可作备选，以便确定谁能下次进入临界区，而且这种选择不能无限推迟。</li>
+<li><strong>有限等待</strong>（bounded waiting）：从一个进程做出进入临界区的请求直到这个请求允许为止，其他进程允许进入临界区的次数具有上限。</li>
+</ul>
+<p><strong>Peterson解决方案</strong> 是一个经典的基于软件的临界区问题解决方案。满足互斥、进步、有限等待等要求的软件设计的复杂性要求。</p>
+<h3 id="_33">硬件同步</h3>
+<p>对于临界区问题，基于软件的解决方案（如Peterson解答）并不保证在现代计算机体系结构上正确工作。</p>
+<p>下面探讨一些其他解答，包括内核开发人员和应用程序员采用的硬件和软件API技术。所有这些皆大都是基于 <strong>加锁</strong>（locking）为前提的，即通过锁来保护临界区。</p>
+<p>简单地 <strong>禁止中断</strong> 可以用于单处理器环境：在修改共享变量时禁止中断出现。</p>
+<p>然而，多处理其环境下消息要传递到所有处理器，该过程导致的延时会降低系统效率；另外，如果系统时钟是通过中断更新的，则也会受到影响。</p>
+<p>因此，在许多现代系统提供特殊硬件指令，用于监测和修改字的内容，或者用于 <strong>原子地</strong>（atomically）交换两个字（作为不可中断的指令）。</p>
+<h3 id="_34">互斥锁</h3>
+<p>临界区问题基于硬件的解决方案不但复杂，而且不能为程序员直接使用。因此，操作系统设计人员构建软件工具，以解决临界区问题。最简单的工具就是 <strong>互斥锁</strong>（mutex lock）。我们使用互斥锁来个保护临界区，从而防止竞争条件。也就是说，一个进程在进入临界区时应得到锁；它在退出临界区时释放锁。函数<code>acquire()</code>获取所，而函数<code>release()</code>释放锁，如下图所示：</p>
+<p><img alt="CriticleSectionProtectByMutex" src="../images/criticle_section_mutex.png" /></p>
+<p>每个互斥锁有一个布尔变量<code>available</code>，它的值表示锁是否可用。如果锁是可用的，那么调用<code>acquire()</code>会成功，并且锁不再可用。当一个进程试图获取不可用的锁时，它会阻塞，知道锁被释放。</p>
+<p>按如下定义<code>acquire()</code>：
+<div class="highlight"><pre><span></span><code>acquire() {
+    while (!available)
+        ; /* busy wait */
+    available = false;
+}
+</code></pre></div></p>
+<p>按如下定义<code>release()</code>：
+<div class="highlight"><pre><span></span><code>release() {
+    available = true;
+}
+</code></pre></div></p>
+<p>对<code>acquire()</code>和<code>release()</code>的调用必须原子地执行。因此，互斥锁通常采用硬件机制来实现。</p>
+<p>这里所给实现的主要缺点是：它需要 <strong>忙等待</strong>（busy waiting）。当有一个进程在临界区中，任何其他进程在进入临界区时必须连续循环地调用<code>acquire()</code>。这种类型的互斥锁也被称为 <strong>自旋锁</strong>（spinlock），因为进程不停地旋转，以等待锁变得可用。在实际多道程序系统中，即当多个进程共享同一CPU时，这种连续循环显然是个问题。忙等待浪费CPU周期，而这原本可以有效用于其他进程。</p>
+<p>自旋锁的优点：<br />
+当进程在等待锁时，没有上下文切换（上下文切换可能需要相当长的时间）。因此，当使用锁的时间较短时，自旋锁还是有用的。自旋锁通常用于多处理器系统，一个线程可以在一个处理器上“旋转”，而其他线程在其他处理器上执行临界区。</p>
+<h3 id="_35">信号量</h3>
+<p>互斥锁通常被认为是最简单的同步工具。本节讨论一个更鲁棒的工具，它的功能类似于互斥锁，但它能提供更为高级的方法，以便进程能够同步活动。</p>
+<p>一个 <strong>信号量</strong>（semaphore）<span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span>是一个整型变量，它除了初始化外能通过两个标准原子操作：<code>wait()</code>和<code>signal()</code>来访问。</p>
+<p>可按如下定义<code>wait()</code>:
+<div class="highlight"><pre><span></span><code>wait(S) {
+    while (S &lt;= 0)
+        ; // busy wait
+    S--;
+}
+</code></pre></div></p>
+<p>可按如下定义<code>signal()</code>：
+<div class="highlight"><pre><span></span><code>signal(S) {
+    S++;
+}
+</code></pre></div></p>
+<h4 id="_36">信号量的使用</h4>
+<p>操作系统通常区分计数信号量和二进制信号量。<strong>计数信号量</strong>（counting semaphore）的值不受限制，而 <strong>二进制信号量</strong>（binary semaphore）的值只能为 <span><span class="MathJax_Preview">0</span><script type="math/tex">0</script></span> 或 <span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>。因此，二进制信号量类似于互斥锁。事实上，在没有提供互斥锁的系统上，可以使用二进制信号量来实现互斥。</p>
+<p>计数信号量可以用于控制访问具有多个实例的某种资源。信号量的初值为可用资源的数量。当进程需要使用资源时，需要对该信号量执行<code>wait()</code>操作（减少信号量的计数）。当进行资源释放时，需要对该信号量执行<code>signal()</code>操作（增加信号量的计数）。当信号量的计数为 <span><span class="MathJax_Preview">0</span><script type="math/tex">0</script></span> 时，所有资源都在使用中。之后，需要使用资源的进程将会阻塞，直到计数大于 <span><span class="MathJax_Preview">0</span><script type="math/tex">0</script></span> 。</p>
+<p><em>使用信号量解决同步问题的例子：</em><br />
+现有两个并发执行的进程：P1有语句<code>S1</code>而P2有语句<code>S2</code>。假设要求只有在<code>S1</code>执行后才能执行<code>S2</code>，则可以用信号量轻松实现这一要求：让P1和P2共享同一信号量<code>synch</code>，并且初始化为 <span><span class="MathJax_Preview">0</span><script type="math/tex">0</script></span>。在进程P1中，插入语句：
+<div class="highlight"><pre><span></span><code>S1;
+signal(synch);
+</code></pre></div></p>
+<p>在进程P2中，插入语句：
+<div class="highlight"><pre><span></span><code>wait(synch);
+S2;
+</code></pre></div></p>
+<h4 id="_37">信号量的实现</h4>
+<p>与自旋锁的实现具有忙等待相同，上述信号量操作<code>wait()</code>和<code>signal()</code>也有同样的问题。为了克服忙等待需要，可以这样修改忙等待操作<code>wait()</code>和<code>signal()</code>的定义：当一个进程执行操作<code>wait()</code>并且发现信号量值不为正时，它必须等待。然而，该进程不是忙等待而是阻塞自己。阻塞操作将一个进程放到与信号量有关的等待队列中，并且将该进程状态切换成等待状态。然后，转到CPU调度程序，一边选择执行另一个进程。</p>
+<p>等待信号量 <span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span> 而阻塞的进程，在其它进程执行<code>signal()</code>后，应被重新执行。进程的重新执行是通过操作<code>wakeup()</code>来进行的，它将进程从等待状态改为就绪状态。然而，进程被添加到就绪队列。（取决于CPU调度算法，CPU可能会也可能不会从正在运行的进程切换到新的就绪进程。）</p>
+<p>为了实现这样定义的信号量，按如下定义信号量：
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">process</span> <span class="o">*</span><span class="n">list</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">semaphore</span><span class="p">;</span>
+</code></pre></div></p>
+<p>每个信号量都有一个整数<code>value</code>和一个进程链表<code>list</code>。当一个进程必须等待信号量时，就被添加到进程链表。操作<code>signal()</code>从等待进程链表上取走一个进程，并加以唤醒。</p>
+<p>现在，信号量操作<code>wait()</code>可以定义如下L：
+<div class="highlight"><pre><span></span><code><span class="n">wait</span><span class="p">(</span><span class="n">semaphore</span> <span class="o">*</span><span class="n">S</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">S</span><span class="o">-&gt;</span><span class="n">value</span><span class="o">--</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">S</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">add</span> <span class="k">this</span> <span class="n">process</span> <span class="n">to</span> <span class="n">S</span><span class="o">-&gt;</span><span class="n">list</span><span class="p">;</span>
+        <span class="n">block</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>而信号量操作<code>signal()</code>可定义如下：
+<div class="highlight"><pre><span></span><code><span class="n">signal</span><span class="p">(</span><span class="n">semaphore</span> <span class="o">*</span><span class="n">S</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">S</span><span class="o">-&gt;</span><span class="n">value</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">S</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">remove</span> <span class="n">a</span> <span class="n">process</span> <span class="n">P</span> <span class="n">from</span> <span class="n">S</span><span class="o">-&gt;</span><span class="n">list</span><span class="p">;</span>
+        <span class="n">wakeup</span><span class="p">(</span><span class="n">P</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>操作<code>block()</code>挂起调用它的进程。操作<code>wakeup(P)</code>重新启动阻塞进程 <span><span class="MathJax_Preview">P</span><script type="math/tex">P</script></span> 的执行。这两个操作都是由操作系统作为基本是系统调用来提供的。</p>
+<h3 id="_38">经典同步问题</h3>
+<h4 id="_39">有限缓冲问题</h4>
+<h4 id="-">读者-作者问题</h4>
+<p>假设一个数据库为多个并发进程所共享。有的进程可能只需要读数据库，而其他进程可能需要更新（读和写）数据库。为区分这两类进程，称前者为 <strong>读者</strong>（reader），后者为 <strong>作者</strong>（writer）。如果</p>
+<p>以数据库为例，我们要求作者在写入数据库时具有共享数据库独占的访问权。这一同步问题即 <strong>读者-作者问题</strong>（reader-writer problem）。该问题自从被提出就一直用于测试几乎所有新的同步原语。</p>
+<ul>
+<li>第一读者-作者问题：读者不应保持等待，除非作者已经获得权限使用共享对象。<br />
+换句话说，没有读者，由于某个作者等待，而等待其他读者的完成。</li>
+<li>第二读者-作者问题：一旦作者就绪，那么作者会尽可能快地执行。<br />
+换句话说，如果有一个作者等待访问对象，那么不会有读者可以开始读。</li>
+</ul>
+<p>有些系统将读者-作者问题进行抽象，从而提供 <strong>读写锁</strong>（read-writer lock），在获取读写锁时，需要指定锁的模式：<strong>读访问</strong> 和 <strong>写访问</strong>。当一个进程只需要读共享数据时，可申请读模式的读写锁；当一个进程希望修改共享数据时，应申请写模式的读写锁。多个进程可允许并发获取读模式的读写锁，但只有一个进程可获取写模式的读写锁，作者进程需要互斥访问。</p>
+<p>读写锁的适用场景：</p>
+<ul>
+<li>容易识别哪些进程只读共享数据和哪些进程只写共享数据的应用程序。</li>
+<li>读者进程数比坐着进程数多的应用程序。这是因为读写锁的建立开销通常大于信号量或互斥锁的，但是这一开销可以通过允许多个读者的并发程序的增加来弥补。</li>
+</ul>
+<h4 id="_40">哲学家就餐问题</h4>
+<h3 id="_41">管程</h3>
+<p>操作系统应提供机制以防止时序出错，已有多个语言结构可处理这些问题。管程为共享抽象数据类型提供了同步机制。条件变量提供了一个方法，以便管程函数阻塞执行直到被通知可继续为止。</p>
+<h3 id="_42">同步例子</h3>
+<p>操作系统也提供同步支持。例如，Windows、Linux和Solaris都提供机制，如信号量、互斥锁、自旋锁及条件变量，以便提供访问共享数据。Pthread API支持互斥锁、信号量以及条件变量。</p>
+<h4 id="windows_1">Windows同步</h4>
+<h4 id="linux_1">Linux同步</h4>
+<h4 id="solaris">Solaris同步</h4>
+<h4 id="pthreads">Pthreads同步</h4>
+<h3 id="_43">替代方法</h3>
+<p>多线程应用程序会增加竞争条件和死锁的风险。传统上，诸如互斥锁、信号量和管程等技术用于解决这些问题，但是随着处理核数量的增加，设计多线程应用程序并且避免竞争条件和死锁变得越来越困难。</p>
+<p>有多个替代方法重点关注多核系统的同步。一个方法采用 <strong>事物内存</strong>，它通过软件或硬件技术来处理同步问题。另一个方法采用由 <strong>OpenMP</strong> 提供的编译器扩展。最后，<strong>函数是编程语言</strong> 通过不允许可变性来处理同步问题。</p>
+<h2 id="_44">死锁</h2>
+<p>多道程序环境中，多个进程可以竞争有限数量的资源。当一个进程申请资源时，如果这时没有可用资源，那么这个进程进入等待状态。有时，如果申请的资源被其他等待进程占有，那么该等待进程有可能再也无法改变状态。这种情况称为 <strong>死锁</strong>（deadlock）。</p>
+<h3 id="_45">系统模型</h3>
+<h3 id="_46">死锁特征</h3>
+<h4 id="_47">必要条件</h4>
+<p>如果在一个系统中以下四个条件同时成立，那么就能引起死锁：</p>
+<ul>
+<li><strong>互斥</strong>（mutual exclusion）：至少有一个资源必须处于非共享模式，记一次只有一个进程可使用。如果另一个进程申请该资源，那么申请进程应该等到该资源释放为止。</li>
+<li><strong>占有并等待</strong>（hold and wait）：一个进程应占有至少一个资源，并等待两一个资源，该资源为其它进程所占有。</li>
+<li><strong>非抢占</strong>（no preemption）：资源不能被强占，即资源只能被进程在完成任务后自愿释放。</li>
+<li><strong>循环等待</strong>（circular wait）：有一组等待进程 <span><span class="MathJax_Preview">{P_0, P_1, ..., P_n}</span><script type="math/tex">{P_0, P_1, ..., P_n}</script></span>，<span><span class="MathJax_Preview">P_0</span><script type="math/tex">P_0</script></span> 等待的资源为 <span><span class="MathJax_Preview">P_1</span><script type="math/tex">P_1</script></span> 占有，<span><span class="MathJax_Preview">P_1</span><script type="math/tex">P_1</script></span> 等待的资源为 <span><span class="MathJax_Preview">P_2</span><script type="math/tex">P_2</script></span> 占有，......，<span><span class="MathJax_Preview">P_{n - 1}</span><script type="math/tex">P_{n - 1}</script></span> 等待的资源为 <span><span class="MathJax_Preview">P_n</span><script type="math/tex">P_n</script></span> 占有，<span><span class="MathJax_Preview">P_n</span><script type="math/tex">P_n</script></span> 等待的资源为 <span><span class="MathJax_Preview">P_0</span><script type="math/tex">P_0</script></span> 占有。</li>
+</ul>
+<p>需要强调，所有四个条件必须同时成立才会出现死锁。注意到循环等待条件意味着占有并等待条件，故四个条件并不是完全独立。但只要确保其中一个不成立即可预防死锁。</p>
+<h4 id="_48">资源分配图</h4>
+<p>总而言之，如果资源分配图没有环，那么系统就不处于死锁状态。如果有环，那么系统 <strong>可能会</strong> 处于死锁状态。</p>
+<h3 id="_49">死锁处理方法</h3>
+<p>一般来说，处理死锁问题有三种方法：</p>
+<ul>
+<li>通过协议来预防或避免死锁，确保系统不会进入死锁状态。</li>
+<li>允许系统进入死锁状态，然后检测它，并加以恢复。</li>
+<li>忽视这个问题，认为死锁不可能在系统内发生。</li>
+</ul>
+<p>第三种解决方法为大多数操作系统所采用，包括Linux和Windows。因此，应用程序开发人员需要自己编写程序，以便处理死锁。</p>
+<p>为了确保死锁不会发生，操作系统可以采用死锁预防和死锁避免方案。<strong>死锁预防</strong>（deadlock prevention）方法确保至少有一个便要条件不成立。这些方法通过限制如何申请资源的方法来预防死锁。</p>
+<p><strong>死锁避免</strong>（deadlock avoidance）要求，操作系统事先得到有关进程申请资源和使用资源的额外信息。有了这些额外信息，系统可以确定：对于每个申请，进程是否应等待。为了确定当前申请是确定还是延迟，系统应考虑：现有的可用资源、已分配给每个进程的资源以及每个进程将来申请和释放的资源。</p>
+<p>如果系统不提供死锁预防或死锁避免的算法，则可以提供一个算法来 <strong>检测</strong> 系统状态以确定死锁是否发生，提供零一个算法来从死锁中 <strong>恢复</strong>。</p>
+<p>当没有算法用于检测和恢复死锁时，可能出现这样的情况：系统处于死锁，而又没有方法检测到底发生了什么。在这种情况下，未被发现的死锁会导致系统性能下降，因为资源被不能运行的进程占有，而越来越多的资源会因申请资源而陷入死锁。最后，整个系统会停止工作，需要 <strong>人工重启</strong>。虽然这看起来似乎不能自动化解决死锁问题，但却为大多数操作系统所采用。因为对于大多数系统，死锁很少发生（如一年一次），与频繁使用的并且开销昂贵的死锁预防、死锁避免和死锁检测与恢复算法相比，这种方法成本更低。</p>
+<p>此外，用于其他条件的恢复方法也可以用于死锁恢复。在有些情况下，系统处于冻结状态而不是思索状态。例如：一个实时进程按最高优先级来运行（或其它进程在非抢占调度程序下运行），并且不将控制返回到操作系统。因此，系统应有人工方法可从这些状态中恢复过来，这些方法也可用于死锁。</p>
+<h3 id="_50">死锁预防</h3>
+<p>根据上述死锁发生的四个必要条件，只要确保其中一个条件不成立，就能预防死锁发生。</p>
+<h4 id="_51">互斥</h4>
+<p>通常不能通过破坏互斥条件来预防死锁。因为有些资源本身就是非共享的。例如，一个互斥锁不能同事被多个进程所共享。</p>
+<h4 id="_52">持有且等待</h4>
+<h4 id="_53">无抢占</h4>
+<h4 id="_54">循环等待</h4>
+<h3 id="_55">死锁避免</h3>
+<p>死锁避免算法，不是预防死锁，要求操作系统拥有每个进程如何利用资源的先验信息。例如，银行家算法需要知道每个进程请求的各种资源的最大数量。通过这种信息，我们可以定义死锁避免算法。</p>
+<h3 id="_56">死锁检测</h3>
+<p>如果不采用协议以确保死锁不会发生，那么也可以使用检测并恢复的方案。应调用检测算法，确定是否出现了死锁。如果检测到死锁，那么系统应通过终止某些死锁进程或通过抢占某些死锁进程的资源来恢复。</p>
+<h3 id="_57">死锁恢复</h3>
+<p>当通过抢占来处理死锁时，应考虑三个问题：选择一个牺牲进程、回滚及饥饿。如果系统主要根据代价来选择牺牲进程回滚，那么可能出现饥饿，导致所选进程永远不能完成指定任务。</p>
+<p>研究人员认为，没有单独的基本方法能够处理操作系统资源分配的所有问题。然而，通过合并基本方法，使得我们能够为系统中的每一类资源算则最佳方法。</p>
+                
+              
+              
+                
+
+
+  <h2 id="__comments">评论</h2>
+  <div id="disqus_thread"></div>
+  <script>var disqus_config=function(){this.page.url="https://weiyong.org/operating_system/basic/process_management/",this.page.identifier="/operating_system/basic/process_management/"};!function(){var e=document,i=e.createElement("script");i.src="//iwiki1024.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="">
+        
+          <a href="../../../languages/cpp/effective_cpp/" title="Effective C++" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                Effective C++
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../memory_management/" title="内存管理" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                内存管理
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; Yong Wei 2020
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.83fe6e3c.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.7e1cb91c.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: {"tabs": true},
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.37585f48.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>
