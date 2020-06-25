@@ -105,6 +105,9 @@ nav:
   - 行业观察:
     - 财务报表:
       - 微软: industry/fiscal/microsoft/2019_annual_report.md
+      - 苹果: industry/fiscal/apple/2019_annual_report.md
+      - 亚马逊: industry/fiscal/amazon/2019_annual_report.md
+      - 谷歌: industry/fiscal/google/2019_annual_report.md
       - 腾讯: industry/fiscal/tencent/2019_annual_report.md
   - 关于作者: about.md
 
