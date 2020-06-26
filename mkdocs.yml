@@ -98,10 +98,12 @@ nav:
       - Spark: open_source/streaming/spark.md
       - Storm: open_source/streaming/storm.md
   - 技术调研:
-    - Hadoop: survey/hadoop.md
-    - CDN: survey/cdn.md
-    - ECS: survey/ecs.md
-    - OSS: survey/oss.md
+    - 大数据架构:
+      - Hadoop生态: survey/big_data/hadoop.md
+    - 推荐系统:
+      - 基础知识: survey/recommendor_system/basic.md
+    - 杂项:
+      - CDN: survey/extra/cdn.md
   - 行业观察:
     - 财务报表:
       - 微软: industry/fiscal/microsoft/2019_annual_report.md
