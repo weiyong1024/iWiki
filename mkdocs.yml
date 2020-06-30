@@ -94,9 +94,11 @@ nav:
     - 浏览器: 
       - Chromium: open_source/browser/chromium.md
     - 流式计算:
-      - Flink: open_source/streaming/flink.md
-      - Spark: open_source/streaming/spark.md
-      - Storm: open_source/streaming/storm.md
+      - Flink: open_source/stream_computing/flink.md
+      - Spark: open_source/stream_computing/spark.md
+      - Storm: open_source/stream_computing/storm.md
+    - 流量控制:
+      - Sentinel: open_source/traffic_control/sentinel.md
   - 技术调研:
     - 大数据架构:
       - Hadoop生态: survey/big_data/hadoop.md
