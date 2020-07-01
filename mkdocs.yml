@@ -114,6 +114,7 @@ nav:
       - 亚马逊: industry/fiscal/amazon/2019_annual_report.md
       - 谷歌: industry/fiscal/google/2019_annual_report.md
       - 腾讯: industry/fiscal/tencent/2019_annual_report.md
+  - 博客推荐: other_blogs.md 
   - 关于作者: about.md
 
 extra_javascript: 

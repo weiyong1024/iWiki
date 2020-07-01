@@ -8,7 +8,3 @@ weiyong1024@gmail.com
 ![DID_NOT_FINISH](./did_not_finish.jpg)
 
 ![NEITHER_DO_I](./neither_do_i.jpg)
-
-## 博客推荐
-
-* [面向信仰编程](https://draveness.me/)
