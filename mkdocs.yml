@@ -73,6 +73,7 @@ nav:
   - 编程语言:
     - C++:
       - 基础梳理: languages/cpp/basic.md
+      - 并发编程: languages/cpp/concurrency.md
       - Effective C++: languages/cpp/effective_cpp.md
   - 操作系统:
     - 概述: operating_system/index.md
