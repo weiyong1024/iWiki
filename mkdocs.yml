@@ -106,6 +106,8 @@ nav:
       - Hadoop生态: survey/big_data/hadoop.md
     - 推荐系统:
       - 基础知识: survey/recommendor_system/basic.md
+    - Serverless:
+      - 基础知识: survey/serverless/basic.md
     - 杂项:
       - CDN: survey/extra/cdn.md
   - 行业观察:
