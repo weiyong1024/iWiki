@@ -2,6 +2,8 @@
 
 本节内容参考自阿里云开发者社区公开课 [建立 Serverless 思维](https://developer.aliyun.com/course/2023?spm=5176.10731542.0.0.2f66596b9CceIY)
 
+Serverless的设计目标在于让业务开发人员专注业务代码，而无需考虑所有服务器相关的问题。
+
 ## 架构的演进
 
 为了更好的介绍 Serverless，本节首先研究应用架构的演进方式。
@@ -48,9 +50,9 @@
 
 2. 应用生命周期托管
 
-## Serverless的价值
+## Serverless 的价值
 
-Serless 不是指 Server 真正消失，而是指开发者不用关心。类似于 Java、Python 等现代编程语言下，开发者不用担心内存分配问题。但内存还在那里，只是交给垃圾收集器去管理。
+Serverless 不是指 Server 真正消失，而是指开发者不用关心。类似于 Java、Python 等现代编程语言下，开发者不用担心内存分配问题。但内存还在那里，只是交给垃圾收集器去管理。
 
 ### 背景
 
@@ -63,7 +65,7 @@ Berkeley有一篇[Serverless Computing概述](https://www2.eecs.berkeley.edu/Pub
 
 截止2020年，Serverful 还是云计算主流的使用方式，但未来在 Serverless 架构下，开发应该只需要关心业务逻辑，而将资源管理交给工具。
 
-### Serverless的价值
+### Serverless 的价值
 
 * 不用关心服务器
 
@@ -85,7 +87,112 @@ Serverful 架构下资源一般按占用而非使用计费。但 Serverless 架�
 
 Serverless 平台通常会提供一个丰富的 代码存储/构建服务、版本管理服务、发布服务，以及版本切换能力，以帮助提升发布速度。
 
-## 常见Serverless模式
+## 常见 Serverless 架构模式
+
+### 概述
+
+Serverless 计算一般可以理解为 FaaS 和 BaaS 的叠加。
+
+Serverless 的原生心智是让业务人员专注业务逻辑，帮助业务人员解决没有必要由他们解决的技术问题。  
+—— Ben Kehoe
+
+一般可以从如下角度来理解 Serverless 架构：
+
+* 技术：计算、数据存储、消息通信
+* 衡量维度：可运维性、安全性、可靠性、可扩展性、成本
+
+下面将从若干场景来理解 Serverless 架构。
+
+### 【场景一】静态站点
+
+#### 业务需求：信息展示站点
+
+* 展示信息
+* 更新不频繁
+* 不确定访问量
+
+#### 架构演进
+
+<center>![InfraEvalution](./images/infra_evalution.png)</center>
+<center>架构演进</center>
+
+如上图所示，最基本的架构是将服务器放在IDC机房里面；如果考虑高可用性问题可以通过使用负载均衡+云服务器的方式来解决；对于静态站点可直接将其由对象存储服务来支持，并用CDN做缓存。
+
+#### 架构延伸
+
+有一种说法是计算机科学里面最难应对的两个问题是：**缓存失效/cache invalidation** 和 **命名问题/naming things**。
+
+**静态** 是一个重要属性，**缓存** 也是计算机开发中一项重要的技术。缓存只要应用得当也会大幅提升系统性能。
+
+CND除了回源到对象存储之外，还能回源到动态后端，如API gateway、函数计算、负载均衡等。
+
+<center>![AddFunctionComputing](./images/add_function_computing.png)</center>
+<center>增加函数计算</center>
+
+除了使用CDN作为缓存，也可以使用基于内存的缓存，如Redis等。
+
+### 【场景二】单体和微服务
+
+#### 业务需求：商品详情页
+
+* 海量商品
+* 更新频繁
+* 动态信息来源广泛，如基本信息、价格、运费、销量、库存、评论等
+
+#### 架构演进
+
+<center>![InfraEvolution2](./images/infra_evolution2.png)</center>
+<center>架构演进</center>
+
+#### 架构延伸
+
+微服务内部采用信息聚合的形式，外部则可以根据不同的移动端采用不同的后端。
+
+<center>![InfraEvolution2](./images/infra_evolution2.png)</center>
+<center>为前段服务的后端 和 微服务聚合</center>
+
+### 【场景三】事件触发
+
+#### 业务需求：买家秀
+
+* 发表图片和视频评论
+* 对图片缩放、加水印、审核
+* 对视频做多种格式转换、审核
+
+#### 架构演进
+
+<center>![InfraEvolution3](./images/infra_evolution3.png)</center>
+<center>架构演进</center>
+
+上图 “微服务Serverful架构” 中将web应用服务器和文件处理服务器通过消息队列解耦，因为它们对资源伸缩的需求可能是不同的，一般文件处理服务需要更多的CPU。
+
+“基于事件触发的Serverless架构” 中直接将文件上传到OSS，同时OSS触发函数计算；而文件的显示则是通过OSS+CDN完成的。
+
+#### 架构延伸
+
+<center>![InfraExtension](./images/infra_extension.png)</center>
+<center>架构延伸</center>
+
+### 【场景三】服务编排
+
+#### 业务需求：订单流程
+
+* 完成多步骤订单流程，包括预留库存、确认支付、安排配送、邮件短信通知等
+* 可能持续数天
+* 需要对失败步骤重试
+* 最终失败，需要对已完成步骤回滚
+
+#### 架构演进
+
+<center>![InfraEvolution4](./images/infra_evolution4.png)</center>
+<center>基于事件触发的Saga模式</center>
+
+采用一个消息总线，让各个服务之间通过事件来传递信息。
+
+<center>![InfraEvolution5](./images/infra_evolution5.png)</center>
+<center>基于事件流的Saga模式</center>
+
+各个服务之间独立，有一个集中的协调者服务来调度各个单独的业务服务，业务逻辑和状态由集中协调者来维护。
 
 ## Serverless技术选型
 
