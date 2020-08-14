@@ -32,11 +32,12 @@ nav:
   - 算法竞赛:
     - 基础:
       - 搜索:
-        - 二分搜索: competitive_programming/basic/binary_search.md
-        - 三分搜索: competitive_programming/basic/ternary_search.md
+        - 二分搜索: competitive_programming/basic/searching/binary_search.md
+        - 三分搜索: competitive_programming/basic/searching/ternary_search.md
       - 排序:
-        - 快速排序: competitive_programming/basic/quick_sort.md
-        - 归并排序: competitive_programming/basic/merge_sort.md
+        - 快速排序: competitive_programming/basic/sorting/quick_sort.md
+        - 归并排序: competitive_programming/basic/sorting/merge_sort.md
+        - 基数排序: competitive_programming/basic/sorting/radix_sort.md
       - 单调栈: competitive_programming/basic/monotune_stack.md
     - 数学:
       - 最大公约数: competitive_programming/math/greatest_common_devisor.md
@@ -49,6 +50,7 @@ nav:
       - Z 函数（扩展KMP）: competitive_programming/string/z-func.md
       - 字典树: competitive_programming/string/trie.md
       - 后缀自动机: competitive_programming/string/suffix_automation.md
+      - 后缀数组: competitive_programming/string/suffix_array.md
     - 数据结构:
       - 树状数组: competitive_programming/data_structure/fenwick.md
       - 线段树: competitive_programming/data_structure/segment_tree.md
