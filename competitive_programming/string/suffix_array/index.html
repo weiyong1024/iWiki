@@ -11,23 +11,23 @@
         <meta name="description" content="weiyong1024的个人博客">
       
       
-        <link rel="canonical" href="https://weiyong.org/competitive_programming/basic/quick_sort/">
+        <link rel="canonical" href="https://weiyong.org/competitive_programming/string/suffix_array/">
       
       
         <meta name="author" content="weiyong1024">
       
       <link rel="shortcut icon" href="../../../favicon.ico">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.5">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.6">
     
     
       
-        <title>快速排序 - iWiki</title>
+        <title>后缀数组 - iWiki</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.df84b5fe.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.63b94e9e.min.css">
       
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.8435c73a.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.7f672a1f.min.css">
       
       
         
@@ -54,8 +54,10 @@
   
     
     
-    <body dir="" data-md-color-primary="white" data-md-color-accent="red">
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="red">
   
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
@@ -72,7 +74,7 @@
     </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="">
+  <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="https://weiyong.org" title="iWiki" class="md-header-nav__button md-logo" aria-label="iWiki">
       
   
@@ -90,7 +92,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              快速排序
+              后缀数组
             
           </span>
         </div>
@@ -110,7 +112,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="" data-md-component="search-reset" tabindex="-1">
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       </button>
     </form>
@@ -118,7 +120,7 @@
       <div class="md-search__scrollwrap" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            
+            Initializing search
           </div>
           <ol class="md-search-result__list"></ol>
         </div>
@@ -154,7 +156,7 @@
 
   
 
-<nav class="md-tabs md-tabs--active" aria-label="" data-md-component="tabs">
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
@@ -181,7 +183,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../binary_search/" class="md-tabs__link">
+        <a href="../../basic/searching/binary_search/" class="md-tabs__link">
           算法竞赛
         </a>
       
@@ -339,7 +341,7 @@
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="" data-md-level="0">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="https://weiyong.org" title="iWiki" class="md-nav__button md-logo" aria-label="iWiki">
       
@@ -408,12 +410,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
     
     <label class="md-nav__link" for="nav-2-1">
       基础
@@ -462,7 +462,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../binary_search/" title="二分搜索" class="md-nav__link">
+    <a href="../../basic/searching/binary_search/" title="二分搜索" class="md-nav__link">
       二分搜索
     </a>
   </li>
@@ -474,7 +474,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ternary_search/" title="三分搜索" class="md-nav__link">
+    <a href="../../basic/searching/ternary_search/" title="三分搜索" class="md-nav__link">
       三分搜索
     </a>
   </li>
@@ -489,12 +489,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1-2" type="checkbox" id="nav-2-1-2" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1-2" type="checkbox" id="nav-2-1-2">
     
     <label class="md-nav__link" for="nav-2-1-2">
       排序
@@ -516,67 +514,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        快速排序
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="快速排序" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../basic/sorting/quick_sort/" title="快速排序" class="md-nav__link">
       快速排序
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    代码
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    算法
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    实现
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -586,8 +528,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../merge_sort/" title="归并排序" class="md-nav__link">
+    <a href="../../basic/sorting/merge_sort/" title="归并排序" class="md-nav__link">
       归并排序
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../basic/sorting/radix_sort/" title="基数排序" class="md-nav__link">
+      基数排序
     </a>
   </li>
 
@@ -603,7 +557,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../monotune_stack/" title="单调栈" class="md-nav__link">
+    <a href="../../basic/monotune_stack/" title="单调栈" class="md-nav__link">
       单调栈
     </a>
   </li>
@@ -720,10 +674,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3" checked>
     
     <label class="md-nav__link" for="nav-2-3">
       字符串
@@ -747,7 +703,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../string/z-func/" title="Z 函数（扩展KMP）" class="md-nav__link">
+    <a href="../z-func/" title="Z 函数（扩展KMP）" class="md-nav__link">
       Z 函数（扩展KMP）
     </a>
   </li>
@@ -759,7 +715,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../string/trie/" title="字典树" class="md-nav__link">
+    <a href="../trie/" title="字典树" class="md-nav__link">
       字典树
     </a>
   </li>
@@ -771,9 +727,166 @@
 
 
   <li class="md-nav__item">
-    <a href="../../string/suffix_automation/" title="后缀自动机" class="md-nav__link">
+    <a href="../suffix_automation/" title="后缀自动机" class="md-nav__link">
       后缀自动机
     </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        后缀数组
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="后缀数组" class="md-nav__link md-nav__link--active">
+      后缀数组
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    一些约定
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    基本概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    生成方法
+  </a>
+  
+    <nav class="md-nav" aria-label="生成方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on2-log-non2-log-n" class="md-nav__link">
+    朴素 O(n^2 \log n)O(n^2 \log n) 做法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-log2-non-log2-n" class="md-nav__link">
+    基于倍增的 O(n \log^2 n)O(n \log^2 n) 做法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-log-non-log-n" class="md-nav__link">
+    引入基数排序和计数排序优化到 O(n \log n)O(n \log n)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    常数优化
+  </a>
+  
+    <nav class="md-nav" aria-label="常数优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    第二关键字无需计数排序
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    优化计数排序的值域
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rkidirkidi" class="md-nav__link">
+    缓存 rk[id[i]]rk[id[i]]，减少不连续内存访问
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmp" class="md-nav__link">
+    用cmp函数来计算是否重复
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    一些应用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#height" class="md-nav__link">
+    Height数组
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#height_1" class="md-nav__link">
+    Height数组的应用
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -1211,6 +1324,48 @@
   <li class="md-nav__item">
     <a href="../../../languages/cpp/effective_cpp/" title="Effective C++" class="md-nav__link">
       Effective C++
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      Java
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Java" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Java
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../languages/java/basic/" title="基础梳理" class="md-nav__link">
+      基础梳理
     </a>
   </li>
 
@@ -1712,6 +1867,48 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9-6" type="checkbox" id="nav-9-6">
+    
+    <label class="md-nav__link" for="nav-9-6">
+      RPC
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="RPC" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        RPC
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../open_source/rpc/dubbo/" title="Dubbo" class="md-nav__link">
+      Dubbo
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -2086,21 +2283,110 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    代码
+    一些约定
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    算法
+    基本概念
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    实现
+    生成方法
+  </a>
+  
+    <nav class="md-nav" aria-label="生成方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on2-log-non2-log-n" class="md-nav__link">
+    朴素 O(n^2 \log n)O(n^2 \log n) 做法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-log2-non-log2-n" class="md-nav__link">
+    基于倍增的 O(n \log^2 n)O(n \log^2 n) 做法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-log-non-log-n" class="md-nav__link">
+    引入基数排序和计数排序优化到 O(n \log n)O(n \log n)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    常数优化
+  </a>
+  
+    <nav class="md-nav" aria-label="常数优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    第二关键字无需计数排序
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    优化计数排序的值域
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rkidirkidi" class="md-nav__link">
+    缓存 rk[id[i]]rk[id[i]]，减少不连续内存访问
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmp" class="md-nav__link">
+    用cmp函数来计算是否重复
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    一些应用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#height" class="md-nav__link">
+    Height数组
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#height_1" class="md-nav__link">
+    Height数组的应用
   </a>
   
 </li>
@@ -2121,34 +2407,42 @@
                   
                 
                 
-                <h1 id="_1">快速排序</h1>
-<h2 id="_2">代码</h2>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">quick</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// Sort a[l...r].</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">l</span> <span class="o">&gt;=</span> <span class="n">r</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">//</span>
-        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">||</span> <span class="n">i</span> <span class="o">==</span> <span class="n">r</span><span class="p">))</span> <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">||</span> <span class="n">j</span> <span class="o">==</span> <span class="n">l</span><span class="p">))</span> <span class="n">j</span><span class="o">--</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-            <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span>
-            <span class="k">break</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">];</span>
-    <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
-    <span class="n">quick</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="n">quick</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<h2 id="_3">算法</h2>
-<p>分治法，先序递归。</p>
-<p>将序列中的元素按首元大小分边，再对两边分别递归处理。</p>
-<p>时间复杂度 <span><span class="MathJax_Preview">O(n\log{n})</span><script type="math/tex">O(n\log{n})</script></span> 。</p>
-<h2 id="_4">实现</h2>
-<p>上述“分边”操作
-出自唐发根老师的《数据结构》教材，用两个指针从序列两端假币将整个序列按相对第一个元素的大小分类。</p>
+                <h1 id="_1">后缀数组</h1>
+<h2 id="_2">一些约定</h2>
+<p>字符串下标从 <span><span class="MathJax_Preview">0</span><script type="math/tex">0</script></span> 开始。</p>
+<p><strong>后缀</strong> <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 表示以下标 <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 的字符开始的后缀。</p>
+<h2 id="_3">基本概念</h2>
+<p>后缀数组（Suffix Array）主要是两个数组：<span><span class="MathJax_Preview">sa</span><script type="math/tex">sa</script></span> 和 <span><span class="MathJax_Preview">rk</span><script type="math/tex">rk</script></span>。</p>
+<p>其中，<span><span class="MathJax_Preview">sa</span><script type="math/tex">sa</script></span> 为所有后缀按字符串序的升序排列，<span><span class="MathJax_Preview">rk[i]</span><script type="math/tex">rk[i]</script></span> 表示后缀 <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> 在 <span><span class="MathJax_Preview">sa</span><script type="math/tex">sa</script></span> 中的下标。</p>
+<h2 id="_4">生成方法</h2>
+<h3 id="on2-log-non2-log-n">朴素 <span><span class="MathJax_Preview">O(n^2 \log n)</span><script type="math/tex">O(n^2 \log n)</script></span> 做法</h3>
+<p>基于字符串比较的朴素排序实现，其中比价两个字符串的时间是 <span><span class="MathJax_Preview">O(n)</span><script type="math/tex">O(n)</script></span> 的，故排序总时间是 <span><span class="MathJax_Preview">O(n^2 \log n)</span><script type="math/tex">O(n^2 \log n)</script></span>。</p>
+<h3 id="on-log2-non-log2-n">基于倍增的 <span><span class="MathJax_Preview">O(n \log^2 n)</span><script type="math/tex">O(n \log^2 n)</script></span> 做法</h3>
+<p>一句话：倍增子串的长度上限，维护名次数组 <span><span class="MathJax_Preview">rk</span><script type="math/tex">rk</script></span>，直到长度上限达到 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span>。</p>
+<p>该过程进行 <span><span class="MathJax_Preview">\log n</span><script type="math/tex">\log n</script></span> 次排序，每次排序的时间复杂度为 <span><span class="MathJax_Preview">O(n \log n)</span><script type="math/tex">O(n \log n)</script></span>。</p>
+<ul>
+<li>
+<p>初始长度上限为 <span><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>，对每个字符进行排序，得到名词数组 <span><span class="MathJax_Preview">rk_1</span><script type="math/tex">rk_1</script></span>。</p>
+</li>
+<li>
+<p>假设我们已经知道了长度上限为 <span><span class="MathJax_Preview">w</span><script type="math/tex">w</script></span> 的子串排名 <span><span class="MathJax_Preview">rk_w</span><script type="math/tex">rk_w</script></span>，则二元组序列 <span><span class="MathJax_Preview">p[i] = (rk_w[i], rk_w[i + w])</span><script type="math/tex">p[i] = (rk_w[i], rk_w[i + w])</script></span> 排序得到的名词数组即为长度上限为 <span><span class="MathJax_Preview">2w</span><script type="math/tex">2w</script></span> 的子串排名 <span><span class="MathJax_Preview">rk_{2w}</span><script type="math/tex">rk_{2w}</script></span>。<br />
+<strong>注</strong>：若第二关键字不存在（<span><span class="MathJax_Preview">i + w</span><script type="math/tex">i + w</script></span> 越界）则取 <span><span class="MathJax_Preview">-1</span><script type="math/tex">-1</script></span> 即可。</p>
+</li>
+<li>
+<p>循环执行上一步直到长度上限大于等于原字符串长度 <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span>。</p>
+</li>
+</ul>
+<h3 id="on-log-non-log-n">引入基数排序和计数排序优化到 <span><span class="MathJax_Preview">O(n \log n)</span><script type="math/tex">O(n \log n)</script></span></h3>
+<p>在基于倍增的 <span><span class="MathJax_Preview">O(n \log^2 n)</span><script type="math/tex">O(n \log^2 n)</script></span> 做法中，单次排序的复杂度为 <span><span class="MathJax_Preview">O(n \log n)</span><script type="math/tex">O(n \log n)</script></span>。如果能 <span><span class="MathJax_Preview">O(n)</span><script type="math/tex">O(n)</script></span> 排序，就能将总复杂度优化到 <span><span class="MathJax_Preview">O(n \log n)</span><script type="math/tex">O(n \log n)</script></span>。</p>
+<p>由于单次排序的过程中关键字是排名，值域为 <span><span class="MathJax_Preview">O(n)</span><script type="math/tex">O(n)</script></span>，并且是一个双关键字排序，可以使用<a href="../../basic/sorting/radix_sort/">基数排序</a>优化至 <span><span class="MathJax_Preview">O(n)</span><script type="math/tex">O(n)</script></span>。</p>
+<h3 id="_5">常数优化</h3>
+<h4 id="_6">第二关键字无需计数排序</h4>
+<h4 id="_7">优化计数排序的值域</h4>
+<h4 id="rkidirkidi">缓存 <span><span class="MathJax_Preview">rk[id[i]]</span><script type="math/tex">rk[id[i]]</script></span>，减少不连续内存访问</h4>
+<h4 id="cmp">用<code>cmp</code>函数来计算是否重复</h4>
+<h2 id="_8">一些应用</h2>
+<h2 id="height">Height数组</h2>
+<h2 id="height_1">Height数组的应用</h2>
                 
               
               
@@ -2157,7 +2451,7 @@
 
   <h2 id="__comments">评论</h2>
   <div id="disqus_thread"></div>
-  <script>var disqus_config=function(){this.page.url="https://weiyong.org/competitive_programming/basic/quick_sort/",this.page.identifier="/competitive_programming/basic/quick_sort/"};!function(){var e=document,i=e.createElement("script");i.src="//iwiki1024.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
+  <script>var disqus_config=function(){this.page.url="https://weiyong.org/competitive_programming/string/suffix_array/",this.page.identifier="/competitive_programming/string/suffix_array/"};!function(){var e=document,i=e.createElement("script");i.src="//iwiki1024.disqus.com/embed.js",i.setAttribute("data-timestamp",+new Date),(e.head||e.body).appendChild(i)}()</script>
 
               
             </article>
@@ -2169,9 +2463,9 @@
 <footer class="md-footer">
   
     <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../ternary_search/" title="三分搜索" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../suffix_automation/" title="后缀自动机" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -2180,19 +2474,19 @@
                 <span class="md-footer-nav__direction">
                   上一页
                 </span>
-                三分搜索
+                后缀自动机
               </div>
             </div>
           </a>
         
         
-          <a href="../merge_sort/" title="归并排序" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../data_structure/fenwick/" title="树状数组" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                归并排序
+                树状数组
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
@@ -2223,15 +2517,15 @@
       
     </div>
     
-      <script src="../../../assets/javascripts/vendor.83fe6e3c.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.7e1cb91c.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
+      <script src="../../../assets/javascripts/vendor.d1f5a259.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d5fec882.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c"}</script>
       
       <script>
         app = initialize({
           base: "../../..",
           features: {"tabs": true},
           search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.37585f48.min.js"
+            worker: "../../../assets/javascripts/worker/search.fae956e7.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
