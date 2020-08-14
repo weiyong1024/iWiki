@@ -103,6 +103,8 @@ nav:
       - Storm: open_source/stream_computing/storm.md
     - 流量控制:
       - Sentinel: open_source/traffic_control/sentinel.md
+    - RPC:
+      - Dubbo: open_source/rpc/dubbo.md
   - 技术调研:
     - 大数据架构:
       - Hadoop生态: survey/big_data/hadoop.md
