@@ -79,7 +79,11 @@ nav:
       - Effective C++: languages/cpp/effective_cpp.md
     - Java:
       - 概述: languages/java/index.md
-      - 基础梳理: languages/java/basic.md
+      - 基础梳理:
+        - Java 历史简介: languages/java/basic/history.md
+        - 简单的 Java 程序: languages/java/basic/programming_basic.md
+        - 基本语法: languages/java/basic/grammar.md
+        - 类、包和接口: languages/java/basic/class_package_interface.md
   - 操作系统:
     - 概述: operating_system/index.md
     - 基础梳理:
