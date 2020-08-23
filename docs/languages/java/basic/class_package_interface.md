@@ -166,3 +166,214 @@ JDK 中提供了很多包，如：`java.applet`, `java.awt`, `java.awt.image`, `
 
 Java 编译器会自动导入 `java.lang.*`
 
+## 访问控制符 - public, private, protected
+
+Java 中有两种修饰符（modifier）：**访问修饰符（如 public/private）** 和 **其他修饰符（如 abstract）**。修饰符可以修饰类，也可以修饰类的成员。
+
+### 类成员的访问控制符
+
+<center>![AccessModifiers](./images/access_modifiers.png)</center>
+<center>类成员的访问控制符</center>
+
+### 类的访问控制符
+
+被 `public` 修饰的类可以被 **其他类** 所访问，而默认的访问控制权限是 **同包** 访问。
+
+### setter 和 getter
+
+将字段用 `private` 修饰，从而更好地将信息进行 **封装和隐藏** 。
+
+这种方法有以下优点：
+
+* 属性用 `private` 更好地封装和隐藏，外部类不能随意存取和修改。
+* 在方法定义中可以检验 **参数的合法性**
+* 方法可以给出经过计算后的值
+* 方法可以完成其他必要工作（如清理资源、设定状态 等）
+* 只提供 `getXXX` 不提供 `setXXX` 保证属性是只读的
+
+## 其他修饰符 - static, final, abstract
+
+### static 字段
+
+不保存在某个对象的实例中，而是保存在类的实例的公共存储单元。
+
+可以通过 **类名** 来访问，也可以通过 **实例** 访问，两种方式的结果是相同的。
+
+例如，`System` 类的 `in` 和 `out` 对象，就是属于类的域，直接用类名来访问，即 `System.in` 和 `System.out`。
+
+可以用来作实例计数：
+```java
+class Person {
+    static long totalNum;
+    int age;
+    String Name;
+};
+```
+
+由于 Java 是完全面向对象的（不支持 “将变量定义在外面”），故 `static` 成员可以用以替换 C++ 中的 **全局变量**。
+
+`static` 方法同理，它不能用来对具体实例的成员进行操作，只能调用 `static` 成员、操纵 `static` 变量。显然，`static` 的方法不能访问 `this` 或 `super` 这种实例引用。
+
+`static` 方法的调用可以使用类名，也可以使用变量名，但效果是相同的。
+
+有一种方便的写法是 `import static`，例如：
+```java
+import static java.lang.System.*;
+
+out.println();  // 表示 System.out.println();
+```
+`import static` 的前提是类的所有成员都是`static`的。
+
+### final
+
+`final` 修饰的类不能被继承，即不能有子类。
+
+`final` 修饰的方法不能被子类方法覆盖。
+
+`final` 修饰的字段和局部变量（方法中的变量）能且只能被赋值一次，是只读的。
+
+* 一个字段被 `static final` 修饰时，它可以表示常量，如 `Integer.MAX_VALUE`, `Math.PIE`。
+
+* 在定义 `static final` 域时，如不给定初始值，则按默认值进行初始化（数值为 `0`，布尔型为 `false`，引用型为 `null`）。
+
+* 在定义 `final` 字段时，若不是 `static` 的域，则 **必须且只能** 赋值一次，不能缺省。
+
+    * 这种域的赋值方式有两种：**一是在定义变量时赋初始值，而是在每一个构造函数中进行赋值**。
+
+* 在定义 `final` 局部变量时，也 **必须且仅能赋值一次**。这个值可以不是常量，但在该变量存在期间不会改变。
+
+### abstract
+
+`abstract` 类（**抽象类**）不能被实例化。
+
+`abstract` 方法（**抽象方法**）的写法类似 C++ 中的函数声明：
+```java
+abstract retuanType abstractMethod(/* param list */);
+```
+其作用在于 **为所有的子类定义一个统一的接口**。
+
+抽象类可以包含抽象方法，也可以不包含。但包含抽象方法的类必须声明为抽象类。
+
+抽象方法在子类中必须被实现，否则子类仍然是 `abstract` 的。
+
+## 接口（interface）
+
+接口是 **某种特征的约定**。
+
+* 接口定义中所有方法都是 `public abstract` 的。（在 UML 图中用斜体表示）
+* 实现接口 `implements` 可以实现多继承，并且与类的继承关系无关
+
+如下图所示：
+<center>![InterfaceUML](./images/interface_uml.png)</center>
+<center>接口继承UML图</center>
+
+**面向接口编程**，而不是面向实现：
+
+* `Flyable f = new Bird();`
+* Java 中有大量的接口
+
+接口的作用：
+
+* 通过接口可以实现 **不相关类的相同行为**，而不需要考虑这些类之间的层次关系。从而在一定程度上实现了多重继承。
+* 通过接口可以指明多个类需要实现的方法。
+* 通过接口可以了解对象的交互界面，而不需要了解对象所对应的类。
+
+接口举例：
+```java
+interface Collection {
+    void add(Object obj);
+    void delete(Object obj);
+    Object find(Object obj);
+    int size();
+}
+```
+
+通常 **接口名** 以 **...able 或 ...ible** 结尾，标明接口能完成一定的行为。
+
+接口的声明中还可以包括对接口的访问权限以及对它的父接口列表。完整的接口声明如下：
+```java
+[public] interface interfaceName [extends listOfSuperInterface] {
+    //  ...
+}
+```
+
+* 其中 `public` 指明任意类均可以访问这个接口，缺省情况下，只有与该接口定义在同一个包中的类才可以访问这个接口。
+* `extends` 子句与类声明中的 `extends` 子句不同的是一个接口可以有多个父接口，但一个子类只能有一个父类。子接口继承父接口中的所有常量和方法。
+
+接口内方法声明的格式为：`returnType methodName(/* paramlist */);`
+
+接口中只进行方法的声明，不提供方法的实现，故该定义没有方法体，用 `;` 结尾。
+
+在接口中声明的方法具有 `public` 和 `abstract` 属性。所以定义的时候这两个关键词是 **可以省略的**。
+
+另外，如果子接口中定义了和父接口同名的常量或相同的方法，则父接口中的常量被隐藏，方法被重载。
+
+举例来说，下面定义的 `FIFOQueue` 中实现了上面所定义的接口 `Collection`：
+```java
+class FIFOQueue implements Collection {
+    public void add(Object obj) {
+        // ...
+    }
+    
+    public void delete(Object obj) {
+        // ...
+    }
+
+    public Object find(Object obj) {
+        // ...
+    }
+    
+    public int currentCount() {
+        // ...
+    }
+}
+```
+在类中实现接口定义的方法时，方法的声明必须与接口中所定义的完全一致。
+
+接口可以作为一个 **引用类型** 来使用。任何实现该接口的类的实例都可以 **存储在该接口类型的变量中**，通过这些变量 **可以访问类所实现的接口中的方法**。Java 运行时系统动态地决定该使用哪个类中的方法。
+
+把接口作为一种数据类型可以不需要了解对象所对应的具体的类，举例如下：
+```java
+// ...
+Collection c = new FIFOQueue();
+c.add(obj);
+//...
+```
+
+### 接口中的常量和枚举，Java8 对接口的扩充
+
+#### 常量和枚举
+
+接口体重可以包含常量定义。
+
+常量定义的格式为：
+```java
+type NAME = value;
+```
+其中 `type` 可以是任意类型，`NAME` 是常量名，通常用大写，`value` 是常量值。
+
+在接口中定义的常量可以被实现该接口的多个类共享，它与 **C 中 `define`** 以及 **C++ 中用 `cosnt` 定义常量的意义是相同的**。
+
+在 **接口中定义的常量** 具有 `public`, `static`, `final` 属性。
+
+从 JDK5 开始，可以使用枚举
+```java
+enum Light { Red, Yello, Green }
+```
+
+使用：
+```java
+Light light = Light.Red;
+switch(light) { case Red: ... break; }
+```
+注意：`case` 后面不写为 `Light.Red`。
+
+Java 中枚举是用 `class` 来实现的，可以复杂地使用。
+
+#### Java8 中的接口
+
+Java8 以上，接口成员还可以是：`static` 方法，具有实现体的方法（default 方法）
+
+* 默认方法的好处是：提供了一个默认实现，子类在实现的时候可以不用重新写了。
+
+
