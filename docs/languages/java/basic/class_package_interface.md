@@ -415,7 +415,7 @@ public static void main(String args[]) {
 }
 
 // finalize()方法
-protected void finalize() throw throwable {
+protected void finalize() throws throwable {
     // ...
 }
 ```
