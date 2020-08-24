@@ -377,3 +377,58 @@ Java8 以上，接口成员还可以是：`static` 方法，具有实现体的�
 * 默认方法的好处是：提供了一个默认实现，子类在实现的时候可以不用重新写了。
 
 
+## 小结
+
+### 完整的类定义
+```java
+// 类声明
+[public] [abstract|final] class className [extends superClassName] [implements InterfaceNameList] {
+    // 成员变量声明（可为多个）
+    [public|protected|private] [static] [final] [transient] [volatile] type variableName;
+
+    // 方法定义及实现（可为多个）
+    [public|protected|private] [static] [final|abstract] [native] [synchronized] returnType mathodName([paramList]) [throws exceptionList] {
+        // ...
+    }
+}
+```
+
+### 完整的接口定义
+```java
+// 接口声明
+[public] interface InterfaceName [extends SuperInterfaceList] {
+    type constantName = Value;  // 常量声明（可为多个）
+    returnType methodName([paramList]); // 方法声明（可为多个）
+}
+```
+
+### 三种要求固定声明方式的方法
+```java
+// 构造方法
+className([paramList]) {
+    // ...
+}
+
+// main()方法
+public static void main(String args[]) {
+    // ...
+}
+
+// finalize()方法
+protected void finalize() throw throwable {
+    // ...
+}
+```
+其中 `finalize` 方法一般不用，与编译器相关。
+
+### 完整的 Java 源文件
+```java
+package packageName;    // 指定文件中类所在的包，0个或1个
+import packageName.[className|*];   // 指定引入的类，0个或多个
+public classDefinition  // 属性为 public 的类定义，0个或1个
+interfaceDefinition and classDefinition // 接口和类的定义，0个或多个
+```
+其中：
+
+* 源文件的名字必须与属性为 `public` 的类名完全相同
+* 在一个 .java 文件中，`package` 语句和 `public` 类最多只能有一个
