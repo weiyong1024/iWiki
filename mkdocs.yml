@@ -85,6 +85,9 @@ nav:
         - 基本语法: languages/java/basic/grammar.md
         - 类、包和接口: languages/java/basic/class_package_interface.md
         - 异常机制: languages/java/basic/exception.md
+        - 工具类及常用算法: languages/java/basic/tools_and_algorithm.md
+        - 多线程: languages/java/basic/multi_thread.md
+        - 文件与流: languages/java/basic/file_and_stream.md
   - 操作系统:
     - 概述: operating_system/index.md
     - 基础梳理:
