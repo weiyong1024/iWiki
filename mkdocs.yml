@@ -126,6 +126,8 @@ nav:
     - 杂项:
       - CDN: survey/extra/cdn.md
   - 行业观察:
+    - 读书笔记:
+      - 书单: industry/reading/reading_list.md
     - 财务报表:
       - 微软: industry/fiscal/microsoft/2019_annual_report.md
       - 苹果: industry/fiscal/apple/2019_annual_report.md
