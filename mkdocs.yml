@@ -66,12 +66,15 @@ nav:
       - 二分图匹配: competitive_programming/graph_theory/bipartite_matching.md
     - 大数据算法:
       - 布隆过滤器: competitive_programming/big_data/bloom_filter.md
-  - 设计模式:
-    - 对象与接口: design_pattern/object_and_interface.md
-    - 算法拆分 - 分离步骤: design_pattern/split_steps.md
-    - 算法拆分 - 分离表示: design_pattern/split_representation.md
-    - 接口组合: design_pattern/compose_interfaces.md
-    - 增加抽象层级: design_pattern/add_layers.md
+  - 系统设计:
+    - 面向对象基础:
+      - 对象与接口: system_design/object_oriented/object_and_interface.md
+      - 算法拆分 - 分离步骤: system_design/object_oriented/split_steps.md
+      - 算法拆分 - 分离表示: system_design/object_oriented/split_representation.md
+      - 接口组合: system_design/object_oriented/compose_interfaces.md
+      - 增加抽象层级: system_design/object_oriented/add_layers.md
+    - 经典设计问题:
+      - 分布式id生成器: system_design/classic_problems/distributed_id_generator.md
   - 编程语言:
     - C++:
       - 基础梳理: languages/cpp/basic.md
