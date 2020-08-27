@@ -212,11 +212,259 @@ import java.time.format.*;
 
 `List` 接口：
 ```java
-public interface List<E> extends Collection<E>
+public interface List<E> extends Collection<E> {
+    E get(int index);
+    E set(int index, E element);
+    void add(int index, E element);
+    E remove(int index);
+    int indexOf(Object o);
+    //...
+}
 ```
+
+所有的 `Collection` 都能产生 **迭代器** `Iterator`：
+```java
+Iterator iterator = iterable.iterator();
+while (iterator.hasNext()) {
+    doSomething(iterator.next());
+}
+```
+
+Java 中的 **"for-each" 语句**，编译器就生成了 `Iterator`，通过调用它的 `hasNext()` 方法来判断是否继续迭代：
+```java
+for (Element e : list) {
+    doSomething(e);
+}
+```
+
+### Stack
+
+* 先入后出表（LIFO）
+* 线性数据结构
+* 主要包含以下三个方法：
+```java
+public Object push(Object item);
+public Object pop();
+public boolean empty();
+```
+
+### Queue
+
+* 先进先出表（FIFO）
+* 一种重要的实现是 `LinkedList` 类：
+
+|         | 可抛出异常 | 可返回元素 |
+|---------|-----------|----------|
+| Insert  | add(e)    | offer(e) |
+| Remove  | remove()  | poll()   |
+| Examine | element() | peek()   |  
+
+几个 **早期** 的类或接口：
+
+* 动态数组：`Vector` 现在多用 `ArrayList`
+    * 比 JDK1 中的 `ArrayList` 好，有 `elementAt` 方法
+* 线性栈：`Stack` 现在多用 `LinkedList`
+    * `Stack` 是 `Vector` 的子类，有 `push`, `pop`, `pick` 方法。
+* 哈希表：`Hashtable` 现在多用 `HashMap`
+    * `Hashtable` 实现 `Map` 接口，参见 `Properties` 类
+* 枚举：`Enumeration`，现在多用 `Iterator`
+    * `Enumeration` 是用另一种方式实现 `Iterator` 的功能
+    * `Vector` 等可以得到枚举器：
+    ```java
+    Enumberation<E> e = v.elements();
+    while (e.hasMoreElements()) {
+        doSomething(e.nextElement());
+    }
+    ```
+    由于 `Iterator` 支持 "for-each" 的迭代形式，故替代了 `Enumeration`
+
+### Set
+
+`Set` 接口有两个 **重要实现**，`HashSet` 和 `TreeSet`，其中 `TreeSet` 的底层实现是用 `TreeMap` 来实现的。
+
+`Set` 中的对象不重复，即：
+
+* `hashCode()` 不等
+* 如果 `hashCode()` 相等，再看 `equals` 或 `==` 是否为 `false`
+
+`Hashable` 的实现：
+
+* `String` 对象的哈希码根据以下公式计算：
+$$
+s[0] \times 31^{n - 1} + s[1] \times 31^{n - 2} + ... + s[n - 1]
+$$
+
+<center>![Hashtable](./images/hashtable.png)</center>
+
+注：一般我们在覆盖的时候 **要同时覆盖** `hashCode` 和 `equals` 方法。
+
+### Map
+
+`Map` 是键值对的集合
+
+* 其中可以取到 `entrySet()`, `ketSet()`, `values()`
+* `Map.Entry` 是一个嵌套接口
+
+`Map` 类的重要实现：`HashMap` 类和 `TreeMap` 类，其中 `TreeMap` 基于红黑树
+
+<center>![MapStructure](./images/map_structure.png)</center>
+<center>Map 的层次结构</center>
+
 
 ## 排序与查找
 
+Java 中 `Arrays` 类及 `Collections`
+
+### Arrays
+
+`Arrays` 提供了 `sort()` 和 `binarySearch()` 方法：
+```java
+public static void sort(List list);
+public static void sort(List list, Comparator c);
+public static int binarySearch(List list, Object key);
+public static int binarySearch(List list, Object key, Comparator c);
+```
+注：一般调用 `binarySearch()` 之前先调用一次 `sort()`。
+
+看如下例子：
+```java
+String[] s = randStrings(4, 10);
+print(s);
+Arrays.<String>sort(s);
+print(s);
+int loc = Arrays.<String>binarySearch(s, s[2]);
+System.out.println("Location of " + s[2] + " is " + loc);
+```
+注：这里泛型 `<String>` 是 **限定方法的**，故写在方法前面。
+
+关于比较：
+
+* 要么对象是 `java.lang.Comparable`，实现了如下方法：
+```java
+public int compareTo(Object obj) {
+    return this.price - ((Book)obj).price;
+}
+```
+* 要么提供一个 `java.lang.Comparator`，实现如下方法：
+```java
+public int compare(T o1, T o2);
+```
+
+注：这些方法的含义不能和 `equal` 冲突，否则 **语义上不能解释**。
+
+### Collections
+
+此类完全由在 `collection` 上进行操作的静态方法组成。
+
+如 `sort`, `binary`, `reverse` 等。
+
+从 Java8 开始，我们往往直接用 **lambda 表达式** 来定义比较器。例如：
+```java
+Collections.sort(school, (p1, p2)->p1.age-p2.age);
+```
+一次来对学校里的学生按照年龄排序。
+
+
 ## 泛型
 
+泛型（Generic）是 JDK1.5 之后加入的最重要的 Java 语言特性。
+
+使用泛型可以针对不同的类有相同的处理方法：
+```java
+Vector<String> v = new Vector<String>();
+v.addElement("one");
+String s = v.elementAt(0);
+```
+
+泛型的好处在于：
+
+* **使类型更安全**。否则，我们只能把所有的类型都当做 `Object` 编程，并在使用时进行 **强制类型转换**，这就不具备安全性。
+* **使用更广泛**，可以编写针对不同类的相同处理方法，而这些方法之间 **还没有继承关系**。
+
+### 自定义泛型
+
+* 自定义泛型类
+* 自定义泛型方法 —— **注意这里 `<>` 要写到方法名字前面**
+
+
+### 对类型的限定
+
+* 使用 `?`，表示任意类型，例如 `Collections` 的 `reverse` 方法
+```java
+reverse(List<?> list)
+```
+
+* 使用 `extends`，如 `Set` 的 `addAll` 方法
+```java
+addAll(Collection<? extends E> col)
+```
+即用子类声明，
+
+* 使用 `super`，如 `Collections` 的 `fill` 方法
+```java
+fill(List<? super T> list, T obj)
+```
+即用 **超类** 声明，例如声明这是一个水果容器，使用时候可以添加苹果、香蕉。
+
+注：泛型一定是一个 **引用类型**，可以使用 `Integer` 但不能使用 `int`。
+
+泛型可以有多种 **复杂** 的组合：
+```java
+// Arrays.sort()
+public static <T> void sort(T[] a, Comparator<? super T> c)
+
+// Stream.map()
+public <R> Stream<R> map(Function<? super T, ? extends R> mapper)
+
+// Collections.max()
+public static <T extends Object & Comparable<? super T>>T max(Collection<? extends T> coll)
+```
+
+
 ## 常用算法
+
+### 遍历
+
+**遍历（exhaust）**，也叫 **穷举**，即在有限范围内，对所有的值都进行试验和判断，从而找到满足条件的值。
+
+遍历的基本模式：
+```java
+for( : ) { if(); }
+```
+经典问题：找到1000以内的“水仙花数”（定义：数值等于各位数的立方和）
+
+### 迭代
+
+**迭代（iteration）**，指多次使用同一公式进行计算，每次将结果再代入公式，从而逐步逼近精确解。
+
+迭代的基本模式：
+```java
+while( end() ) {
+    x = f(x);
+}
+```
+经典问题：二分法求平方根
+
+### 递归
+
+**递归（recursion）**，就是一个过程调用该过程本身。一般过程的执行需要用到它的 **上一步或几步的结果**。
+
+递归的基本模式：
+```java
+f(n) {
+    f(n - 1)
+}
+```
+经典案例：递归求阶乘
+
+### 回溯
+
+**回溯（back-track）**，或称 **试探回溯法**，先选择某一可能的线索进行试探，每一步都有多种方式，将每一方式都一一试探，如果不符合条件就返回纠正，反复进行这种试探再返回纠正，知道的出 **全部符合条件** 的答案或者 **问题无解** 为止。
+
+回溯的基本模式：
+```java
+x++;
+if () x--;
+```
+经典例子：八皇后问题
+
