@@ -184,8 +184,36 @@ import java.time.format.*;
 * `DateTimeFormatter`
 
 
-
 ## 集合
+
+`Collection API` 三大类：
+
+* `Collection` 接口
+    * `List` （`Collection` 的子接口）：有顺序，可重复
+    * `Set` （`Collection` 的子接口）：无顺序，不重复
+* `Map` 接口
+    * **键值对** 集合
+
+`Collection` 接口提供如下域：
+
+<center>![Collection](./images/collection.png)</center>
+<center>集合UML</center>
+
+下图展示了由 `Collection` 派生的类：
+
+<center>![CollectionFamily](./images/collection_family.png)</center>
+<center>集合层次结构</center>
+
+### List
+
+`List` 接口：线性表（linear list）。
+
+主要的实现类有：`ArrayList`, `LinkedList`，以及早期的 `Vector`
+
+`List` 接口：
+```java
+public interface List<E> extends Collection<E>
+```
 
 ## 排序与查找
 
