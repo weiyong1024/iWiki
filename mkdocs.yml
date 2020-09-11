@@ -23,8 +23,9 @@ theme:
   include_search_page: false
   search_index_only: true
   favicon: 'favicon.ico'
-  features:
-    tabs: true
+  features: 
+    - tabs
+    - search.highlight
 
 # Page tree
 nav:
@@ -73,6 +74,7 @@ nav:
       - 算法拆分 - 分离表示: system_design/object_oriented/split_representation.md
       - 接口组合: system_design/object_oriented/compose_interfaces.md
       - 增加抽象层级: system_design/object_oriented/add_layers.md
+      - 【附录】UML图介绍: system_design/object_oriented/UML101.md
     - 经典设计问题:
       - 分布式id生成器: system_design/classic_problems/distributed_id_generator.md
   - 编程语言:
@@ -83,7 +85,7 @@ nav:
     - Java:
       - 概述: languages/java/index.md
       - 基础梳理:
-        - Java 历史简介: languages/java/basic/history.md
+        - Java 及面向对象简介: languages/java/basic/intro_to_java_and_oop.md
         - 简单的 Java 程序: languages/java/basic/programming_basic.md
         - 基本语法: languages/java/basic/grammar.md
         - 类、包和接口: languages/java/basic/class_package_interface.md
@@ -91,6 +93,8 @@ nav:
         - 工具类及常用算法: languages/java/basic/tools_and_algorithm.md
         - 多线程: languages/java/basic/multi_thread.md
         - 文件与流: languages/java/basic/file_and_stream.md
+        - 网络、多媒体和数据库编程: languages/java/basic/network_multimedia_and_database.md
+        - 写好 Java 程序: languages/java/basic/good_practice.md
   - 操作系统:
     - 概述: operating_system/index.md
     - 基础梳理:
@@ -117,7 +121,7 @@ nav:
       - Storm: open_source/stream_computing/storm.md
     - 流量控制:
       - Sentinel: open_source/traffic_control/sentinel.md
-    - RPC:
+    - RPC 框架:
       - Dubbo: open_source/rpc/dubbo.md
   - 技术调研:
     - 大数据架构:
