@@ -64,7 +64,7 @@ class VectorStack : public Stack, private vector<int> {
 
 C++假设程序员知道自己在干什么，所以在功能上提供了多重继承
 
-使用继承实现适配，称作 **类Adaapter**，UML如下
+使用继承实现适配，称作 **类Adapter**，UML如下
 
 ![ClassAdapter](./images/class_adapter.png)
 
@@ -310,7 +310,7 @@ Bordered HScrolled VScrolled TextView.
 | 策略                        | 装饰                        |
 | -------------------------- | --------------------------- |
 | 修改对象功能的内核            | 修改对象功能的外壳             |
-| 组建必须了解有哪些需要选择的策略 | 组建无需了解有哪些可以装饰的内容 |
+| 组件必须了解有哪些需要选择的策略 | 组件无需了解有哪些可以装饰的内容 |
 
 #### 装饰模式与代理模式
 

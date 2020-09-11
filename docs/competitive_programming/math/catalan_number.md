@@ -1,4 +1,4 @@
-# Catalan number / 卡特兰数
+# 卡特兰数/Catalan
 
 ## 问题
 
