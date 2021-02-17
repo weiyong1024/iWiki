@@ -67,16 +67,16 @@ nav:
       - 二分图匹配: competitive_programming/graph_theory/bipartite_matching.md
     - 大数据算法:
       - 布隆过滤器: competitive_programming/big_data/bloom_filter.md
-  - 系统设计:
-    - 面向对象基础:
-      - 对象与接口: system_design/object_oriented/object_and_interface.md
-      - 算法拆分 - 分离步骤: system_design/object_oriented/split_steps.md
-      - 算法拆分 - 分离表示: system_design/object_oriented/split_representation.md
-      - 接口组合: system_design/object_oriented/compose_interfaces.md
-      - 增加抽象层级: system_design/object_oriented/add_layers.md
-      - 【附录】UML图介绍: system_design/object_oriented/UML101.md
-    - 经典设计问题:
-      - 分布式id生成器: system_design/classic_problems/distributed_id_generator.md
+  # - 系统设计:
+  #   - 面向对象基础:
+  #     - 对象与接口: system_design/object_oriented/object_and_interface.md
+  #     - 算法拆分 - 分离步骤: system_design/object_oriented/split_steps.md
+  #     - 算法拆分 - 分离表示: system_design/object_oriented/split_representation.md
+  #     - 接口组合: system_design/object_oriented/compose_interfaces.md
+  #     - 增加抽象层级: system_design/object_oriented/add_layers.md
+  #     - 【附录】UML图介绍: system_design/object_oriented/UML101.md
+  #   - 经典设计问题:
+  #     - 分布式id生成器: system_design/classic_problems/distributed_id_generator.md
   - 编程语言:
     - C++:
       - 基础梳理: languages/cpp/basic.md
@@ -95,24 +95,27 @@ nav:
         - 文件与流: languages/java/basic/file_and_stream.md
         - 网络、多媒体和数据库编程: languages/java/basic/network_multimedia_and_database.md
         - 写好 Java 程序: languages/java/basic/good_practice.md
-  - 操作系统:
-    - 概述: operating_system/index.md
-    - 基础梳理:
-      - 进程管理: operating_system/basic/process_management.md
-      - 内存管理: operating_system/basic/memory_management.md
-      - 存储管理: operating_system/basic/storage_management.md
-  - 计算机网络:
-    - 科学上网: network/sciencetific_surfing.md
-  - 机器学习: machine_learning/index.md
-  - 经济学原理: 
-    - 微观经济学: economics/micro_economics.md
-    - 宏观经济学: economics/macro_economics.md
-  - 开源库解读:
+  # - 操作系统:
+  #   - 概述: operating_system/index.md
+  #   - 基础梳理:
+  #     - 进程管理: operating_system/basic/process_management.md
+  #     - 内存管理: operating_system/basic/memory_management.md
+  #     - 存储管理: operating_system/basic/storage_management.md
+  # - 计算机网络:
+  #   - 科学上网: network/sciencetific_surfing.md
+  # - 机器学习: machine_learning/index.md
+  # - 经济学原理: 
+  #   - 微观经济学: economics/micro_economics.md
+  #   - 宏观经济学: economics/macro_economics.md
+  - 开源技术:
+    - 索引页: open_source/index.md
+    - 分布式技术:
+      - 分布式服务: open_source/distributed_system/rpc.md
+      - 分布式消息: open_source/distributed_system/message.md
+      - 分布式调度: open_source/distributed_system/schedule.md
     - 数据库:
       - LevelDB: open_source/database/leveldb.md
       - Redius: open_source/database/redius.md
-    - 消息系统:
-      - kafka: open_source/message_system/kafka.md
     - 浏览器: 
       - Chromium: open_source/browser/chromium.md
     - 流式计算:
@@ -121,26 +124,26 @@ nav:
       - Storm: open_source/stream_computing/storm.md
     - 流量控制:
       - Sentinel: open_source/traffic_control/sentinel.md
-    - RPC 框架:
-      - Dubbo: open_source/rpc/dubbo.md
-  - 技术调研:
-    - 大数据架构:
-      - Hadoop生态: survey/big_data/hadoop.md
-    - 推荐系统:
-      - 基础知识: survey/recommendor_system/basic.md
-    - Serverless:
-      - 基础知识: survey/serverless/basic.md
-    - 杂项:
-      - CDN: survey/extra/cdn.md
-  - 行业观察:
-    - 读书笔记:
-      - 书单: industry/reading/reading_list.md
-    - 财务报表:
-      - 微软: industry/fiscal/microsoft/2019_annual_report.md
-      - 苹果: industry/fiscal/apple/2019_annual_report.md
-      - 亚马逊: industry/fiscal/amazon/2019_annual_report.md
-      - 谷歌: industry/fiscal/google/2019_annual_report.md
-      - 腾讯: industry/fiscal/tencent/2019_annual_report.md
+  - 博客:
+    - 索引页: blog/index.md
+  # - 技术调研:
+  #   - 大数据架构:
+  #     - Hadoop生态: survey/big_data/hadoop.md
+  #   - 推荐系统:
+  #     - 基础知识: survey/recommendor_system/basic.md
+  #   - Serverless:
+  #     - 基础知识: survey/serverless/basic.md
+  #   - 杂项:
+  #     - CDN: survey/extra/cdn.md
+  # - 行业观察:
+  #   - 读书笔记:
+  #     - 书单: industry/reading/reading_list.md
+  #   - 财务报表:
+  #     - 微软: industry/fiscal/microsoft/2019_annual_report.md
+  #     - 苹果: industry/fiscal/apple/2019_annual_report.md
+  #     - 亚马逊: industry/fiscal/amazon/2019_annual_report.md
+  #     - 谷歌: industry/fiscal/google/2019_annual_report.md
+  #     - 腾讯: industry/fiscal/tencent/2019_annual_report.md
   - 博客推荐: other_blogs.md 
   - 关于作者: about.md
 
