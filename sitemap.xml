@@ -1,303 +1,231 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://weiyong.org/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/basic/searching/binary_search/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/basic/searching/ternary_search/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/basic/sorting/quick_sort/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/basic/sorting/merge_sort/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/basic/sorting/radix_sort/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/basic/monotune_stack/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/math/greatest_common_devisor/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/math/quick_power/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/math/combination/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/math/inverse/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/math/eratosthenes/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/math/catalan_number/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/string/z-func/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/string/trie/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/string/suffix_automation/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/string/suffix_array/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/data_structure/fenwick/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/data_structure/segment_tree/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/data_structure/union_find/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/data_structure/lru_cache/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/data_structure/skiplist/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/data_structure/btree/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/graph_theory/dijkstra/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/graph_theory/floyd/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/graph_theory/minimum_spanning_tree/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/graph_theory/bipartite_matching/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/competitive_programming/big_data/bloom_filter/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/system_design/object_oriented/object_and_interface/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/system_design/object_oriented/split_steps/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/system_design/object_oriented/split_representation/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/system_design/object_oriented/compose_interfaces/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/system_design/object_oriented/add_layers/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/system_design/classic_problems/distributed_id_generator/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/languages/cpp/basic/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/languages/cpp/concurrency/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/languages/cpp/effective_cpp/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/languages/java/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://weiyong.org/languages/java/basic/history/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <loc>https://weiyong.org/languages/java/basic/intro_to_java_and_oop/</loc>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/languages/java/basic/programming_basic/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/languages/java/basic/grammar/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/languages/java/basic/class_package_interface/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/languages/java/basic/exception/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/languages/java/basic/tools_and_algorithm/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/languages/java/basic/multi_thread/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/languages/java/basic/file_and_stream/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://weiyong.org/operating_system/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <loc>https://weiyong.org/languages/java/basic/network_multimedia_and_database/</loc>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://weiyong.org/operating_system/basic/process_management/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <loc>https://weiyong.org/languages/java/basic/good_practice/</loc>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://weiyong.org/operating_system/basic/memory_management/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <loc>https://weiyong.org/open_source/</loc>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://weiyong.org/operating_system/basic/storage_management/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <loc>https://weiyong.org/open_source/distributed_system/rpc/</loc>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://weiyong.org/network/sciencetific_surfing/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <loc>https://weiyong.org/open_source/distributed_system/message/</loc>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://weiyong.org/machine_learning/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/economics/micro_economics/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/economics/macro_economics/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <loc>https://weiyong.org/open_source/distributed_system/schedule/</loc>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/open_source/database/leveldb/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/open_source/database/redius/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/open_source/message_system/kafka/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/open_source/browser/chromium/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/open_source/stream_computing/flink/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/open_source/stream_computing/spark/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/open_source/stream_computing/storm/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/open_source/traffic_control/sentinel/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://weiyong.org/open_source/rpc/dubbo/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/survey/big_data/hadoop/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/survey/recommendor_system/basic/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/survey/serverless/basic/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/survey/extra/cdn/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/industry/reading/reading_list/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/industry/fiscal/microsoft/2019_annual_report/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/industry/fiscal/apple/2019_annual_report/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/industry/fiscal/amazon/2019_annual_report/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/industry/fiscal/google/2019_annual_report/</loc>
-     <lastmod>2020-08-30</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://weiyong.org/industry/fiscal/tencent/2019_annual_report/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <loc>https://weiyong.org/blog/</loc>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/other_blogs/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://weiyong.org/about/</loc>
-     <lastmod>2020-08-30</lastmod>
+     <lastmod>2021-11-01</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
