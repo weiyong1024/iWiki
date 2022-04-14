@@ -3,39 +3,49 @@
 ## 问题
 对于有 $n$ 个节点的图，设计一种维护动态连通性问题的数据结构，支持如下操作：
 
-* Find(i) - 查询编号为 $i$ 的节点所属的连通分量
+* $Find(i)$ - 查询编号为 $i$ 的节点所属的连通分量
 
-* Union(i, j) - 连接编号为 $i$ 和 $j$ 的节点（二者所在的连通分量连通）
+* $Union(i, j)$ - 连接编号为 $i$ 和 $j$ 的节点（二者所在的连通分量连通）
 
 
 ## 代码
 ```cpp
 class UnionFind {
-   public:
-    UnionFind(int _sz) : sz(_sz) {
-        pre = vector<int>(sz);
-        for (int i = 0; i < sz; i++) pre[i] = i;
+ public:
+  UnionFind(int _size) : size(_size) {
+    pre = vector<int>(size);
+    for (int i = 0; i < size; i++) {
+      pre[i] = i;
     }
-    int Find(int x) { // Find root.
-        int r = x;
-        while (r != pre[r]) r = pre[r];
-        // Path compress.
-        while (x != r) {
-            int tmp = pre[x];
-            pre[x] = r;
-            x = tmp;
-        }
-        return r;
-    }
-    void Join(int x, int y) {
-        int rx = Find(x), ry = Find(y);
-        if (rx != ry) pre[rx] = ry;
-    }
-    int size() { return sz; }
+  }
 
-   private:
-    int sz;
-    vector<int> pre;
+  int Find(int x) {
+    // Find root
+    int root = x;
+    while (root != pre[root]) {
+      root = pre[root];
+    }
+    // Path compress
+    while (x != root) {
+      int temp = pre[x];
+      pre[x] = root;
+      x = temp;
+    }
+    return root;
+  }
+
+  void Join(int x, int y) {
+    int root_x = Find(x), root_y = Find(y);
+    if (root_x != root_y) {
+      pre[root_x] = root_y;
+    }
+  }
+
+  int Size() { return size; }
+
+ private:
+  int size;
+  vector<int> pre;
 };
 ```
 
