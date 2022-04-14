@@ -31,6 +31,7 @@ theme:
 nav:
   - 简介: index.md
   - 算法竞赛:
+    - 索引页: competitive_programming/index.md
     - 基础:
       - 搜索:
         - 二分搜索: competitive_programming/basic/searching/binary_search.md
@@ -53,7 +54,7 @@ nav:
       - 后缀自动机: competitive_programming/string/suffix_automation.md
       - 后缀数组: competitive_programming/string/suffix_array.md
     - 数据结构:
-      - 树状数组: competitive_programming/data_structure/fenwick.md
+      - Fenwick/BIT: competitive_programming/data_structure/fenwick.md
       - 线段树: competitive_programming/data_structure/segment_tree.md
       - 并查集: competitive_programming/data_structure/union_find.md
       - LRU缓存: competitive_programming/data_structure/lru_cache.md
@@ -116,12 +117,6 @@ nav:
     - 数据库:
       - LevelDB: open_source/database/leveldb.md
       - Redius: open_source/database/redius.md
-    - 浏览器: 
-      - Chromium: open_source/browser/chromium.md
-    - 流式计算:
-      - Flink: open_source/stream_computing/flink.md
-      - Spark: open_source/stream_computing/spark.md
-      - Storm: open_source/stream_computing/storm.md
     - 流量控制:
       - Sentinel: open_source/traffic_control/sentinel.md
   - 博客:
